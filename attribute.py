@@ -125,7 +125,7 @@ create_pickit_classify_ele = (By.XPATH, ".//*[@id='content_body']/tbody/tr/td[1]
 classify_name_ele = (By.ID, "pmName")
 color_type_ele = (By.XPATH, ".//*[@id='color_type']/li[1]")
 classify_save_ele = (By.ID, "button")
-new_create_pickit_classify_ele = (By.CLASS_NAME, "cm_type active")
+new_create_pickit_classify_ele = (By.XPATH, ".//*[@class='cm_type active']/dl/dd[1]")
 # ====================================================================
 
 
