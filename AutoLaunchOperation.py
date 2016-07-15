@@ -27,8 +27,9 @@ suite = unittest.TestSuite()
 suite.addTest(test_LaunchOperation.LaunchOperationCase("test_CreatePictureKitClassify"))
 # suite.addTest(LaunchOperation.LaunchOperationCase("test_CreatePictureKit"))
 
-# 找到报告的文件路径位置
+# 创建存放测试报告文件的目录
 path = com.create_result_path(launch_result_path)
+# 找到报告的文件路径位置
 file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
 discover = unittest.defaultTestLoader.discover('./', pattern='test_*.py')
 
