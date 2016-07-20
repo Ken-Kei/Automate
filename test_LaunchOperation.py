@@ -4,7 +4,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/8
+Edit Date    :  2016/7/20
 """
 
 
@@ -47,12 +47,15 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                     if oa.is_pitkic_classify_create_succeed() is True:
                         self.assertEqual(oa.is_pitkic_classify_create_succeed(), True)
                         logging.info("套图分类创建成功，用例通过")
+                        self.create_screen_shot(launch_screenshot_path)
                         break
                     else:
                         logging.error("没有找到套图分类，套图创建失败")
+                        self.create_screen_shot(launch_screenshot_path)
                     break
                 else:
                     logging.error(login_failed)
+                    self.create_screen_shot(launch_screenshot_path)
                     self.driver.delete_all_cookies()
                     time.sleep(i * 2)
             except Exception as e:
@@ -76,12 +79,15 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                     if oa.is_card_create_succeed() is True:
                         self.assertEqual(oa.is_card_create_succeed(), True)
                         logging.info(create_card_succeed)
+                        self.create_screen_shot(launch_screenshot_path)
                         break
                     else:
                         logging.error(create_card_failed)
+                        self.create_screen_shot(launch_screenshot_path)
                     break
                 else:
                     logging.error(login_failed)
+                    self.create_screen_shot(launch_screenshot_path)
                     self.driver.delete_all_cookies()
                     time.sleep(i * 2)
             except Exception as e:

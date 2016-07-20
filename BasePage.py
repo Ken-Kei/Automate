@@ -3,20 +3,23 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/8
+Edit Date    :  2016/7/20
 """
 
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 from attribute import *  # @UnusedWildImport
+from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+com = CommonUtils()
 
 
 class BasePage(object):
     """
-    封装基础的方法，如获取驱动、查找页面元素，输入url等
+    封装基础的页面操作方法，如获取驱动、查找页面元素，输入url等
     """
     
     def __init__(self, driver):
@@ -28,7 +31,7 @@ class BasePage(object):
 
     def type_url(self, url):
         try:
-            # driver.maximize_window()
+            self.driver.maximize_window()
             self.driver.get(self.merge_launch_url(url))
         except Exception as e:
             raise e
@@ -45,7 +48,7 @@ class BasePage(object):
         wait = WebDriverWait(self.driver, waiting_time)
         for i in range(0, 3):
             try:
-                wait.until(EC.element_to_be_clickable(*element))
+                wait.until(ec.element_to_be_clickable(*element))
                 # wait.until(self.find_element(*element))
                 break
             except:
@@ -56,7 +59,7 @@ class BasePage(object):
         wait = WebDriverWait(self.driver, waiting_time)
         for i in range(0, 3):
             try:
-                wait.until(EC.alert_is_present())
+                wait.until(ec.alert_is_present())
                 break
             except:
                 time.sleep(i * 1)
@@ -101,5 +104,18 @@ class BasePage(object):
             self.wait_element_load_end(*upload_button_ele)
             self.driver.execute_script("""document.getElementById('fileImage').style.display='block'; """)
             self.find_element(*display_upload_button_ele).send_keys(file_path)
+        except Exception as e:
+            raise e
+
+    # 截图
+    def create_screen_shot(self, screenshot_path):
+        try:
+            if need_screenshot.lower() == 'n':
+                return None
+            elif need_screenshot.lower() == 'y':
+                screenshot_path = com.create_path(screenshot_path)
+                screenshot = os.path.join(screenshot_path, "screenshot_%s.jpg") % time.strftime("%H%M%S")
+                time.sleep(3)
+                self.driver.save_screenshot(screenshot)
         except Exception as e:
             raise e

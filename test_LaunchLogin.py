@@ -4,7 +4,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/7
-Edit Date    :  2016/7/8
+Edit Date    :  2016/7/20
 """
 
 from LoginPage import LoginPageAction
@@ -39,15 +39,18 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.wait_element_load_end(logout_button)
                 if self.is_element_exist(*logout_button) is True:
                     logging.info(login_succeed)
+                    self.create_screen_shot(launch_screenshot_path)
                     time.sleep(3)
                     action.logout()
                     self.wait_element_load_end(login_button)
                     if self.is_element_exist(*login_button) is True:
                         logging.info("账号登出成功,用例执行通过")
+                        self.create_screen_shot(launch_screenshot_path)
                         self.assertEqual(self.is_element_exist(*login_button), True)
                     break
                 else:
                     logging.error(login_failed)
+                    self.create_screen_shot(launch_screenshot_path)
                     self.driver.delete_all_cookies()
                     time.sleep(i * 2)
             except Exception as e:

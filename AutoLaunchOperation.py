@@ -3,7 +3,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/14
+Edit Date    :  2016/7/20
 """
 
 
@@ -49,3 +49,4 @@ new_file = com.find_new_report_file(new_report_path)
 fp.close()
 # 以邮件和附件形式发送用例执行结果到指定邮箱地址
 com.send_email(file_path, new_file)
+com.hangProgram()
