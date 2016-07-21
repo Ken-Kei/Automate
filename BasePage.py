@@ -13,6 +13,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import logging
 
 com = CommonUtils()
 
@@ -120,5 +121,7 @@ class BasePage(object):
                 screenshot = os.path.join(screenshot_path, "screenshot_%s.jpg") % time.strftime("%H%M%S")
                 time.sleep(2)
                 self.driver.save_screenshot(screenshot)
+            else:
+                logging.error("need_screenshot配置错误，请检查配置文件！")
         except Exception as e:
             raise e
