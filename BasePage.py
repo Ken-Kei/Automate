@@ -3,7 +3,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/20
+Edit Date    :  2016/7/21
 """
 
 
@@ -48,8 +48,8 @@ class BasePage(object):
         wait = WebDriverWait(self.driver, waiting_time)
         for i in range(0, 3):
             try:
-                wait.until(ec.element_to_be_clickable(*element))
-                # wait.until(self.find_element(*element))
+                wait.until(ec.presence_of_element_located(element))
+                wait.until(ec.element_to_be_clickable(element))
                 break
             except:
                 time.sleep(i * 1)
@@ -98,12 +98,15 @@ class BasePage(object):
             flag = False
         return flag
 
-    def upload_file(self, file_name):
+    def upload_file(self, ue, file_name):
         try:
             file_path = os.path.join(os.path.abspath(file_name))
-            self.wait_element_load_end(*upload_button_ele)
-            self.driver.execute_script("""document.getElementById('fileImage').style.display='block'; """)
-            self.find_element(*display_upload_button_ele).send_keys(file_path)
+            if self.is_element_exist(*ue) is True:
+                self.driver.execute_script(file_image_block)
+                self.find_element(*ue).send_keys(file_path)
+                self.driver.execute_script(file_image_none)
+            else:
+                self.find_element(*ue).send_keys(file_path)
         except Exception as e:
             raise e
 

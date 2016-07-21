@@ -3,7 +3,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/18
+Edit Date    :  2016/7/21
 """
 
 
@@ -58,10 +58,10 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 上传图片到卡券
+    # 上传图片
     def upload_pic(self, picture):
         try:
-            self.upload_file(picture)
+            self.upload_file(display_upload_button_ele, picture)
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -71,21 +71,22 @@ class OperationPageAction(BasePage):
     def upload_big_pic(self):
         try:
             self.click_big_pic()
-            logging.info("正在上传卡券大图：%s" % big_pic_name)
+            logging.info("正在上传大图：%s" % big_pic_name)
             self.upload_pic(big_pic_name)
             self.click_confirm_button()
-            logging.info("上传卡券大图完毕")
+            logging.info("上传大图完毕")
         except Exception as e:
             raise e
 
     # 上传封面小图
     def upload_small_pic(self):
         try:
+            time.sleep(3)
             self.click_small_pic()
-            logging.info("正在上传卡券小图：%s" % small_pic_name)
+            logging.info("正在上传小图：%s" % small_pic_name)
             self.upload_pic(small_pic_name)
             self.click_confirm_button()
-            logging.info("上传卡券小图完毕")
+            logging.info("上传小图完毕")
         except Exception as e:
             raise e
 
@@ -152,7 +153,7 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 封装一个创建折扣券的方法
+    # 创建折扣券
     def create_rebate_card(self):
         self.upload_big_pic()
         self.upload_small_pic()
@@ -219,7 +220,7 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 封装一个创建套图分类的方法
+    # 创建套图分类
     def create_pickit_classify(self):
         self.click_create_pickit_classify_button()
         self.type_classify_name()
@@ -237,6 +238,127 @@ class OperationPageAction(BasePage):
             if self.is_element_exist(*new_create_pickit_classify_ele) is False:
                 return False
             elif self.find_element(*new_create_pickit_classify_ele).text == pickit_classify_name:
+                return True
+            else:
+                return False
+        except Exception as e:
+            raise e
+
+    # 输入套图的名称
+    def type_pickit_name(self):
+        try:
+            self.wait_element_load_end(pickit_title_ele)
+            logging.info("输入套图的名称：%s" % pickit_name)
+            self.find_element(*pickit_title_ele).send_keys(pickit_name)
+        except NoSuchElementException:
+            logging.error("找不到套图名称输入框位置")
+        except Exception as e:
+            raise e
+
+    # 选择套图的所属分类
+    def select_pickit_classify(self):
+        try:
+            self.wait_element_load_end(pickit_belong_classify_drop_ele)
+            self.find_element(*pickit_belong_classify_drop_ele).click()
+            logging.info("选择套图的所属分类：%s" % self.find_element(*pickit_belong_classify_ele).text)
+            self.find_element(*pickit_belong_classify_ele).click()
+        except NoSuchElementException:
+            logging.error("找不到套图分类下拉框位置")
+        except Exception as e:
+            raise e
+
+    # 输入套图介绍
+    def type_pickit_description(self):
+        try:
+            self.wait_element_load_end(pickit_description_ele)
+            logging.info("输入套图介绍：%s" % pickit_description)
+            self.find_element(*pickit_description_ele).send_keys(pickit_description)
+        except NoSuchElementException:
+            logging.error("找不到套图介绍输入框位置")
+        except Exception as e:
+            raise e
+
+    # 点击上传套图按钮
+    def click_add_pickit_pic(self):
+        try:
+            self.wait_element_load_end(add_pickit_ele)
+            self.find_element(*add_pickit_ele).click()
+        except NoSuchElementException:
+            logging.error("找不到上传套图按钮位置")
+        except Exception as e:
+            raise e
+
+    # 上传套图完毕后点击保存
+    def click_save_pickit_button(self):
+        try:
+            self.wait_element_load_end(pic_confirm_ele)
+            self.find_element(*pic_confirm_ele).click()
+        except NoSuchElementException:
+            logging.error("找不到保存按钮位置")
+        except Exception as e:
+            raise e
+
+    # 上传套图
+    def upload_pickit_pic(self):
+        try:
+            self.click_add_pickit_pic()
+            logging.info("正在上传第一张套图：%s" % pickit1)
+            self.upload_file(upload_pic_ele, big_pic_name)
+            self.click_save_pickit_button()
+            logging.info("上传套图完毕")
+        except Exception as e:
+            raise e
+
+    # 创建套图完毕之后点击保存按钮
+    def click_save_button(self):
+        try:
+            self.wait_element_load_end(pic_save_ele)
+            self.find_element(*pic_save_ele).click()
+        except NoSuchElementException:
+            logging.error("找不到保存按钮位置")
+        except Exception as e:
+            raise e
+
+    # 点击套图的上传小图按钮
+    def click_picsmall_pic(self):
+        try:
+            self.wait_element_load_end(pickit_smallpic_ele)
+            self.find_element(*pickit_smallpic_ele).click()
+        except NoSuchElementException:
+            pass
+        except Exception as e:
+            raise e
+
+    # 上传套图的封面小图
+    def upload_picsmall_pic(self):
+        try:
+            self.click_picsmall_pic()
+            logging.info("正在上传小图：%s" % small_pic_name)
+            self.upload_pic(small_pic_name)
+            self.click_confirm_button()
+            logging.info("上传小图完毕")
+        except Exception as e:
+            raise e
+
+    # 创建套图
+    def create_pickit(self):
+        self.type_pickit_name()
+        self.select_pickit_classify()
+        self.upload_big_pic()
+        self.upload_small_pic()
+        self.type_pickit_description()
+        self.upload_pickit_pic()
+        self.click_save_button()
+        time.sleep(2)
+        self.driver.switch_to_alert().accept()
+
+    # 验证是否成功创建了卡券
+    def is_pickit_create_succeed(self):
+        try:
+            self.wait_element_load_end(new_create_pickit_ele)
+            if self.is_element_exist(*new_create_pickit_ele) is False:
+                return False
+            elif self.find_element(*new_create_pickit_ele).text == pickit_name:
                 return True
             else:
                 return False

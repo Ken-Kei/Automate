@@ -3,7 +3,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/20
+Edit Date    :  2016/7/21
 """
 
 
@@ -24,7 +24,7 @@ logging.info("Browser version: %s" % com.get_browser_version())
 
 # 初始化测试套件并添加测试用例
 suite = unittest.TestSuite()
-suite.addTest(test_LaunchOperation.LaunchOperationCase("test_CreatePictureKitClassify"))
+suite.addTest(test_LaunchOperation.LaunchOperationCase("test_CreatePictureKit"))
 # suite.addTest(LaunchOperation.LaunchOperationCase("test_CreatePictureKit"))
 
 # 创建存放测试报告文件的目录
@@ -39,7 +39,7 @@ fp = open(file_path, 'wb')
 runner = HTMLTestRunner(stream=fp,
                         title='家居精灵后台自动化测试报告',
                         description='环境：Windows 7   浏览器：Chrome')
-runner.run(discover)
+runner.run(suite)
 # 找到最新的报告目录
 new_report_path = com.find_new_report_path('./Result')
 # 找到最新的报告文件路径
@@ -49,4 +49,4 @@ new_file = com.find_new_report_file(new_report_path)
 fp.close()
 # 以邮件和附件形式发送用例执行结果到指定邮箱地址
 com.send_email(file_path, new_file)
-com.hangProgram()
+# com.hangProgram()

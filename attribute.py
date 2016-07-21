@@ -4,7 +4,7 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/1
-Edit Date    :  2016/7/14
+Edit Date    :  2016/7/21
 """
 
 
@@ -68,6 +68,11 @@ card_name = config.get("operation_data_setting", "card_name")  # 卡券名称
 
 pickit_classify_name = config.get("operation_data_setting", "pickit_classify_name")  # 套图分类名称
 pickit_manage_url = config.get("operation_data_setting", "pickit_manage_url")  # 套图管理的url
+
+pickit_url = config.get("operation_data_setting", "pickit_url")  # 新建套图的url
+pickit_name = config.get("operation_data_setting", "pickit_name")  # 套图的名称
+pickit_description = config.get("operation_data_setting", "pickit_description")  # 套图介绍
+pickit1 = config.get("operation_data_setting", "pickit1")  # 上传的第一张套图的名称
 # ====================================================================
 
 
@@ -105,7 +110,7 @@ logout_button = (By.CSS_SELECTOR, ".quit-nav>li>a")
 operation_tab_ele = (By.CSS_SELECTOR, "#current3")
 card_center_ele = (By.XPATH, ".//*[@id='sidebar']/ul/li[5]/a/span[2]")
 big_pic_ele = (By.ID, "ccPicBigImg")
-small_pic_ele = (By.CSS_SELECTOR, "#ccPicSmallImg")
+small_pic_ele = (By.ID, "ccPicSmallImg")
 card_name_ele = (By.CSS_SELECTOR, "#coupon_name")
 card_rebate_ele = (By.CSS_SELECTOR, "#ccRebateId")
 card_validity_ele = (By.XPATH, ".//*[@id='ccSetForm']/div/div[8]/div/div[1]/label/input")
@@ -126,6 +131,17 @@ classify_name_ele = (By.ID, "pmName")
 color_type_ele = (By.XPATH, ".//*[@id='color_type']/li[1]")
 classify_save_ele = (By.ID, "button")
 new_create_pickit_classify_ele = (By.XPATH, ".//*[@class='cm_type active']/dl/dd[1]")
+
+pickit_title_ele = (By.ID, "pmTitle")
+pickit_belong_classify_drop_ele = (By.ID, "pmCgSysuuid")
+pickit_belong_classify_ele = (By.XPATH, ".//*[@id='pmCgSysuuid']/option[2]")
+pickit_description_ele = (By.ID, "pmDesc")
+add_pickit_ele = (By.ID, "img_add_btn")
+upload_pic_ele = (By.ID, "fileOneImage")
+pic_confirm_ele = (By.ID, "dialog_save")
+pic_save_ele = (By.CLASS_NAME, "set-big-btn")
+new_create_pickit_ele = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
+pickit_smallpic_ele = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
 # ====================================================================
 
 
@@ -161,4 +177,13 @@ main_body = """
 以上
 测试组
             """
+# ====================================================================
+
+
+# ====================================================================
+"""JS语句"""
+
+# 上传图片的元素id为fileImage
+file_image_block = """document.getElementById('fileImage').style.display='block'; """
+file_image_none = """document.getElementById('fileImage').style.display='none'; """
 # ====================================================================
