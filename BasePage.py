@@ -118,7 +118,7 @@ class BasePage(object):
             elif need_screenshot.lower() == 'y':
                 screenshot_path = com.create_path(screenshot_path)
                 screenshot = os.path.join(screenshot_path, "screenshot_%s.jpg") % time.strftime("%H%M%S")
-                time.sleep(3)
+                time.sleep(2)
                 self.driver.save_screenshot(screenshot)
         except Exception as e:
             raise e
