@@ -81,7 +81,6 @@ class OperationPageAction(BasePage):
     # 上传封面小图
     def upload_small_pic(self):
         try:
-            time.sleep(3)
             self.click_small_pic()
             logging.info("正在上传小图：%s" % small_pic_name)
             self.upload_pic(small_pic_name)
