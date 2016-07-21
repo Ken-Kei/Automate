@@ -48,7 +48,7 @@ class BasePage(object):
         wait = WebDriverWait(self.driver, waiting_time)
         for i in range(0, 3):
             try:
-                wait.until(ec.presence_of_element_located(element))
+                # wait.until(ec.presence_of_element_located(element))
                 wait.until(ec.element_to_be_clickable(element))
                 break
             except:

@@ -39,7 +39,7 @@ fp = open(file_path, 'wb')
 runner = HTMLTestRunner(stream=fp,
                         title='家居精灵后台自动化测试报告',
                         description='环境：Windows 7   浏览器：Chrome')
-runner.run(discover)
+runner.run(suite)
 # 找到最新的报告目录
 new_report_path = com.find_new_report_path('./Result')
 # 找到最新的报告文件路径
