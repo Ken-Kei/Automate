@@ -11,6 +11,8 @@ from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from BasePage import BasePage
 import logging
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
 
 
 class OperationPageAction(BasePage):
@@ -246,7 +248,7 @@ class OperationPageAction(BasePage):
     # 输入套图的名称
     def type_pickit_name(self):
         try:
-            self.wait_element_load_end(pickit_title_ele)
+            # self.wait_element_load_end(*pickit_title_ele)
             logging.info("输入套图的名称：%s" % pickit_name)
             self.find_element(*pickit_title_ele).send_keys(pickit_name)
         except NoSuchElementException:
@@ -269,7 +271,7 @@ class OperationPageAction(BasePage):
     # 输入套图介绍
     def type_pickit_description(self):
         try:
-            self.wait_element_load_end(pickit_description_ele)
+            # self.wait_element_load_end(*pickit_description_ele)
             logging.info("输入套图介绍：%s" % pickit_description)
             self.find_element(*pickit_description_ele).send_keys(pickit_description)
         except NoSuchElementException:
@@ -292,6 +294,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(pic_confirm_ele)
             self.find_element(*pic_confirm_ele).click()
+            time.sleep(1)
         except NoSuchElementException:
             logging.error("找不到保存按钮位置")
         except Exception as e:
@@ -348,7 +351,7 @@ class OperationPageAction(BasePage):
         self.type_pickit_description()
         self.upload_pickit_pic()
         self.click_save_button()
-        time.sleep(2)
+        time.sleep(1)
         self.driver.switch_to_alert().accept()
 
     # 验证是否成功创建了卡券

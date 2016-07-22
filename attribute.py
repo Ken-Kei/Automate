@@ -30,7 +30,7 @@ config.read("config.ini")
 # [url_info]
 browser = config.get("url_info", "browser")  # 选择浏览器
 main_url = config.get("url_info", "main_url")  # 主页url
-waiting_time = config.getint("url_info", "waiting_time")  # 页面轮询等待时间
+waiting_time = config.getint("url_info", "waiting_time")  # 页面等待时间
 operation_system = config.get("url_info", "operation_system")  # 测试使用的操作系统
 
 # [account_info]
@@ -139,9 +139,10 @@ pickit_description_ele = (By.ID, "pmDesc")
 add_pickit_ele = (By.ID, "img_add_btn")
 upload_pic_ele = (By.ID, "fileOneImage")
 pic_confirm_ele = (By.ID, "dialog_save")
-pic_save_ele = (By.CLASS_NAME, "set-big-btn")
+pic_save_ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
 new_create_pickit_ele = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
 pickit_smallpic_ele = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
+add_pickit_window_ele = (By.XPATH, ".//*[@id='checkOneImg']/div[2]")
 # ====================================================================
 
 
