@@ -163,7 +163,7 @@ class OperationPageAction(BasePage):
         self.select_validity_to_immediately()
         self.type_card_inventory()
         self.click_card_save_button()
-        time.sleep(2)
+        time.sleep(1)
         self.driver.switch_to_alert().accept()
 
     # 验证是否成功创建了卡券
