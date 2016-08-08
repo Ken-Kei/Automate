@@ -31,30 +31,30 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         action = self.action
         logging.info("执行用例：登入以及登出O2O平台")
         # 如果登录失败的话就重新尝试登录，一共尝试3次
-        for i in range(0, 3):
-            try:
-                # 打开O2O主页的url并验证登入登出
-                action.login(main_url, username, password)
-                logging.info(loging_in % username)
-                self.wait_element_load_end(logout_button)
-                if self.is_element_exist(*logout_button) is True:
-                    logging.info(login_succeed)
-                    self.create_screen_shot(launch_screenshot_path)
-                    time.sleep(3)
-                    action.logout()
-                    self.wait_element_load_end(login_button)
-                    if self.is_element_exist(*login_button) is True:
-                        logging.info("账号登出成功,用例执行通过")
+        try:
+            for i in range(0, 3):
+                    # 打开O2O主页的url并验证登入登出
+                    action.login(main_url, username, password)
+                    logging.info(loging_in % username)
+                    self.wait_element_load_end(logout_button)
+                    if self.is_element_exist(*logout_button) is False:
+                        logging.error(login_failed)
                         self.create_screen_shot(launch_screenshot_path)
-                        self.assertEqual(self.is_element_exist(*login_button), True)
-                    break
-                else:
-                    logging.error(login_failed)
-                    self.create_screen_shot(launch_screenshot_path)
-                    self.driver.delete_all_cookies()
-                    time.sleep(i * 2)
-            except Exception as e:
-                raise e
+                        self.driver.delete_all_cookies()
+                        time.sleep(i * 2)
+                    else:
+                        logging.info(login_succeed)
+                        self.create_screen_shot(launch_screenshot_path)
+                        time.sleep(3)
+                        action.logout()
+                        self.wait_element_load_end(login_button)
+                        if self.is_element_exist(*login_button) is True:
+                            logging.info("账号登出成功,用例执行通过")
+                            self.create_screen_shot(launch_screenshot_path)
+                            self.assertEqual(self.is_element_exist(*login_button), True)
+                        break
+        except Exception as e:
+            raise e
 
     def tearDown(self):
         logging.info("用例结束")

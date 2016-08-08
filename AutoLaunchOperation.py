@@ -24,14 +24,14 @@ logging.info("Browser version: %s" % com.get_browser_version())
 
 # 初始化测试套件并添加测试用例
 suite = unittest.TestSuite()
-suite.addTest(test_LaunchOperation.LaunchOperationCase("test_CreatePictureKit"))
+# suite.addTest(test_LaunchOperation.LaunchOperationCase("test_CreatePictureKit"))
 # suite.addTest(LaunchOperation.LaunchOperationCase("test_CreatePictureKit"))
 
 # 创建存放测试报告文件的目录
 path = com.create_result_path(launch_result_path)
 # 找到报告的文件路径位置
 file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
-discover = unittest.defaultTestLoader.discover('./', pattern='test_*.py')
+discover = unittest.defaultTestLoader.discover('./', pattern='test_LaunchLogin.py')
 
 # 定义报告存放路径
 fp = open(file_path, 'wb')

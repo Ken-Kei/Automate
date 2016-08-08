@@ -47,11 +47,10 @@ class BasePage(object):
     # wait until finish the element loading
     def wait_element_load_end(self, *element):
         wait = WebDriverWait(self.driver, waiting_time)
-        try:
-            # wait.until(ec.presence_of_element_located(element))
-            wait.until(ec.element_to_be_clickable(*element))
-        except Exception as e:
-            raise e
+        # wait.until(ec.presence_of_element_located(element))
+        bl = wait.until(ec.element_to_be_clickable(*element))
+        bl = wait.until(ec.presence_of_element_located(*element))
+        return bl
 
     # 判断是否有alert窗口
     def is_alert_exist(self):
