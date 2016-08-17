@@ -176,8 +176,8 @@ class OperationPageAction(BasePage):
                 return True
             else:
                 return False
-        except Exception as e:
-            raise e
+        except Exception:
+            return False
 
     # 点击套图管理的新建分类按钮
     def click_create_pickit_classify_button(self):
@@ -364,5 +364,5 @@ class OperationPageAction(BasePage):
                 return True
             else:
                 return False
-        except Exception as e:
-            raise e
+        except Exception:
+            return False

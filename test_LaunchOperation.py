@@ -63,31 +63,27 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         action = self.action
         oa = self.oa
         logging.info("执行用例：创建卡券")
-        # 如果登录失败的话就重新尝试登录，一共尝试3次
-        for i in range(0, 3):
-            try:
-                action.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
-                logging.info(loging_in % username)
-                self.wait_element_load_end(logout_button)
-                if self.is_element_exist(*logout_button) is True:
-                    logging.info(login_succeed)
-                    oa.create_rebate_card()  # 判断登录成功后开始创建卡券
-                    if oa.is_card_create_succeed() is True:
-                        self.assertEqual(oa.is_card_create_succeed(), True)
-                        logging.info(create_card_succeed)
-                        self.create_screen_shot(launch_screenshot_path)
-                        break
-                    else:
-                        logging.error(create_card_failed)
-                        self.create_screen_shot(launch_screenshot_path)
-                    break
-                else:
-                    logging.error(login_failed)
+        # 如果登录失败的话就重新尝试登录，一共尝试3
+        try:
+            action.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
+            logging.info(loging_in % username)
+            self.wait_element_load_end(logout_button)
+            if self.is_element_exist(*logout_button) is True:
+                logging.info(login_succeed)
+                oa.create_rebate_card()  # 判断登录成功后开始创建卡券
+                if oa.is_card_create_succeed() is True:
+                    self.assertEqual(oa.is_card_create_succeed(), True)
+                    logging.info(create_card_succeed)
                     self.create_screen_shot(launch_screenshot_path)
-                    self.driver.delete_all_cookies()
-                    time.sleep(i * 2)
-            except Exception as e:
-                raise e
+                else:
+                    logging.error(create_card_failed)
+                    self.create_screen_shot(launch_screenshot_path)
+            else:
+                logging.error(login_failed)
+                self.create_screen_shot(launch_screenshot_path)
+                self.driver.delete_all_cookies()
+        except Exception as e:
+            raise e
 
     def test_CreatePictureKit(self):
         """创建套图"""
@@ -95,31 +91,27 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         action = self.action
         oa = self.oa
         logging.info("执行用例：创建套图")
-        # 如果登录失败的话就重新尝试登录，一共尝试3次
-        for i in range(0, 3):
-            try:
-                action.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
-                logging.info(loging_in % username)
-                self.wait_element_load_end(logout_button)
-                if self.is_element_exist(*logout_button) is True:
-                    logging.info(login_succeed)
-                    oa.create_pickit()  # 判断登录成功后开始创建套图
-                    if oa.is_pickit_create_succeed() is True:
-                        self.assertEqual(oa.is_pickit_create_succeed(), True)
-                        logging.info("套图创建成功，用例通过")
-                        self.create_screen_shot(launch_screenshot_path)
-                        break
-                    else:
-                        logging.error("没有找到套图，套图创建失败")
-                        self.create_screen_shot(launch_screenshot_path)
-                    break
-                else:
-                    logging.error(login_failed)
+        # 如果登录失败的话就重新尝试登录，一共尝试3
+        try:
+            action.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
+            logging.info(loging_in % username)
+            self.wait_element_load_end(logout_button)
+            if self.is_element_exist(*logout_button) is True:
+                logging.info(login_succeed)
+                oa.create_pickit()  # 判断登录成功后开始创建套图
+                if oa.is_pickit_create_succeed() is True:
+                    self.assertEqual(oa.is_pickit_create_succeed(), True)
+                    logging.info("套图创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
-                    self.driver.delete_all_cookies()
-                    time.sleep(i * 2)
-            except Exception as e:
-                raise e
+                else:
+                    logging.error("没有找到套图，套图创建失败")
+                    self.create_screen_shot(launch_screenshot_path)
+            else:
+                logging.error(login_failed)
+                self.create_screen_shot(launch_screenshot_path)
+                self.driver.delete_all_cookies()
+        except Exception as e:
+            raise e
 
     def tearDown(self):
         logging.info("用例结束")
