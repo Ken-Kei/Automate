@@ -36,30 +36,26 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         oa = self.oa
         logging.info("执行用例：创建套图分类")
         # 如果登录失败的话就重新尝试登录，一共尝试3次
-        for i in range(0, 3):
-            try:
-                action.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
-                logging.info(loging_in % username)
-                self.wait_element_load_end(logout_button)
-                if self.is_element_exist(*logout_button) is True:
-                    logging.info(login_succeed)
-                    oa.create_pickit_classify()  # 判断登录成功后开始创建套图分类
-                    if oa.is_pitkic_classify_create_succeed() is True:
-                        self.assertEqual(oa.is_pitkic_classify_create_succeed(), True)
-                        logging.info("套图分类创建成功，用例通过")
-                        self.create_screen_shot(launch_screenshot_path)
-                        break
-                    else:
-                        logging.error("没有找到套图分类，套图创建失败")
-                        self.create_screen_shot(launch_screenshot_path)
-                    break
-                else:
-                    logging.error(login_failed)
+        try:
+            action.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
+            logging.info(loging_in % username)
+            self.wait_element_load_end(logout_button)
+            if self.is_element_exist(*logout_button) is True:
+                logging.info(login_succeed)
+                oa.create_pickit_classify()  # 判断登录成功后开始创建套图分类
+                if oa.is_pitkic_classify_create_succeed() is True:
+                    self.assertEqual(oa.is_pitkic_classify_create_succeed(), True)
+                    logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
-                    self.driver.delete_all_cookies()
-                    time.sleep(i * 2)
-            except Exception as e:
-                raise e
+                else:
+                    logging.error("没有找到套图分类，套图创建失败")
+                    self.create_screen_shot(launch_screenshot_path)
+            else:
+                logging.error(login_failed)
+                self.create_screen_shot(launch_screenshot_path)
+                self.driver.delete_all_cookies()
+        except Exception as e:
+            raise e
 
     def test_CreateCard(self):
         """创建卡券"""

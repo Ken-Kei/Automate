@@ -242,8 +242,8 @@ class OperationPageAction(BasePage):
                 return True
             else:
                 return False
-        except Exception as e:
-            raise e
+        except Exception:
+            raise False
 
     # 输入套图的名称
     def type_pickit_name(self):

@@ -14,6 +14,7 @@ from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import logging
+from selenium.common.exceptions import NoSuchElementException
 
 com = CommonUtils()
 
@@ -47,10 +48,12 @@ class BasePage(object):
     # wait until finish the element loading
     def wait_element_load_end(self, *element):
         wait = WebDriverWait(self.driver, waiting_time)
-        # wait.until(ec.presence_of_element_located(element))
-        bl = wait.until(ec.element_to_be_clickable(*element))
-        bl = wait.until(ec.presence_of_element_located(*element))
-        return bl
+        try:
+            # wait.until(ec.presence_of_element_located(element))
+            wait.until(ec.element_to_be_clickable(*element))
+            wait.until(ec.presence_of_element_located(*element))
+        except:
+            time.sleep(1)
 
     # 判断是否有alert窗口
     def is_alert_exist(self):
@@ -91,10 +94,9 @@ class BasePage(object):
     def is_element_exist(self, *ele):
         try:
             self.find_element(*ele)
-            flag = True
-        except:
-            flag = False
-        return flag
+        except NoSuchElementException:
+            return False
+        return True
 
     def upload_file(self, ue, file_name):
         try:
