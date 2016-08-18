@@ -73,6 +73,9 @@ pickit_url = config.get("operation_data_setting", "pickit_url")  # 新建套图�
 pickit_name = config.get("operation_data_setting", "pickit_name")  # 套图的名称
 pickit_description = config.get("operation_data_setting", "pickit_description")  # 套图介绍
 pickit1 = config.get("operation_data_setting", "pickit1")  # 上传的第一张套图的名称
+
+micro_help_url = config.get("operation_data_setting", "micro_help_url")  # 微助力的url
+activity_name = config.get("operation_data_setting", "activity_name")  # 微助力活动名称
 # ====================================================================
 
 
@@ -143,6 +146,10 @@ pic_save_ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/
 new_create_pickit_ele = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
 pickit_smallpic_ele = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
 add_pickit_window_ele = (By.XPATH, ".//*[@id='checkOneImg']/div[2]")
+
+# 微助力活动元素定位
+micro_help_bigpic_ele = (By.ID, "BgiImgUrl")
+micro_help_smallpic_ele = (By.ID, "ImgSmallUrl")
 # ====================================================================
 
 

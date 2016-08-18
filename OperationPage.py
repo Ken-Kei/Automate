@@ -11,8 +11,6 @@ from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from BasePage import BasePage
 import logging
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
 
 
 class OperationPageAction(BasePage):
@@ -176,7 +174,7 @@ class OperationPageAction(BasePage):
                 return True
             else:
                 return False
-        except Exception:
+        except:
             return False
 
     # 点击套图管理的新建分类按钮
@@ -364,5 +362,35 @@ class OperationPageAction(BasePage):
                 return True
             else:
                 return False
-        except Exception:
+        except:
             return False
+
+    # 微助力活动名称
+    def activity_name(self):
+        try:
+            logging.info("输入活动名称：%s" % pickit_description)
+            self.find_element(*pickit_description_ele).send_keys(pickit_description)
+        except NoSuchElementException:
+            logging.error("找不到套图介绍输入框位置")
+        except Exception as e:
+            raise e
+
+    # 点击微助力的上传大图按钮
+    def click_micro_help_bigpic(self):
+        try:
+            self.wait_element_load_end(micro_help_bigpic_ele)
+            self.find_element(*micro_help_bigpic_ele).click()
+        except NoSuchElementException as e:
+            logging.error("找不到上传微助力大图位置")
+        except Exception as e:
+            raise e
+
+    # 点击微助力的上传小图按钮
+    def click_micro_help_smallpic(self):
+        try:
+            self.wait_element_load_end(micro_help_bigpic_ele)
+            self.find_element(*micro_help_bigpic_ele).click()
+        except NoSuchElementException as e:
+            logging.error("找不到上传微助力大图位置")
+        except Exception as e:
+            raise e
