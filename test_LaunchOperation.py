@@ -91,7 +91,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         action = self.action
         oa = self.oa
         logging.info("执行用例：创建套图")
-        # 如果登录失败的话就重新尝试登录，一共尝试3
+        # 登录
         try:
             action.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
@@ -112,6 +112,35 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
+
+    def test_CreateMicroHelp(self):
+        """创建微助力活动"""
+
+        action = self.action
+        oa = self.oa
+        logging.info("执行用例：创建微助力活动")
+        # 登录
+        try:
+            action.login(micro_help_url, username, password)  # 打开微助力的url并验证登录
+            logging.info(loging_in % username)
+            self.wait_element_load_end(logout_button)
+            if self.is_element_exist(*logout_button) is True:
+                logging.info(login_succeed)
+                oa.create_micro_help()  # 判断登录成功后开始创建微助力活动
+                if oa.is_pickit_create_succeed() is True:
+                    self.assertEqual(oa.is_pickit_create_succeed(), True)
+                    logging.info("套图创建成功，用例通过")
+                    self.create_screen_shot(launch_screenshot_path)
+                else:
+                    logging.error("没有找到套图，套图创建失败")
+                    self.create_screen_shot(launch_screenshot_path)
+            else:
+                logging.error(login_failed)
+                self.create_screen_shot(launch_screenshot_path)
+                self.driver.delete_all_cookies()
+        except Exception as e:
+            raise e
+
 
     def tearDown(self):
         logging.info("用例结束")

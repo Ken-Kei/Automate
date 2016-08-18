@@ -58,7 +58,7 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 上传图片
+    # 元素为fileImage时上传图片
     def upload_pic(self, picture):
         try:
             self.upload_file(display_upload_button_ele, picture)
@@ -70,10 +70,11 @@ class OperationPageAction(BasePage):
     # 上传封面大图
     def upload_big_pic(self):
         try:
+            ele = (By.ID, "ccPicBigImgDia_btn1")
             self.click_big_pic()
             logging.info("正在上传大图：%s" % big_pic_name)
             self.upload_pic(big_pic_name)
-            self.click_confirm_button()
+            self.click_confirm_button(ele)
             logging.info("上传大图完毕")
         except Exception as e:
             raise e
@@ -81,19 +82,20 @@ class OperationPageAction(BasePage):
     # 上传封面小图
     def upload_small_pic(self):
         try:
+            ele = (By.ID, "ccPicBigImgDia_btn1")
             self.click_small_pic()
             logging.info("正在上传小图：%s" % small_pic_name)
             self.upload_pic(small_pic_name)
-            self.click_confirm_button()
+            self.click_confirm_button(ele)
             logging.info("上传小图完毕")
         except Exception as e:
             raise e
 
     # 上传图片后点击确认
-    def click_confirm_button(self):
+    def click_confirm_button(self, ele):
         try:
-            self.wait_element_load_end(confirm_ele)
-            self.find_element(*confirm_ele).click()
+            self.wait_element_load_end(ele)
+            self.find_element(*ele).click()
         except Exception as e:
             raise e
 
@@ -332,10 +334,11 @@ class OperationPageAction(BasePage):
     # 上传套图的封面小图
     def upload_picsmall_pic(self):
         try:
+            ele = (By.ID, "ccPicBigImgDia_btn1")
             self.click_picsmall_pic()
             logging.info("正在上传小图：%s" % small_pic_name)
             self.upload_pic(small_pic_name)
-            self.click_confirm_button()
+            self.click_confirm_button(ele)
             logging.info("上传小图完毕")
         except Exception as e:
             raise e
@@ -365,11 +368,12 @@ class OperationPageAction(BasePage):
         except:
             return False
 
-    # 微助力活动名称
-    def activity_name(self):
+    # 输入微助力活动名称
+    def type_activity_name(self):
+        ele = (By.ID, "raName")
         try:
-            logging.info("输入活动名称：%s" % pickit_description)
-            self.find_element(*pickit_description_ele).send_keys(pickit_description)
+            logging.info("输入活动名称：%s" % activity_name)
+            self.find_element(*ele).send_keys(activity_name)
         except NoSuchElementException:
             logging.error("找不到套图介绍输入框位置")
         except Exception as e:
@@ -380,7 +384,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(micro_help_bigpic_ele)
             self.find_element(*micro_help_bigpic_ele).click()
-        except NoSuchElementException as e:
+        except NoSuchElementException:
             logging.error("找不到上传微助力大图位置")
         except Exception as e:
             raise e
@@ -390,7 +394,34 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(micro_help_bigpic_ele)
             self.find_element(*micro_help_bigpic_ele).click()
-        except NoSuchElementException as e:
+        except NoSuchElementException:
             logging.error("找不到上传微助力大图位置")
         except Exception as e:
             raise e
+
+    # 上传微助力图片方法
+    def upload_file_mh(self, picture):
+        ele = (By.ID, "doc")
+        try:
+            self.upload_file(ele, picture)
+        except NoSuchElementException:
+            logging.error("找不到上传位置")
+        except Exception as e:
+            raise e
+
+    # 上传微助力封面大图
+    def upload_mh_big_pic(self):
+        try:
+            ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
+            self.click_micro_help_bigpic()
+            logging.info("正在上传微助力封面大图：%s" % big_pic_name)
+            self.upload_file_mh(big_pic_name)
+            self.click_confirm_button(ele)
+            logging.info("上传大图完毕")
+        except Exception as e:
+            raise e
+
+    # 创建一个微助力活动
+    def create_micro_help(self):
+        self.type_activity_name()
+        self.upload_mh_big_pic()
