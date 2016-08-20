@@ -20,7 +20,7 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 
 
-class CommonUtils():
+class CommonUtils:
     """
     封装一些工具函数如创建目录，创建log文件等全部在这里封装
     """
@@ -83,7 +83,8 @@ class CommonUtils():
         # return report
 
     # create a handler to show the log on console board
-    def create_console_log(self):
+    @ staticmethod
+    def create_console_log():
         logger = logging.getLogger()
         logger.setLevel(logging.INFO)
         hdr = logging.StreamHandler()
@@ -128,18 +129,21 @@ class CommonUtils():
         return lists[-1]
 
     # to hang the program instead of shut it down immediately
-    def hangProgram(self):
+    @staticmethod
+    def hang_program():
         print("Press Enter to exit program.")
         input()
         sys.exit()
 
     # to add the "https://" string when the given url doesn't contain it.
-    def mergeLaunchUrl(self, hosturl):
+    @staticmethod
+    def merge_launch_url(hosturl):
         if "http://" not in hosturl:
             hosturl = "http://" + hosturl
         return hosturl
 
-    def kill_process(self, driver):
+    @staticmethod
+    def kill_process(driver):
         try:
             try:
                 driver.close()
@@ -187,12 +191,13 @@ class CommonUtils():
         except Exception as e:
             raise e
 
-    def cronJobSet(self):
+    @staticmethod
+    def cron_job_set():
         #         SECONDS_PER_DAY = 24 * 60 * 60
-        ISOTIMEFORMAT = '%Y-%m-%d %H:%M:%S'
+        iso_time_format = '%Y-%m-%d %H:%M:%S'
         msg = 'Please set a later timing'
         curtime = time.time()
-        timearray = time.strptime(time_set, ISOTIMEFORMAT)
+        timearray = time.strptime(time_set, iso_time_format)
         timestamp = int(time.mktime(timearray))
         if curtime > timestamp:
             #             print ("Must sleep %d seconds" % skipSeconds)

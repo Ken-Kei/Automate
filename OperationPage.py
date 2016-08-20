@@ -14,6 +14,7 @@ import logging
 import datetime
 import time
 
+
 class OperationPageAction(BasePage):
     """
     封装运营模块的页面对象

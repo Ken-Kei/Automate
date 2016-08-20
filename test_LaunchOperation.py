@@ -141,7 +141,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         except Exception as e:
             raise e
 
-
     def tearDown(self):
         logging.info("用例结束")
         driver = self.driver
