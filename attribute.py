@@ -76,6 +76,8 @@ pickit1 = config.get("operation_data_setting", "pickit1")  # 上传的第一张�
 
 micro_help_url = config.get("operation_data_setting", "micro_help_url")  # 微助力的url
 activity_name = config.get("operation_data_setting", "activity_name")  # 微助力活动名称
+share_title = config.get("operation_data_setting", "share_title")  # 微助力分享标题
+share_description = config.get("operation_data_setting", "share_description")  # 微助力分享描述
 # ====================================================================
 
 
@@ -188,4 +190,6 @@ main_body = """
 # 上传图片的元素id为fileImage
 file_image_block = """document.getElementById('fileImage').style.display='block'; """
 file_image_none = """document.getElementById('fileImage').style.display='none'; """
+remove_sd_read_only = """var setDate=document.getElementById('js-startDate');setDate.removeAttribute('readonly');"""
+remove_ed_read_only = """var setDate=document.getElementById('js-endDate');setDate.removeAttribute('readonly');"""
 # ====================================================================

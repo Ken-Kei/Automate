@@ -379,6 +379,7 @@ class OperationPageAction(BasePage):
     def type_activity_name(self):
         ele = (By.ID, "raName")
         try:
+            self.wait_element_load_end(ele)
             logging.info("输入活动名称：%s" % activity_name)
             self.find_element(*ele).send_keys(activity_name)
         except NoSuchElementException:
@@ -449,6 +450,7 @@ class OperationPageAction(BasePage):
         date = time.strftime("%Y-%m-%d %H:%M:%S")
         try:
             self.wait_element_load_end(ele)
+            self.driver.execute_script(remove_sd_read_only)
             self.find_element(*ele).sendkeys(date)
         except NoSuchElementException:
             logging.error("找不到微助力活动开始时间位置")
@@ -463,6 +465,7 @@ class OperationPageAction(BasePage):
         date = fur_time.strftime("%Y-%m-%d %H:%M:%S")
         try:
             self.wait_element_load_end(ele)
+            self.driver.execute_script(remove_ed_read_only)
             self.find_element(*ele).sendkeys(date)
         except NoSuchElementException:
             logging.error("找不到微助力活动结束时间位置")
@@ -492,6 +495,30 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
+    # 输入微助力分享标题
+    def type_share_title(self):
+        ele = (By.ID, 'raShareTitle')
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入分享标题：%s" % share_title)
+            self.find_element(*ele).send_keys(share_title)
+        except NoSuchElementException:
+            logging.error("找不到分享标题输入框位置")
+        except Exception as e:
+            raise e
+
+    # 输入分享描述
+    def type_share_description(self):
+        ele = (By.ID, 'raShareDesc')
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入分享描述：%s" % share_description)
+            self.find_element(*ele).send_keys(share_description)
+        except NoSuchElementException:
+            logging.error("找不到分享描述输入框位置")
+        except Exception as e:
+            raise e
+
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
@@ -500,3 +527,5 @@ class OperationPageAction(BasePage):
         self.type_mh_start_time()
         self.type_mh_end_time()
         self.upload_mh_background_pic()
+        self.type_share_title()
+        self.type_share_description()

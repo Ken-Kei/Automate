@@ -49,8 +49,8 @@ class BasePage(object):
     def wait_element_load_end(self, *element):
         wait = WebDriverWait(self.driver, waiting_time)
         try:
-            wait.until(ec.element_to_be_clickable(*element))
             wait.until(ec.presence_of_element_located(*element))
+            wait.until(ec.element_to_be_clickable(*element))
         except:
             time.sleep(1)
 
