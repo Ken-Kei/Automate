@@ -98,26 +98,23 @@ class BasePage(object):
         return True
 
     # 判断元素是否存在style属性
-    def is_attribute_style_exist(self, *ele):
+    def is_attribute_style_exist(self, ele, locator):
         try:
-            ga = self.find_element(*ele).get_attribute("style")
-            if ga is None:
+            ga = self.find_element(*ele).get_attribute(locator + "@style")
+            if ga is False:
                 return False
-            elif ga is False:
-                return False
-            elif ga.equals('none'):
+            elif ga is None:
                 return False
             else:
-                print(self.find_element(*ele).get_attribute("style"))
                 return True
         except:
             return False
 
     # 上传图片
-    def upload_file(self, ue, file_name):
+    def upload_file(self, ue, locator, file_name):
         try:
             file_path = os.path.join(os.path.abspath(file_name))
-            if self.is_attribute_style_exist(*ue) is True:
+            if self.is_attribute_style_exist(ue, locator) is True:
                 if self.is_element_exist(*ue) is True:
                     self.driver.execute_script(file_image_block)
                     self.find_element(*ue).send_keys(file_path)

@@ -11,7 +11,8 @@ from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from BasePage import BasePage
 import logging
-
+import datetime
+import time
 
 class OperationPageAction(BasePage):
     """
@@ -60,8 +61,10 @@ class OperationPageAction(BasePage):
 
     # 元素为fileImage时上传图片
     def upload_pic(self, picture):
+        ele = (By.ID, "fileImage")
+        ele_locate = "fileImage"
         try:
-            self.upload_file(display_upload_button_ele, picture)
+            self.upload_file(ele, ele_locate, picture)
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -167,6 +170,7 @@ class OperationPageAction(BasePage):
         self.driver.switch_to_alert().accept()
 
     # 验证是否成功创建了卡券
+    @property
     def is_card_create_succeed(self):
         try:
             self.wait_element_load_end(new_create_card_ele)
@@ -302,10 +306,12 @@ class OperationPageAction(BasePage):
 
     # 上传套图
     def upload_pickit_pic(self):
+        ele = (By.ID, "fileOneImage")
+        ele_locate = "fileOneImage"
         try:
             self.click_add_pickit_pic()
             logging.info("正在上传第一张套图：%s" % pickit1)
-            self.upload_file(upload_pic_ele, big_pic_name)
+            self.upload_file(ele, ele_locate, big_pic_name)
             self.click_save_pickit_button()
             logging.info("上传套图完毕")
         except Exception as e:
@@ -381,9 +387,10 @@ class OperationPageAction(BasePage):
 
     # 点击微助力的上传大图按钮
     def click_micro_help_bigpic(self):
+        ele = (By.ID, "BgiImgUrl")
         try:
-            self.wait_element_load_end(micro_help_bigpic_ele)
-            self.find_element(*micro_help_bigpic_ele).click()
+            self.wait_element_load_end(ele)
+            self.find_element(*ele).click()
         except NoSuchElementException:
             logging.error("找不到上传微助力大图位置")
         except Exception as e:
@@ -391,19 +398,21 @@ class OperationPageAction(BasePage):
 
     # 点击微助力的上传小图按钮
     def click_micro_help_smallpic(self):
+        ele = (By.ID, "ImgSmallUrl")
         try:
-            self.wait_element_load_end(micro_help_bigpic_ele)
-            self.find_element(*micro_help_bigpic_ele).click()
+            self.wait_element_load_end(ele)
+            self.find_element(*ele).click()
         except NoSuchElementException:
-            logging.error("找不到上传微助力大图位置")
+            logging.error("找不到上传微助力小图位置")
         except Exception as e:
             raise e
 
     # 上传微助力图片方法
     def upload_file_mh(self, picture):
         ele = (By.ID, "doc")
+        ele_locate = 'doc'
         try:
-            self.upload_file(ele, picture)
+            self.upload_file(ele, ele_locate, picture)
         except NoSuchElementException:
             logging.error("找不到上传位置")
         except Exception as e:
@@ -421,7 +430,72 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
+    # 上传微助力封面小图
+    def upload_mh_small_pic(self):
+        ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
+        try:
+            self.click_micro_help_smallpic()
+            logging.info("正在上传微助力封面小图：%s" % big_pic_name)
+            self.upload_file_mh(small_pic_name)
+            self.click_confirm_button(ele)
+            logging.info("上传小图完毕")
+        except Exception as e:
+            raise e
+
+    # 输入微助力活动开始时间
+    def type_mh_start_time(self):
+        ele = (By.ID, "js-startDate")
+        date = time.strftime("%Y-%m-%d %H:%M:%S")
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(*ele).sendkeys(date)
+        except NoSuchElementException:
+            logging.error("找不到微助力活动开始时间位置")
+        except Exception as e:
+            raise e
+
+    # 输入微助力活动结束时间
+    def type_mh_end_time(self):
+        ele = (By.ID, "js-endDate")
+        now_time = datetime.datetime.now()
+        fur_time = now_time + datetime.timedelta(days=3)
+        date = fur_time.strftime("%Y-%m-%d %H:%M:%S")
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(*ele).sendkeys(date)
+        except NoSuchElementException:
+            logging.error("找不到微助力活动结束时间位置")
+        except Exception as e:
+            raise e
+
+    # 点击微助力的上传背景图按钮
+    def click_micro_help_bgpic(self):
+        ele = (By.ID, "raBackgroundImgUrl")
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(*ele).click()
+        except NoSuchElementException:
+            logging.error("找不到上传微助力背景图位置")
+        except Exception as e:
+            raise e
+
+    # 上传微助力背景图
+    def upload_mh_background_pic(self):
+        ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
+        try:
+            self.click_micro_help_bgpic()
+            logging.info("正在上传微助力背景图：%s" % big_pic_name)
+            self.upload_file_mh(big_pic_name)
+            self.click_confirm_button(ele)
+            logging.info("上传背景图完毕")
+        except Exception as e:
+            raise e
+
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
         self.upload_mh_big_pic()
+        self.upload_mh_small_pic()
+        self.type_mh_start_time()
+        self.type_mh_end_time()
+        self.upload_mh_background_pic()

@@ -121,7 +121,6 @@ card_inventory_ele = (By.CSS_SELECTOR, "#ccInventory")
 card_save_ele = (By.CSS_SELECTOR, ".btn-default.large-btn")
 # 上传图片的元素位置
 upload_button_ele = (By.CSS_SELECTOR, ".file-btn")
-display_upload_button_ele = (By.ID, "fileImage")
 # 上传图片的确认按钮
 confirm_ele = (By.ID, "ccPicBigImgDia_btn1")
 # 创建成功后的卡券定位
@@ -140,16 +139,11 @@ pickit_belong_classify_drop_ele = (By.ID, "pmCgSysuuid")
 pickit_belong_classify_ele = (By.XPATH, ".//*[@id='pmCgSysuuid']/option[2]")
 pickit_description_ele = (By.ID, "pmDesc")
 add_pickit_ele = (By.ID, "img_add_btn")
-upload_pic_ele = (By.ID, "fileOneImage")
 pic_confirm_ele = (By.ID, "dialog_save")
 pic_save_ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
 new_create_pickit_ele = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
 pickit_smallpic_ele = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
 add_pickit_window_ele = (By.XPATH, ".//*[@id='checkOneImg']/div[2]")
-
-# 微助力活动元素定位
-micro_help_bigpic_ele = (By.ID, "BgiImgUrl")
-micro_help_smallpic_ele = (By.ID, "ImgSmallUrl")
 # ====================================================================
 
 
