@@ -80,6 +80,8 @@ activity_name = config.get("operation_data_setting", "activity_name")  # 微助�
 share_title = config.get("operation_data_setting", "share_title")  # 微助力分享标题
 share_description = config.get("operation_data_setting", "share_description")  # 微助力分享描述
 event_description = config.get("operation_data_setting", "event_description")  # 微助力活动详情
+friend_collect_number = config.getint("account_info", "friend_collect_number")  # 好友集满数量
+unit = config.get("account_info", "unit")  # 单位
 # ====================================================================
 
 

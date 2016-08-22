@@ -570,6 +570,30 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
+    # 输入好友集满数量
+    def type_friend_collect_number(self):
+        ele = (By.ID, 'raNum')
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入好友集满数量：%s" % friend_collect_number)
+            self.find_element(ele).send_keys(friend_collect_number)
+        except NoSuchElementException:
+            logging.error("找不到好友集满数量输入框位置")
+        except Exception as e:
+            raise e
+
+    # 输入好友集满数量的单位
+    def type_friend_collect_unit(self):
+        ele = (By.ID, 'raUnit')
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入好友集满数量：%s" % unit)
+            self.find_element(ele).send_keys(unit)
+        except NoSuchElementException:
+            logging.error("找不到单位输入框位置")
+        except Exception as e:
+            raise e
+
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
@@ -581,3 +605,5 @@ class OperationPageAction(BasePage):
         self.type_share_title()
         self.type_share_description()
         self.type_event_description()
+        self.type_friend_collect_number()
+        self.type_friend_collect_unit()
