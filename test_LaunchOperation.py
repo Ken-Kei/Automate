@@ -129,10 +129,10 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 oa.create_micro_help()  # 判断登录成功后开始创建微助力活动
                 if oa.is_pickit_create_succeed() is True:
                     self.assertEqual(oa.is_pickit_create_succeed(), True)
-                    logging.info("套图创建成功，用例通过")
+                    logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                 else:
-                    logging.error("没有找到套图，套图创建失败")
+                    logging.error("没有找到微助力活动，微助力活动创建失败")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)
