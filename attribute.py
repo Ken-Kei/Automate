@@ -58,12 +58,14 @@ cc_mail_address = config.get("email_info", "cc_email_address").split(',')  # 抄
 time_set = config.get("cron_job_time_setting", "time_set")  # 定时任务触发的时间
 
 # [operation_data_setting]
-rebate_data = config.get("operation_data_setting", "rebate_data")  # 折扣率
-inventory_data = config.get("operation_data_setting", "inventory_data")  # 优惠券库存
 card_center_url = config.get("operation_data_setting", "card_center_url")  # 卡券中心的url
+card_name = config.get("operation_data_setting", "card_name")  # 卡券名称
+rebate_data = config.get("operation_data_setting", "rebate_data")  # 折扣率
+goods_summary = config.get("operation_data_setting", "goods_summary")  # 商品简介
+inventory_data = config.get("operation_data_setting", "inventory_data")  # 优惠券库存
 big_pic_name = config.get("operation_data_setting", "big_pic_name")  # 卡券封面大图
 small_pic_name = config.get("operation_data_setting", "small_pic_name")  # 卡券封面小图
-card_name = config.get("operation_data_setting", "card_name")  # 卡券名称
+
 
 pickit_classify_name = config.get("operation_data_setting", "pickit_classify_name")  # 套图分类名称
 pickit_manage_url = config.get("operation_data_setting", "pickit_manage_url")  # 套图管理的url

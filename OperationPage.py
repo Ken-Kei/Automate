@@ -45,7 +45,7 @@ class OperationPageAction(BasePage):
             self.wait_element_load_end(big_pic_ele)
             self.find_element(big_pic_ele).click()
         except NoSuchElementException:
-            pass
+            logging.error("没找到上传大图的按钮")
         except Exception as e:
             raise e
 
@@ -55,18 +55,18 @@ class OperationPageAction(BasePage):
             self.wait_element_load_end(small_pic_ele)
             self.find_element(small_pic_ele).click()
         except NoSuchElementException:
-            pass
+            logging.error("没找到上传小图的按钮")
         except Exception as e:
             raise e
 
-    # 元素为fileImage时上传图片
+    # 元素为fileImage且存在style = none
     def upload_pic(self, picture):
         ele = (By.ID, "fileImage")
         ele_locate = "fileImage"
         try:
             self.upload_file(ele, ele_locate, picture)
         except NoSuchElementException:
-            pass
+            logging.error("找不到上传图片的元素位置")
         except Exception as e:
             raise e
 
@@ -127,12 +127,47 @@ class OperationPageAction(BasePage):
     # 选择折扣券有效期为领取后生效
     def select_validity_to_immediately(self):
         try:
-            # self.wait_element_load_end(card_validity_ele)
+            self.wait_element_load_end(card_validity_ele)
             time.sleep(1)
             logging.info("选择卡券有效期类型为：领取后生效")
             self.find_element(card_validity_ele).click()
         except NoSuchElementException:
             pass
+        except Exception as e:
+            raise e
+
+    # 点击适用商品上传图片按钮
+    def click_suite_goods_button(self):
+        ele = (By.ID, 'ccProductImageImg')
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except NoSuchElementException:
+            logging.error("没找到上传适用商品的按钮")
+        except Exception as e:
+            raise e
+
+    # 上传适用商品图片
+    def upload_suite_goods_pic(self):
+        ele = (By.ID, "ccPicBigImgDia_btn1")
+        try:
+            self.click_suite_goods_button()
+            logging.info("正在上传适用商品图：%s" % big_pic_name)
+            self.upload_pic(big_pic_name)
+            self.click_confirm_button(ele)
+            logging.info("上传适用商品图完毕")
+        except Exception as e:
+            raise e
+
+    # 输入商品简介
+    def type_goods_summary(self):
+        ele = (By.ID, "ccProductInfo")
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入商品简介：%s" % inventory_data)
+            self.find_element(ele).send_keys(goods_summary)
+        except NoSuchElementException:
+            logging.error("没找到商品简介的元素位置")
         except Exception as e:
             raise e
 
@@ -164,6 +199,8 @@ class OperationPageAction(BasePage):
         self.type_card_name()
         self.type_card_rebate()
         self.select_validity_to_immediately()
+        self.upload_suite_goods_pic()
+        self.type_goods_summary()
         self.type_card_inventory()
         self.click_card_save_button()
         time.sleep(1)
