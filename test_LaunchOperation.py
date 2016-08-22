@@ -126,7 +126,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_micro_help()  # 判断登录成功后开始创建微助力活动
-                if oa.is_pickit_create_succeed() is True:
+                if oa.is_mh_create_succeed() is True:
                     logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                 else:
@@ -138,7 +138,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
-        self.assertEqual(oa.is_pickit_create_succeed(), True)
+        self.assertEqual(oa.is_mh_create_succeed(), True)
 
     def tearDown(self):
         logging.info("用例结束")

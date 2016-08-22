@@ -207,7 +207,6 @@ class OperationPageAction(BasePage):
         self.driver.switch_to_alert().accept()
 
     # 验证是否成功创建了卡券
-    @property
     def is_card_create_succeed(self):
         try:
             self.wait_element_load_end(new_create_card_ele)
@@ -355,10 +354,11 @@ class OperationPageAction(BasePage):
             raise e
 
     # 创建套图完毕之后点击保存按钮
-    def click_save_button(self):
+    def click_pickit_save_button(self):
+        ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
         try:
-            self.wait_element_load_end(pic_save_ele)
-            self.find_element(pic_save_ele).click()
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
         except NoSuchElementException:
             logging.error("找不到保存按钮位置")
         except Exception as e:
@@ -394,7 +394,7 @@ class OperationPageAction(BasePage):
         self.upload_small_pic()
         self.type_pickit_description()
         self.upload_pickit_pic()
-        self.click_save_button()
+        self.click_pickit_save_button()
         time.sleep(1)
         self.driver.switch_to_alert().accept()
 
@@ -594,6 +594,74 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
+    # 输入好友有效助力概率
+    def type_friend_valid_chance(self):
+        ele = (By.ID, 'raPro')
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入好友有效助力概率：%s" % friend_valid_chance)
+            self.find_element(ele).send_keys(friend_valid_chance)
+        except NoSuchElementException:
+            logging.error("找不到好友有效助力概率输入框位置")
+        except Exception as e:
+            raise e
+
+    # 输入数量设置
+    def type_number_config(self):
+        ele = (By.ID, 'raTotalPeople')
+        try:
+            self.wait_element_load_end(ele)
+            logging.info("输入数量设置：%s" % number_config)
+            self.find_element(ele).send_keys(number_config)
+        except NoSuchElementException:
+            logging.error("找不到数量设置输入框位置")
+        except Exception as e:
+            raise e
+
+    # 点击添加奖品
+    def click_add_prize(self):
+        ele = (By.XPATH, ".//*[@id='setForm']/div[4]/div[3]/div[5]/div")
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except NoSuchElementException:
+            logging.error("找不到添加奖品按钮位置")
+        except Exception as e:
+            raise e
+
+    # 选择奖品
+    def select_prize(self):
+        prize_name_ele = (By.XPATH, ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select")
+        prize_number_ele = (By.XPATH, ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[3]/td/div/input")
+        ele = (By.ID, 'addAward')
+        try:
+            self.wait_element_load_end(prize_name_ele)
+            self.find_element(prize_name_ele).click()
+            for i in range(1, 11):
+                select_ele = (By.XPATH,
+                              ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select/option[%d]" % i)
+                self.find_element(select_ele).click()
+                if self.find_element(prize_number_ele).get_value > 0:
+                    self.find_element(prize_number_ele).clear()
+                    self.find_element(prize_number_ele).send_keys(prize_number)
+                    self.click_confirm_button(ele)
+                    break
+        except NoSuchElementException:
+            logging.error("找不到添加奖品按钮位置")
+        except Exception as e:
+            raise e
+
+    # 点击保存按钮保存微助力活动
+    def click_mh_save_button(self):
+        ele = (By.ID, "saveRacBtn")
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except NoSuchElementException:
+            logging.error("找不到保存按钮位置")
+        except Exception as e:
+            raise e
+
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
@@ -607,3 +675,23 @@ class OperationPageAction(BasePage):
         self.type_event_description()
         self.type_friend_collect_number()
         self.type_friend_collect_unit()
+        self.type_friend_valid_chance()
+        self.type_number_config()
+        self.select_prize()
+        self.click_mh_save_button()
+        time.sleep(1)
+        self.driver.switch_to_alert().accept()
+
+    # 判断微助力活动是否创建成功
+    def is_mh_create_succeed(self):
+        ele = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]'")
+        try:
+            self.wait_element_load_end(ele)
+            if self.is_element_exist(ele) is False:
+                return False
+            elif self.find_element(new_create_card_ele).text == activity_name:
+                return True
+            else:
+                return False
+        except:
+            return False

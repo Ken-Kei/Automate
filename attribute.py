@@ -82,6 +82,9 @@ share_description = config.get("operation_data_setting", "share_description")  #
 event_description = config.get("operation_data_setting", "event_description")  # 微助力活动详情
 friend_collect_number = config.getint("account_info", "friend_collect_number")  # 好友集满数量
 unit = config.get("account_info", "unit")  # 单位
+friend_valid_chance = config.getint("account_info", "friend_valid_chance")  # 好友有效助力概率
+number_config = config.getint("account_info", "number_config")  # 数量设置
+prize_number = config.getint("account_info", "prize_number")  # 奖品数量
 # ====================================================================
 
 
@@ -146,7 +149,6 @@ pickit_belong_classify_ele = (By.XPATH, ".//*[@id='pmCgSysuuid']/option[2]")
 pickit_description_ele = (By.ID, "pmDesc")
 add_pickit_ele = (By.ID, "img_add_btn")
 pic_confirm_ele = (By.ID, "dialog_save")
-pic_save_ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
 new_create_pickit_ele = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
 pickit_smallpic_ele = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
 add_pickit_window_ele = (By.XPATH, ".//*[@id='checkOneImg']/div[2]")

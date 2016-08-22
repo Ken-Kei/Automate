@@ -54,7 +54,7 @@ class CommonUtils:
     # 配置logging模块将log同时输出到控制台和log文件
     def init_logging(self):
         logging.basicConfig(
-            level=logging.DEBUG,
+            level=logging.INFO,
             format="%(levelname)s - %(asctime)s - %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S",
             filename=self.find_new_report_path(self.find_new_report_path('./Log')),
