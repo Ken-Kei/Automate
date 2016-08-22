@@ -695,3 +695,4 @@ class OperationPageAction(BasePage):
                 return False
         except:
             return False
+
