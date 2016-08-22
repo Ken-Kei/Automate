@@ -43,8 +43,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(*logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_pickit_classify()  # 判断登录成功后开始创建套图分类
-                if oa.is_pitkic_classify_create_succeed() is True:
-                    self.assertEqual(oa.is_pitkic_classify_create_succeed(), True)
+                if oa.is_pickit_classify_create_succeed() is True:
+                    self.assertEqual(oa.is_pickit_classify_create_succeed(), True)
                     logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                 else:

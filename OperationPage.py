@@ -24,7 +24,7 @@ class OperationPageAction(BasePage):
     def click_operation_tab(self):
         try:
             self.wait_element_load_end(operation_tab_ele)
-            self.find_element(*operation_tab_ele).click()
+            self.find_element(operation_tab_ele).click()
         except NoSuchElementException:
             logging.error("没找到运营模块的标签元素")
         except Exception as e:
@@ -34,7 +34,7 @@ class OperationPageAction(BasePage):
     def click_card_center_tab(self):
         try:
             self.wait_element_load_end(card_center_ele)
-            self.find_element(*card_center_ele).click()
+            self.find_element(card_center_ele).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -44,7 +44,7 @@ class OperationPageAction(BasePage):
     def click_big_pic(self):
         try:
             self.wait_element_load_end(big_pic_ele)
-            self.find_element(*big_pic_ele).click()
+            self.find_element(big_pic_ele).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -54,7 +54,7 @@ class OperationPageAction(BasePage):
     def click_small_pic(self):
         try:
             self.wait_element_load_end(small_pic_ele)
-            self.find_element(*small_pic_ele).click()
+            self.find_element(small_pic_ele).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -108,7 +108,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(card_name_ele)
             logging.info("输入卡券名称：%s" % card_name)
-            self.find_element(*card_name_ele).send_keys(card_name)
+            self.find_element(card_name_ele).send_keys(card_name)
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -119,7 +119,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(card_rebate_ele)
             logging.info("输入折扣率：%s" % rebate_data)
-            self.find_element(*card_rebate_ele).send_keys(rebate_data)
+            self.find_element(card_rebate_ele).send_keys(rebate_data)
         except NoSuchElementException as e:
             raise e
         except Exception as e:
@@ -131,7 +131,7 @@ class OperationPageAction(BasePage):
             # self.wait_element_load_end(card_validity_ele)
             time.sleep(1)
             logging.info("选择卡券有效期类型为：领取后生效")
-            self.find_element(*card_validity_ele).click()
+            self.find_element(card_validity_ele).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -142,7 +142,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(card_inventory_ele)
             logging.info("输入卡券库存：%s" % inventory_data)
-            self.find_element(*card_inventory_ele).send_keys(inventory_data)
+            self.find_element(card_inventory_ele).send_keys(inventory_data)
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -152,7 +152,7 @@ class OperationPageAction(BasePage):
     def click_card_save_button(self):
         try:
             self.wait_element_load_end(card_save_ele)
-            self.find_element(*card_save_ele).click()
+            self.find_element(card_save_ele).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -175,9 +175,9 @@ class OperationPageAction(BasePage):
     def is_card_create_succeed(self):
         try:
             self.wait_element_load_end(new_create_card_ele)
-            if self.is_element_exist(*new_create_card_ele) is False:
+            if self.is_element_exist(new_create_card_ele) is False:
                 return False
-            elif self.find_element(*new_create_card_ele).text == card_name:
+            elif self.find_element(new_create_card_ele).text == card_name:
                 return True
             else:
                 return False
@@ -188,7 +188,7 @@ class OperationPageAction(BasePage):
     def click_create_pickit_classify_button(self):
         try:
             self.wait_element_load_end(create_pickit_classify_ele)
-            self.find_element(*create_pickit_classify_ele).click()
+            self.find_element(create_pickit_classify_ele).click()
         except NoSuchElementException:
             logging.error("找不到新建分类按钮")
         except Exception as e:
@@ -199,7 +199,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(classify_name_ele)
             logging.info("输入套图分类名称：%s" % pickit_classify_name)
-            self.find_element(*classify_name_ele).send_keys(pickit_classify_name)
+            self.find_element(classify_name_ele).send_keys(pickit_classify_name)
         except NoSuchElementException:
             logging.error("找不到套图分类名称输入框，输入失败")
         except Exception as e:
@@ -210,7 +210,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(color_type_ele)
             logging.info("选择分类的颜色标识：绿色")
-            self.find_element(*color_type_ele).click()
+            self.find_element(color_type_ele).click()
         except NoSuchElementException:
             logging.error("找不到套图分类颜色标识")
         except Exception as e:
@@ -220,7 +220,7 @@ class OperationPageAction(BasePage):
     def click_pickit_classify_save_button(self):
         try:
             self.wait_element_load_end(classify_save_ele)
-            self.find_element(*classify_save_ele).click()
+            self.find_element(classify_save_ele).click()
         except NoSuchElementException:
             logging.error("找不到保存按钮")
         except Exception as e:
@@ -238,12 +238,12 @@ class OperationPageAction(BasePage):
         self.driver.switch_to_alert().accept()
 
     # 验证是否成功创建了套图分类
-    def is_pitkic_classify_create_succeed(self):
+    def is_pickit_classify_create_succeed(self):
         try:
             self.wait_element_load_end(new_create_pickit_classify_ele)
-            if self.is_element_exist(*new_create_pickit_classify_ele) is False:
+            if self.is_element_exist(new_create_pickit_classify_ele) is False:
                 return False
-            elif self.find_element(*new_create_pickit_classify_ele).text == pickit_classify_name:
+            elif self.find_element(new_create_pickit_classify_ele).text == pickit_classify_name:
                 return True
             else:
                 return False
@@ -255,7 +255,7 @@ class OperationPageAction(BasePage):
         try:
             # self.wait_element_load_end(*pickit_title_ele)
             logging.info("输入套图的名称：%s" % pickit_name)
-            self.find_element(*pickit_title_ele).send_keys(pickit_name)
+            self.find_element(pickit_title_ele).send_keys(pickit_name)
         except NoSuchElementException:
             logging.error("找不到套图名称输入框位置")
         except Exception as e:
@@ -265,9 +265,9 @@ class OperationPageAction(BasePage):
     def select_pickit_classify(self):
         try:
             self.wait_element_load_end(pickit_belong_classify_drop_ele)
-            self.find_element(*pickit_belong_classify_drop_ele).click()
-            logging.info("选择套图的所属分类：%s" % self.find_element(*pickit_belong_classify_ele).text)
-            self.find_element(*pickit_belong_classify_ele).click()
+            self.find_element(pickit_belong_classify_drop_ele).click()
+            logging.info("选择套图的所属分类：%s" % self.find_element(pickit_belong_classify_ele).text)
+            self.find_element(pickit_belong_classify_ele).click()
         except NoSuchElementException:
             logging.error("找不到套图分类下拉框位置")
         except Exception as e:
@@ -278,7 +278,7 @@ class OperationPageAction(BasePage):
         try:
             # self.wait_element_load_end(*pickit_description_ele)
             logging.info("输入套图介绍：%s" % pickit_description)
-            self.find_element(*pickit_description_ele).send_keys(pickit_description)
+            self.find_element(pickit_description_ele).send_keys(pickit_description)
         except NoSuchElementException:
             logging.error("找不到套图介绍输入框位置")
         except Exception as e:
@@ -288,7 +288,7 @@ class OperationPageAction(BasePage):
     def click_add_pickit_pic(self):
         try:
             self.wait_element_load_end(add_pickit_ele)
-            self.find_element(*add_pickit_ele).click()
+            self.find_element(add_pickit_ele).click()
         except NoSuchElementException:
             logging.error("找不到上传套图按钮位置")
         except Exception as e:
@@ -298,7 +298,7 @@ class OperationPageAction(BasePage):
     def click_save_pickit_button(self):
         try:
             self.wait_element_load_end(pic_confirm_ele)
-            self.find_element(*pic_confirm_ele).click()
+            self.find_element(pic_confirm_ele).click()
             time.sleep(1)
         except NoSuchElementException:
             logging.error("找不到保存按钮位置")
@@ -322,7 +322,7 @@ class OperationPageAction(BasePage):
     def click_save_button(self):
         try:
             self.wait_element_load_end(pic_save_ele)
-            self.find_element(*pic_save_ele).click()
+            self.find_element(pic_save_ele).click()
         except NoSuchElementException:
             logging.error("找不到保存按钮位置")
         except Exception as e:
@@ -332,7 +332,7 @@ class OperationPageAction(BasePage):
     def click_picsmall_pic(self):
         try:
             self.wait_element_load_end(pickit_smallpic_ele)
-            self.find_element(*pickit_smallpic_ele).click()
+            self.find_element(pickit_smallpic_ele).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -366,9 +366,9 @@ class OperationPageAction(BasePage):
     def is_pickit_create_succeed(self):
         try:
             self.wait_element_load_end(new_create_pickit_ele)
-            if self.is_element_exist(*new_create_pickit_ele) is False:
+            if self.is_element_exist(new_create_pickit_ele) is False:
                 return False
-            elif self.find_element(*new_create_pickit_ele).text == pickit_name:
+            elif self.find_element(new_create_pickit_ele).text == pickit_name:
                 return True
             else:
                 return False
