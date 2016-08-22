@@ -208,11 +208,12 @@ class OperationPageAction(BasePage):
 
     # 验证是否成功创建了卡券
     def is_card_create_succeed(self):
+        ele = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
         try:
-            self.wait_element_load_end(new_create_card_ele)
-            if self.is_element_exist(new_create_card_ele) is False:
+            self.wait_element_load_end(ele)
+            if self.is_element_exist(ele) is False:
                 return False
-            elif self.find_element(new_create_card_ele).text == card_name:
+            elif self.find_element(ele).text == card_name:
                 return True
             else:
                 return False

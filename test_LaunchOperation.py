@@ -73,12 +73,12 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_rebate_card()  # 判断登录成功后开始创建卡券
-                if oa.is_card_create_succeed is True:
-                    logging.info(create_card_succeed)
+                if oa.is_card_create_succeed() is True:
+                    logging.info("卡券创建成功,用例执行通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
                 else:
-                    logging.error(create_card_failed)
+                    logging.error("没有找到卡券，用例执行不通过")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)

@@ -132,8 +132,6 @@ card_save_ele = (By.CSS_SELECTOR, ".btn-default.large-btn")
 upload_button_ele = (By.CSS_SELECTOR, ".file-btn")
 # 上传图片的确认按钮
 confirm_ele = (By.ID, "ccPicBigImgDia_btn1")
-# 创建成功后的卡券定位
-new_create_card_ele = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
 
 
 # 运营模块--套图管理元素定位
@@ -161,8 +159,6 @@ add_pickit_window_ele = (By.XPATH, ".//*[@id='checkOneImg']/div[2]")
 login_succeed = "登录成功"
 login_failed = "找不到登录后的关键字，登录失败"
 loging_in = "正在使用此用户登录: %s"
-create_card_succeed = "卡券创建成功,用例执行通过"
-create_card_failed = "没有找到卡券，用例执行不通过"
 # 输出到控制台信息
 finishmsg = '************************ Finish ************************'
 # ====================================================================
