@@ -35,7 +35,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             action.login(main_url, username, password)
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
-            if self.is_element_exist(*logout_button) is False:
+            if self.is_element_exist(logout_button) is False:
                 logging.error(login_failed)
                 self.create_screen_shot(launch_screenshot_path)
                 self.driver.delete_all_cookies()
@@ -45,10 +45,10 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 time.sleep(3)
                 action.logout()
                 self.wait_element_load_end(login_button)
-                if self.is_element_exist(*login_button) is True:
+                if self.is_element_exist(login_button) is True:
                     logging.info("账号登出成功,用例执行通过")
                     self.create_screen_shot(launch_screenshot_path)
-                    self.assertEqual(self.is_element_exist(*login_button), True)
+                    self.assertEqual(self.is_element_exist(login_button), True)
         except Exception as e:
             raise e
 

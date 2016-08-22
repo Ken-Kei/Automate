@@ -39,7 +39,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             action.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
-            if self.is_element_exist(*logout_button) is True:
+            if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_pickit_classify()  # 判断登录成功后开始创建套图分类
                 if oa.is_pickit_classify_create_succeed() is True:
@@ -67,7 +67,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             action.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
-            if self.is_element_exist(*logout_button) is True:
+            if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_rebate_card()  # 判断登录成功后开始创建卡券
                 if oa.is_card_create_succeed is True:
@@ -95,7 +95,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             action.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
-            if self.is_element_exist(*logout_button) is True:
+            if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_pickit()  # 判断登录成功后开始创建套图
                 if oa.is_pickit_create_succeed() is True:
