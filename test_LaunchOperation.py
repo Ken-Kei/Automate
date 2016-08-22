@@ -154,7 +154,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         self.assertEqual([], self.verificationErrors)
         # 关闭浏览器
         driver.delete_all_cookies()
-        driver.close()
         driver.quit()
 
 if __name__ == '__main__':
