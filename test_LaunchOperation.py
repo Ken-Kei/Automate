@@ -33,6 +33,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
 
         action = self.action
         oa = self.oa
+        flag = False
         logging.info("执行用例：创建套图分类")
         # 如果登录失败的话就重新尝试登录，一共尝试3次
         try:
@@ -45,8 +46,9 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 if oa.is_pickit_classify_create_succeed() is True:
                     logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
+                    flag = True
                 else:
-                    logging.error("没有找到套图分类，套图创建失败")
+                    logging.error("没有找到套图分类，用例执行不通过")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)
@@ -54,13 +56,14 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
-        self.assertEqual(oa.is_pickit_classify_create_succeed(), True)
+        self.assertEqual(flag, True)
 
     def test_CreateCard(self):
         """创建卡券"""
 
         action = self.action
         oa = self.oa
+        flag = False
         logging.info("执行用例：创建卡券")
         # 如果登录失败的话就重新尝试登录，一共尝试3
         try:
@@ -73,6 +76,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 if oa.is_card_create_succeed is True:
                     logging.info(create_card_succeed)
                     self.create_screen_shot(launch_screenshot_path)
+                    flag = True
                 else:
                     logging.error(create_card_failed)
                     self.create_screen_shot(launch_screenshot_path)
@@ -82,13 +86,14 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
-        self.assertEqual(oa.is_card_create_succeed, True)
+        self.assertEqual(flag, True)
 
     def test_CreatePictureKit(self):
         """创建套图"""
 
         action = self.action
         oa = self.oa
+        flag = False
         logging.info("执行用例：创建套图")
         # 登录
         try:
@@ -101,8 +106,9 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 if oa.is_pickit_create_succeed() is True:
                     logging.info("套图创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
+                    flag = True
                 else:
-                    logging.error("没有找到套图，套图创建失败")
+                    logging.error("没有找到套图，用例执行不通过")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)
@@ -110,13 +116,14 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
-        self.assertEqual(oa.is_pickit_create_succeed(), True)
+        self.assertEqual(flag, True)
 
     def test_CreateMicroHelp(self):
         """创建微助力活动"""
 
         action = self.action
         oa = self.oa
+        flag = False
         logging.info("执行用例：创建微助力活动")
         # 登录
         try:
@@ -129,8 +136,9 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 if oa.is_mh_create_succeed() is True:
                     logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
+                    flag = True
                 else:
-                    logging.error("没有找到微助力活动，微助力活动创建失败")
+                    logging.error("没有找到微助力活动，用例执行不通过")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)
@@ -138,7 +146,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
-        self.assertEqual(oa.is_mh_create_succeed(), True)
+        self.assertEqual(flag, True)
 
     def tearDown(self):
         logging.info("用例结束")

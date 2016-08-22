@@ -28,6 +28,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         """登入以及登出O2O平台"""
 
         action = self.action
+        flag = False
         logging.info("执行用例：登入以及登出O2O平台")
         # 登录后台
         try:
@@ -48,9 +49,14 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 if self.is_element_exist(login_button) is True:
                     logging.info("账号登出成功,用例执行通过")
                     self.create_screen_shot(launch_screenshot_path)
-                    self.assertEqual(self.is_element_exist(login_button), True)
+                    flag = True
+                else:
+                    logging.error("账号登出失败，用例执行不通过")
+                    self.create_screen_shot(launch_screenshot_path)
+                    self.driver.delete_all_cookies()
         except Exception as e:
             raise e
+        self.assertEqual(flag, True)
 
     def tearDown(self):
         logging.info("用例结束")
