@@ -124,7 +124,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             action.login(micro_help_url, username, password)  # 打开微助力的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
-            if self.is_element_exist(*logout_button) is True:
+            if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
                 oa.create_micro_help()  # 判断登录成功后开始创建微助力活动
                 if oa.is_pickit_create_succeed() is True:

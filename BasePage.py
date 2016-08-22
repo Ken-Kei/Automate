@@ -28,7 +28,7 @@ class BasePage(object):
         self.driver = driver
         self.timeout = 30
         
-    def find_element(self, *loc):
+    def find_element(self, loc):
         return self.driver.find_element(*loc)
 
     def type_url(self, url):
@@ -46,7 +46,7 @@ class BasePage(object):
         return hosturl
     
     # wait until finish the element loading
-    def wait_element_load_end(self, *element):
+    def wait_element_load_end(self, element):
         wait = WebDriverWait(self.driver, waiting_time)
         try:
             wait.until(ec.presence_of_element_located(*element))
@@ -90,9 +90,9 @@ class BasePage(object):
         except Exception as e:
             raise e
 
-    def is_element_exist(self, *ele):
+    def is_element_exist(self, ele):
         try:
-            self.find_element(*ele)
+            self.find_element(ele)
         except NoSuchElementException:
             return False
         return True
@@ -100,7 +100,7 @@ class BasePage(object):
     # 判断元素是否存在style属性
     def is_attribute_style_exist(self, ele, locator):
         try:
-            ga = self.find_element(*ele).get_attribute(locator + "@style")
+            ga = self.find_element(ele).get_attribute(locator + "@style")
             if ga is False:
                 return False
             elif ga is None:
@@ -115,12 +115,12 @@ class BasePage(object):
         try:
             file_path = os.path.join(os.path.abspath(file_name))
             if self.is_attribute_style_exist(ue, locator) is True:
-                if self.is_element_exist(*ue) is True:
+                if self.is_element_exist(ue) is True:
                     self.driver.execute_script(file_image_block)
-                    self.find_element(*ue).send_keys(file_path)
+                    self.find_element(ue).send_keys(file_path)
                     self.driver.execute_script(file_image_none)
             else:
-                self.find_element(*ue).send_keys(file_path)
+                self.find_element(ue).send_keys(file_path)
         except Exception as e:
             raise e
 

@@ -190,6 +190,6 @@ main_body = """
 # 上传图片的元素id为fileImage
 file_image_block = """document.getElementById('fileImage').style.display='block'; """
 file_image_none = """document.getElementById('fileImage').style.display='none'; """
-remove_sd_read_only = """var setDate=document.getElementById('js-startDate');setDate.removeAttribute('readonly');"""
-remove_ed_read_only = """var setDate=document.getElementById('js-endDate');setDate.removeAttribute('readonly');"""
+remove_sd_read_only = """document.getElementById('js-startDate').readOnly=false; """
+remove_ed_read_only = """document.getElementById('js-endDate').readOnly=false; """
 # ====================================================================

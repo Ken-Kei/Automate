@@ -21,8 +21,8 @@ class LoginPageAction(BasePage):
 
     def type_username(self, usr):
         try:
-            self.find_element(*username_input).clear()
-            self.find_element(*username_input).send_keys(usr)
+            self.find_element(username_input).clear()
+            self.find_element(username_input).send_keys(usr)
         except NoSuchElementException:
             logging.info("1")
         except Exception as e:
@@ -30,8 +30,8 @@ class LoginPageAction(BasePage):
 
     def type_password(self, pwd):
         try:
-            self.find_element(*password_input).clear()
-            self.find_element(*password_input).send_keys(pwd)
+            self.find_element(password_input).clear()
+            self.find_element(password_input).send_keys(pwd)
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -51,7 +51,7 @@ class LoginPageAction(BasePage):
     def click_login_button(self):
         try:
             self.wait_element_load_end(login_button)
-            self.find_element(*login_button).click()
+            self.find_element(login_button).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -60,7 +60,7 @@ class LoginPageAction(BasePage):
     def click_logout_button(self):
         try:
             self.wait_element_load_end(logout_button)
-            ele_id = self.find_element(*logout_button)
+            ele_id = self.find_element(logout_button)
             ele_id.click()
         except NoSuchElementException:
             pass

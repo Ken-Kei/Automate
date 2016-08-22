@@ -99,7 +99,7 @@ class OperationPageAction(BasePage):
     def click_confirm_button(self, ele):
         try:
             self.wait_element_load_end(ele)
-            self.find_element(*ele).click()
+            self.find_element(ele).click()
         except Exception as e:
             raise e
 
@@ -381,7 +381,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(ele)
             logging.info("输入活动名称：%s" % activity_name)
-            self.find_element(*ele).send_keys(activity_name)
+            self.find_element(ele).send_keys(activity_name)
         except NoSuchElementException:
             logging.error("找不到套图介绍输入框位置")
         except Exception as e:
@@ -392,7 +392,7 @@ class OperationPageAction(BasePage):
         ele = (By.ID, "BgiImgUrl")
         try:
             self.wait_element_load_end(ele)
-            self.find_element(*ele).click()
+            self.find_element(ele).click()
         except NoSuchElementException:
             logging.error("找不到上传微助力大图位置")
         except Exception as e:
@@ -403,7 +403,7 @@ class OperationPageAction(BasePage):
         ele = (By.ID, "ImgSmallUrl")
         try:
             self.wait_element_load_end(ele)
-            self.find_element(*ele).click()
+            self.find_element(ele).click()
         except NoSuchElementException:
             logging.error("找不到上传微助力小图位置")
         except Exception as e:
@@ -422,8 +422,8 @@ class OperationPageAction(BasePage):
 
     # 上传微助力封面大图
     def upload_mh_big_pic(self):
+        ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
         try:
-            ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
             self.click_micro_help_bigpic()
             logging.info("正在上传微助力封面大图：%s" % big_pic_name)
             self.upload_file_mh(big_pic_name)
@@ -436,6 +436,7 @@ class OperationPageAction(BasePage):
     def upload_mh_small_pic(self):
         ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
         try:
+            time.sleep(1)
             self.click_micro_help_smallpic()
             logging.info("正在上传微助力封面小图：%s" % big_pic_name)
             self.upload_file_mh(small_pic_name)
@@ -451,7 +452,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(ele)
             self.driver.execute_script(remove_sd_read_only)
-            self.find_element(*ele).sendkeys(date)
+            self.find_element(ele).send_keys(date)
         except NoSuchElementException:
             logging.error("找不到微助力活动开始时间位置")
         except Exception as e:
@@ -466,7 +467,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(ele)
             self.driver.execute_script(remove_ed_read_only)
-            self.find_element(*ele).sendkeys(date)
+            self.find_element(ele).send_keys(date)
         except NoSuchElementException:
             logging.error("找不到微助力活动结束时间位置")
         except Exception as e:
@@ -477,7 +478,7 @@ class OperationPageAction(BasePage):
         ele = (By.ID, "raBackgroundImgUrl")
         try:
             self.wait_element_load_end(ele)
-            self.find_element(*ele).click()
+            self.find_element(ele).click()
         except NoSuchElementException:
             logging.error("找不到上传微助力背景图位置")
         except Exception as e:
@@ -501,7 +502,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(ele)
             logging.info("输入分享标题：%s" % share_title)
-            self.find_element(*ele).send_keys(share_title)
+            self.find_element(ele).send_keys(share_title)
         except NoSuchElementException:
             logging.error("找不到分享标题输入框位置")
         except Exception as e:
@@ -513,7 +514,7 @@ class OperationPageAction(BasePage):
         try:
             self.wait_element_load_end(ele)
             logging.info("输入分享描述：%s" % share_description)
-            self.find_element(*ele).send_keys(share_description)
+            self.find_element(ele).send_keys(share_description)
         except NoSuchElementException:
             logging.error("找不到分享描述输入框位置")
         except Exception as e:
