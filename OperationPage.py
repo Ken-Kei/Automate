@@ -635,13 +635,14 @@ class OperationPageAction(BasePage):
         prize_number_ele = (By.XPATH, ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[3]/td/div/input")
         ele = (By.ID, 'addAward')
         try:
+            self.click_add_prize()
             self.wait_element_load_end(prize_name_ele)
             self.find_element(prize_name_ele).click()
             for i in range(1, 11):
                 select_ele = (By.XPATH,
                               ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select/option[%d]" % i)
                 self.find_element(select_ele).click()
-                if self.find_element(prize_number_ele).get_value > 0:
+                if int(self.find_element(prize_number_ele).get_attribute("value")) > 0:
                     self.find_element(prize_number_ele).clear()
                     self.find_element(prize_number_ele).send_keys(prize_number)
                     self.click_confirm_button(ele)
@@ -684,12 +685,12 @@ class OperationPageAction(BasePage):
 
     # 判断微助力活动是否创建成功
     def is_mh_create_succeed(self):
-        ele = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]'")
+        ele = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]")
         try:
             self.wait_element_load_end(ele)
             if self.is_element_exist(ele) is False:
                 return False
-            elif self.find_element(new_create_card_ele).text == activity_name:
+            elif self.find_element(ele).text == activity_name:
                 return True
             else:
                 return False
