@@ -556,6 +556,20 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
+    # 输入活动详情
+    def type_event_description(self):
+        ele = (By.XPATH, "html/body")
+        iframe_ele = "ueditor_0"
+        try:
+            self.driver.switch_to_frame(iframe_ele)
+            self.wait_element_load_end(ele)
+            self.find_element(ele).send_keys(event_description)
+            self.driver.switch_to_default_content()
+        except NoSuchElementException:
+            logging.error("找不到活动详情的元素位置")
+        except Exception as e:
+            raise e
+
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
@@ -566,3 +580,4 @@ class OperationPageAction(BasePage):
         self.upload_mh_background_pic()
         self.type_share_title()
         self.type_share_description()
+        self.type_event_description()

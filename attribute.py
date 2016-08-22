@@ -79,6 +79,7 @@ micro_help_url = config.get("operation_data_setting", "micro_help_url")  # 微�
 activity_name = config.get("operation_data_setting", "activity_name")  # 微助力活动名称
 share_title = config.get("operation_data_setting", "share_title")  # 微助力分享标题
 share_description = config.get("operation_data_setting", "share_description")  # 微助力分享描述
+event_description = config.get("operation_data_setting", "event_description")  # 微助力活动详情
 # ====================================================================
 
 
