@@ -4,7 +4,6 @@
 """
 Author       :  刘建民
 Create Date  :  2016/7/7
-Edit Date    :  2016/7/20
 """
 
 from LoginPage import LoginPageAction
