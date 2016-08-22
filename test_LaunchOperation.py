@@ -43,7 +43,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(login_succeed)
                 oa.create_pickit_classify()  # 判断登录成功后开始创建套图分类
                 if oa.is_pickit_classify_create_succeed() is True:
-                    self.assertEqual(oa.is_pickit_classify_create_succeed(), True)
                     logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                 else:
@@ -55,6 +54,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
+        self.assertEqual(oa.is_pickit_classify_create_succeed(), True)
 
     def test_CreateCard(self):
         """创建卡券"""
@@ -71,7 +71,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(login_succeed)
                 oa.create_rebate_card()  # 判断登录成功后开始创建卡券
                 if oa.is_card_create_succeed is True:
-                    self.assertEqual(oa.is_card_create_succeed, True)
                     logging.info(create_card_succeed)
                     self.create_screen_shot(launch_screenshot_path)
                 else:
@@ -83,6 +82,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
+        self.assertEqual(oa.is_card_create_succeed, True)
 
     def test_CreatePictureKit(self):
         """创建套图"""
@@ -99,7 +99,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(login_succeed)
                 oa.create_pickit()  # 判断登录成功后开始创建套图
                 if oa.is_pickit_create_succeed() is True:
-                    self.assertEqual(oa.is_pickit_create_succeed(), True)
                     logging.info("套图创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                 else:
@@ -111,6 +110,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
+        self.assertEqual(oa.is_pickit_create_succeed(), True)
 
     def test_CreateMicroHelp(self):
         """创建微助力活动"""
@@ -127,7 +127,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(login_succeed)
                 oa.create_micro_help()  # 判断登录成功后开始创建微助力活动
                 if oa.is_pickit_create_succeed() is True:
-                    self.assertEqual(oa.is_pickit_create_succeed(), True)
                     logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                 else:
@@ -139,6 +138,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
+        self.assertEqual(oa.is_pickit_create_succeed(), True)
 
     def tearDown(self):
         logging.info("用例结束")
