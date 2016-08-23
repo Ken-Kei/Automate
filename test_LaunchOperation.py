@@ -21,10 +21,10 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
     def setUp(self):
         self.verificationErrors = []
         self.driver = self.get_driver()
-        self.lp = LoginPageAction(self.driver)
+        self.lpa = LoginPageAction(self.driver)
         self.ccpa = CardCenterPageAction(self.driver)
-        self.pm = PictureManage(self.driver)
-        self.mh = MicroHelp(self.driver)
+        self.pma = PictureManageAction(self.driver)
+        self.mha = MicroHelpAction(self.driver)
 
     def test_CreatePictureKitClassify(self):
         """创建套图分类"""
@@ -33,13 +33,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         logging.info("执行用例：创建套图分类")
         # 如果登录失败的话就重新尝试登录，一共尝试3次
         try:
-            self.lp.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
+            self.lpa.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
             if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
-                self.pm.create_pickit_classify()  # 判断登录成功后开始创建套图分类
-                if self.pm.is_pickit_classify_create_succeed() is True:
+                self.pma.create_pickit_classify()  # 判断登录成功后开始创建套图分类
+                if self.pma.is_pickit_classify_create_succeed() is True:
                     logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
@@ -61,7 +61,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         logging.info("执行用例：创建卡券")
         # 如果登录失败的话就重新尝试登录，一共尝试3
         try:
-            self.lp.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
+            self.lpa.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
             if self.is_element_exist(logout_button) is True:
@@ -89,13 +89,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         logging.info("执行用例：创建套图")
         # 登录
         try:
-            self.lp.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
+            self.lpa.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
             if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
-                self.pm.create_pickit()  # 判断登录成功后开始创建套图
-                if self.pm.is_pickit_create_succeed() is True:
+                self.pma.create_pickit()  # 判断登录成功后开始创建套图
+                if self.pma.is_pickit_create_succeed() is True:
                     logging.info("套图创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
@@ -117,13 +117,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         logging.info("执行用例：创建微助力活动")
         # 登录
         try:
-            self.lp.login(micro_help_url, username, password)  # 打开微助力的url并验证登录
+            self.lpa.login(micro_help_url, username, password)  # 打开微助力的url并验证登录
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
             if self.is_element_exist(logout_button) is True:
                 logging.info(login_succeed)
-                self.mh.create_micro_help()  # 判断登录成功后开始创建微助力活动
-                if self.mh.is_mh_create_succeed() is True:
+                self.mha.create_micro_help()  # 判断登录成功后开始创建微助力活动
+                if self.mha.is_mh_create_succeed() is True:
                     logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True

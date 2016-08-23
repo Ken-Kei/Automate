@@ -16,7 +16,7 @@ import logging
 com = CommonUtils()
 
 
-class LaunchOperationCase(unittest.TestCase, BasePage):
+class LaunchLoginCase(unittest.TestCase, BasePage):
     """家居精灵-> 登录模块 - 自动化测试用例"""
 
     def setUp(self):

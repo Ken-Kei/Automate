@@ -225,7 +225,7 @@ class CardCenterPageAction(PublicMethod, BasePage):
             return False
 
 
-class PictureManage(PublicMethod, BasePage):
+class PictureManageAction(PublicMethod, BasePage):
     """
     Name        :  运营 -> 套图管理
     Author      :  刘建民
@@ -382,7 +382,7 @@ class PictureManage(PublicMethod, BasePage):
             return False
 
 
-class MicroHelp(PublicMethod, BasePage):
+class MicroHelpAction(PublicMethod, BasePage):
     """
     Name        :  运营 -> 微助力
     Author      :  刘建民
