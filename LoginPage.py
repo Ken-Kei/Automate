@@ -9,6 +9,7 @@ Create Date  :  2016/07/01
 
 from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
+from LoginLocators import *
 from BasePage import BasePage
 import logging
 
@@ -22,19 +23,19 @@ class LoginPageAction(BasePage):
 
     def type_username(self, usr):
         try:
-            self.find_element(username_input).clear()
-            self.find_element(username_input).send_keys(usr)
+            self.find_element(LoginPageLocators.USERNAME).clear()
+            self.find_element(LoginPageLocators.USERNAME).send_keys(usr)
         except NoSuchElementException:
-            logging.info("1")
+            logging.info("找不到账号输入框")
         except Exception as e:
             raise e
 
     def type_password(self, pwd):
         try:
-            self.find_element(password_input).clear()
-            self.find_element(password_input).send_keys(pwd)
+            self.find_element(LoginPageLocators.PASSWORD).clear()
+            self.find_element(LoginPageLocators.PASSWORD).send_keys(pwd)
         except NoSuchElementException:
-            pass
+            logging.info("找不到密码输入框")
         except Exception as e:
             raise e
 
@@ -51,8 +52,8 @@ class LoginPageAction(BasePage):
 
     def click_login_button(self):
         try:
-            self.wait_element_load_end(login_button)
-            self.find_element(login_button).click()
+            self.wait_element_load_end(LoginPageLocators.LOGINBUTTON)
+            self.find_element(LoginPageLocators.LOGINBUTTON).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -60,8 +61,8 @@ class LoginPageAction(BasePage):
 
     def click_logout_button(self):
         try:
-            self.wait_element_load_end(logout_button)
-            ele_id = self.find_element(logout_button)
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            ele_id = self.find_element(LoginPageLocators.LOGOUTBUTTON)
             ele_id.click()
         except NoSuchElementException:
             pass
