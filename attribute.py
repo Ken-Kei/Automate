@@ -146,10 +146,19 @@ pickit_belong_classify_drop_ele = (By.ID, "pmCgSysuuid")
 pickit_belong_classify_ele = (By.XPATH, ".//*[@id='pmCgSysuuid']/option[2]")
 pickit_description_ele = (By.ID, "pmDesc")
 add_pickit_ele = (By.ID, "img_add_btn")
-pic_confirm_ele = (By.ID, "dialog_save")
 new_create_pickit_ele = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
 pickit_smallpic_ele = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
 add_pickit_window_ele = (By.XPATH, ".//*[@id='checkOneImg']/div[2]")
+micro_bigpic_ele = (By.ID, "BgiImgUrl")
+micro_smallpic_ele = (By.ID, "ImgSmallUrl")
+pickit_save_ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
+micro_confirm_ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
+mh_background_button_ele = (By.ID, "raBackgroundImgUrl")
+mh_save_ele = (By.ID, "saveRacBtn")
+file_image_ele = (By.ID, "fileImage")
+file_image_ele_locate = "fileImage"
+doc_ele = (By.ID, "doc")
+doc_ele_locate = 'doc'
 # ====================================================================
 
 

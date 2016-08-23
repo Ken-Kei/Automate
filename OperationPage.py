@@ -14,9 +14,86 @@ import datetime
 import time
 
 
-class OperationPageAction(BasePage):
+class PublicMethod(BasePage):
     """
-    封装运营模块的页面对象
+    Name        :  公用方法
+    Author      :  刘建民
+    Create Date :  2016/08/23
+    """
+
+    # 点击上传大图按钮
+    def click_big_pic(self, ele):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except NoSuchElementException:
+            logging.error("没找到上传大图的按钮")
+        except Exception as e:
+            raise e
+
+    # 点击上传小图按钮
+    def click_small_pic(self, ele):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except NoSuchElementException:
+            logging.error("没找到上传小图的按钮")
+        except Exception as e:
+            raise e
+
+    # 上传图片元素为fileImage且存在style = none
+    def upload_file_image_pic(self, ele, ele_locate, picture):
+        try:
+            self.upload_file(ele, ele_locate, picture)
+        except NoSuchElementException:
+            logging.error("找不到上传图片的元素位置")
+        except Exception as e:
+            raise e
+
+    # 上传封面大图
+    def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
+        try:
+            self.click_big_pic(button_ele)
+            logging.info("正在上传大图：%s" % big_pic_name)
+            self.upload_file_image_pic(ele, ele_locate, big_pic_name)
+            self.click_confirm_button(confrim_ele)
+            logging.info("上传大图完毕")
+        except Exception as e:
+            raise e
+
+    # 上传封面小图
+    def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
+        try:
+            self.click_small_pic(button_ele)
+            logging.info("正在上传小图：%s" % small_pic_name)
+            self.upload_file_image_pic(ele, ele_locate, small_pic_name)
+            self.click_confirm_button(confrim_ele)
+            logging.info("上传小图完毕")
+        except Exception as e:
+            raise e
+
+    # 上传图片后点击确认
+    def click_confirm_button(self, ele):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except Exception as e:
+            raise e
+
+    # 点击保存按钮
+    def click_save_button(self, ele):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except Exception as e:
+            raise e
+
+
+class CardCenterPageAction(PublicMethod, BasePage):
+    """
+    Name        :  运营 -> 卡券中心
+    Author      :  刘建民
+    Create Date :  2016/08/23
     """
 
     # 点击运营模块标签
@@ -36,69 +113,6 @@ class OperationPageAction(BasePage):
             self.find_element(card_center_ele).click()
         except NoSuchElementException:
             pass
-        except Exception as e:
-            raise e
-
-    # 点击上传大图按钮
-    def click_big_pic(self):
-        try:
-            self.wait_element_load_end(big_pic_ele)
-            self.find_element(big_pic_ele).click()
-        except NoSuchElementException:
-            logging.error("没找到上传大图的按钮")
-        except Exception as e:
-            raise e
-
-    # 点击上传小图按钮
-    def click_small_pic(self):
-        try:
-            self.wait_element_load_end(small_pic_ele)
-            self.find_element(small_pic_ele).click()
-        except NoSuchElementException:
-            logging.error("没找到上传小图的按钮")
-        except Exception as e:
-            raise e
-
-    # 元素为fileImage且存在style = none
-    def upload_pic(self, picture):
-        ele = (By.ID, "fileImage")
-        ele_locate = "fileImage"
-        try:
-            self.upload_file(ele, ele_locate, picture)
-        except NoSuchElementException:
-            logging.error("找不到上传图片的元素位置")
-        except Exception as e:
-            raise e
-
-    # 上传封面大图
-    def upload_big_pic(self):
-        try:
-            ele = (By.ID, "ccPicBigImgDia_btn1")
-            self.click_big_pic()
-            logging.info("正在上传大图：%s" % big_pic_name)
-            self.upload_pic(big_pic_name)
-            self.click_confirm_button(ele)
-            logging.info("上传大图完毕")
-        except Exception as e:
-            raise e
-
-    # 上传封面小图
-    def upload_small_pic(self):
-        try:
-            ele = (By.ID, "ccPicBigImgDia_btn1")
-            self.click_small_pic()
-            logging.info("正在上传小图：%s" % small_pic_name)
-            self.upload_pic(small_pic_name)
-            self.click_confirm_button(ele)
-            logging.info("上传小图完毕")
-        except Exception as e:
-            raise e
-
-    # 上传图片后点击确认
-    def click_confirm_button(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
         except Exception as e:
             raise e
 
@@ -153,7 +167,7 @@ class OperationPageAction(BasePage):
         try:
             self.click_suite_goods_button()
             logging.info("正在上传适用商品图：%s" % big_pic_name)
-            self.upload_pic(big_pic_name)
+            self.upload_file_image_pic(file_image_ele, file_image_ele_locate, big_pic_name)
             self.click_confirm_button(ele)
             logging.info("上传适用商品图完毕")
         except Exception as e:
@@ -182,27 +196,17 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 点击保存
-    def click_card_save_button(self):
-        try:
-            self.wait_element_load_end(card_save_ele)
-            self.find_element(card_save_ele).click()
-        except NoSuchElementException:
-            pass
-        except Exception as e:
-            raise e
-
     # 创建折扣券
     def create_rebate_card(self):
-        self.upload_big_pic()
-        self.upload_small_pic()
+        self.upload_big_pic(big_pic_ele, file_image_ele, file_image_ele_locate, confirm_ele)
+        self.upload_small_pic(small_pic_ele, file_image_ele, file_image_ele_locate, confirm_ele)
         self.type_card_name()
         self.type_card_rebate()
         self.select_validity_to_immediately()
         self.upload_suite_goods_pic()
         self.type_goods_summary()
         self.type_card_inventory()
-        self.click_card_save_button()
+        self.click_save_button(card_save_ele)
         time.sleep(1)
         self.driver.switch_to_alert().accept()
 
@@ -219,6 +223,14 @@ class OperationPageAction(BasePage):
                 return False
         except:
             return False
+
+
+class PictureManage(PublicMethod, BasePage):
+    """
+    Name        :  运营 -> 套图管理
+    Author      :  刘建民
+    Create Date :  2016/08/23
+    """
 
     # 点击套图管理的新建分类按钮
     def click_create_pickit_classify_button(self):
@@ -266,8 +278,8 @@ class OperationPageAction(BasePage):
     def create_pickit_classify(self):
         self.click_create_pickit_classify_button()
         self.type_classify_name()
-        self.upload_big_pic()
-        self.upload_small_pic()
+        self.upload_big_pic(big_pic_ele, file_image_ele, file_image_ele_locate, confirm_ele)
+        self.upload_small_pic(small_pic_ele, file_image_ele, file_image_ele_locate, confirm_ele)
         self.select_classify_color_type()
         self.click_pickit_classify_save_button()
         time.sleep(2)
@@ -330,60 +342,17 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 上传套图完毕后点击保存
-    def click_save_pickit_button(self):
-        try:
-            self.wait_element_load_end(pic_confirm_ele)
-            self.find_element(pic_confirm_ele).click()
-            time.sleep(1)
-        except NoSuchElementException:
-            logging.error("找不到保存按钮位置")
-        except Exception as e:
-            raise e
-
     # 上传套图
     def upload_pickit_pic(self):
         ele = (By.ID, "fileOneImage")
         ele_locate = "fileOneImage"
+        pic_confirm_ele = (By.ID, "dialog_save")
         try:
             self.click_add_pickit_pic()
             logging.info("正在上传第一张套图：%s" % pickit1)
             self.upload_file(ele, ele_locate, big_pic_name)
-            self.click_save_pickit_button()
+            self.click_save_button(pic_confirm_ele)
             logging.info("上传套图完毕")
-        except Exception as e:
-            raise e
-
-    # 创建套图完毕之后点击保存按钮
-    def click_pickit_save_button(self):
-        ele = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("找不到保存按钮位置")
-        except Exception as e:
-            raise e
-
-    # 点击套图的上传小图按钮
-    def click_picsmall_pic(self):
-        try:
-            self.wait_element_load_end(pickit_smallpic_ele)
-            self.find_element(pickit_smallpic_ele).click()
-        except NoSuchElementException:
-            pass
-        except Exception as e:
-            raise e
-
-    # 上传套图的封面小图
-    def upload_picsmall_pic(self):
-        try:
-            ele = (By.ID, "ccPicBigImgDia_btn1")
-            self.click_picsmall_pic()
-            logging.info("正在上传小图：%s" % small_pic_name)
-            self.upload_pic(small_pic_name)
-            self.click_confirm_button(ele)
-            logging.info("上传小图完毕")
         except Exception as e:
             raise e
 
@@ -391,15 +360,15 @@ class OperationPageAction(BasePage):
     def create_pickit(self):
         self.type_pickit_name()
         self.select_pickit_classify()
-        self.upload_big_pic()
-        self.upload_small_pic()
+        self.upload_big_pic(big_pic_ele, file_image_ele, file_image_ele_locate, confirm_ele)
+        self.upload_small_pic(small_pic_ele, file_image_ele, file_image_ele_locate, confirm_ele)
         self.type_pickit_description()
         self.upload_pickit_pic()
-        self.click_pickit_save_button()
+        self.click_save_button(pickit_save_ele)
         time.sleep(1)
         self.driver.switch_to_alert().accept()
 
-    # 验证是否成功创建了卡券
+    # 验证是否成功创建了套图
     def is_pickit_create_succeed(self):
         try:
             self.wait_element_load_end(new_create_pickit_ele)
@@ -412,6 +381,14 @@ class OperationPageAction(BasePage):
         except:
             return False
 
+
+class MicroHelp(PublicMethod, BasePage):
+    """
+    Name        :  运营 -> 微助力
+    Author      :  刘建民
+    Create Date :  2016/08/23
+    """
+
     # 输入微助力活动名称
     def type_activity_name(self):
         ele = (By.ID, "raName")
@@ -421,64 +398,6 @@ class OperationPageAction(BasePage):
             self.find_element(ele).send_keys(activity_name)
         except NoSuchElementException:
             logging.error("找不到套图介绍输入框位置")
-        except Exception as e:
-            raise e
-
-    # 点击微助力的上传大图按钮
-    def click_micro_help_bigpic(self):
-        ele = (By.ID, "BgiImgUrl")
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("找不到上传微助力大图位置")
-        except Exception as e:
-            raise e
-
-    # 点击微助力的上传小图按钮
-    def click_micro_help_smallpic(self):
-        ele = (By.ID, "ImgSmallUrl")
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("找不到上传微助力小图位置")
-        except Exception as e:
-            raise e
-
-    # 上传微助力图片方法
-    def upload_file_mh(self, picture):
-        ele = (By.ID, "doc")
-        ele_locate = 'doc'
-        try:
-            self.upload_file(ele, ele_locate, picture)
-        except NoSuchElementException:
-            logging.error("找不到上传位置")
-        except Exception as e:
-            raise e
-
-    # 上传微助力封面大图
-    def upload_mh_big_pic(self):
-        ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
-        try:
-            self.click_micro_help_bigpic()
-            logging.info("正在上传微助力封面大图：%s" % big_pic_name)
-            self.upload_file_mh(big_pic_name)
-            self.click_confirm_button(ele)
-            logging.info("上传大图完毕")
-        except Exception as e:
-            raise e
-
-    # 上传微助力封面小图
-    def upload_mh_small_pic(self):
-        ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
-        try:
-            time.sleep(1)
-            self.click_micro_help_smallpic()
-            logging.info("正在上传微助力封面小图：%s" % big_pic_name)
-            self.upload_file_mh(small_pic_name)
-            self.click_confirm_button(ele)
-            logging.info("上传小图完毕")
         except Exception as e:
             raise e
 
@@ -511,8 +430,7 @@ class OperationPageAction(BasePage):
             raise e
 
     # 点击微助力的上传背景图按钮
-    def click_micro_help_bgpic(self):
-        ele = (By.ID, "raBackgroundImgUrl")
+    def click_micro_help_bgpic(self, ele):
         try:
             self.wait_element_load_end(ele)
             self.find_element(ele).click()
@@ -523,12 +441,12 @@ class OperationPageAction(BasePage):
 
     # 上传微助力背景图
     def upload_mh_background_pic(self):
-        ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
+        mh_background_confirm_ele = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
         try:
-            self.click_micro_help_bgpic()
+            self.click_micro_help_bgpic(mh_background_button_ele)
             logging.info("正在上传微助力背景图：%s" % big_pic_name)
-            self.upload_file_mh(big_pic_name)
-            self.click_confirm_button(ele)
+            self.upload_file(doc_ele, doc_ele_locate, big_pic_name)
+            self.click_confirm_button(mh_background_confirm_ele)
             logging.info("上传背景图完毕")
         except Exception as e:
             raise e
@@ -653,22 +571,11 @@ class OperationPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 点击保存按钮保存微助力活动
-    def click_mh_save_button(self):
-        ele = (By.ID, "saveRacBtn")
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("找不到保存按钮位置")
-        except Exception as e:
-            raise e
-
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
-        self.upload_mh_big_pic()
-        self.upload_mh_small_pic()
+        self.upload_big_pic(micro_bigpic_ele, doc_ele, doc_ele_locate, micro_confirm_ele)
+        self.upload_small_pic(micro_smallpic_ele, doc_ele, doc_ele_locate, micro_confirm_ele)
         self.type_mh_start_time()
         self.type_mh_end_time()
         self.upload_mh_background_pic()
@@ -680,7 +587,7 @@ class OperationPageAction(BasePage):
         self.type_friend_valid_chance()
         self.type_number_config()
         self.select_prize()
-        self.click_mh_save_button()
+        self.click_save_button(mh_save_ele)
         time.sleep(1)
         self.driver.switch_to_alert().accept()
 
