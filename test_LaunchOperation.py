@@ -11,6 +11,7 @@ from LoginPage import LoginPageAction
 from OperationPage import *
 import unittest
 from attribute import *  # @UnusedWildImport
+from LoginLocators import *
 from BasePage import BasePage
 import logging
 
@@ -35,8 +36,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         try:
             self.lpa.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
             logging.info(loging_in % username)
-            self.wait_element_load_end(logout_button)
-            if self.is_element_exist(logout_button) is True:
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.pma.create_pickit_classify()  # 判断登录成功后开始创建套图分类
                 if self.pma.is_pickit_classify_create_succeed() is True:
@@ -63,8 +64,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         try:
             self.lpa.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
-            self.wait_element_load_end(logout_button)
-            if self.is_element_exist(logout_button) is True:
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.ccpa.create_rebate_card()  # 判断登录成功后开始创建卡券
                 if self.ccpa.is_card_create_succeed() is True:
@@ -91,8 +92,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         try:
             self.lpa.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
-            self.wait_element_load_end(logout_button)
-            if self.is_element_exist(logout_button) is True:
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.pma.create_pickit()  # 判断登录成功后开始创建套图
                 if self.pma.is_pickit_create_succeed() is True:
@@ -119,8 +120,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         try:
             self.lpa.login(micro_help_url, username, password)  # 打开微助力的url并验证登录
             logging.info(loging_in % username)
-            self.wait_element_load_end(logout_button)
-            if self.is_element_exist(logout_button) is True:
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.mha.create_micro_help()  # 判断登录成功后开始创建微助力活动
                 if self.mha.is_mh_create_succeed() is True:

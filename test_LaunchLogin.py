@@ -9,6 +9,7 @@ Create Date  :  2016/07/07
 from LoginPage import LoginPageAction
 import unittest
 from attribute import *  # @UnusedWildImport
+from LoginLocators import *
 from BasePage import BasePage
 from common import CommonUtils
 import logging
@@ -34,8 +35,8 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
             # 打开O2O主页的url并验证登入登出
             self.lp.login(main_url, username, password)
             logging.info(loging_in % username)
-            self.wait_element_load_end(logout_button)
-            if self.is_element_exist(logout_button) is False:
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is False:
                 logging.error(login_failed)
                 self.create_screen_shot(launch_screenshot_path)
                 self.driver.delete_all_cookies()
@@ -44,8 +45,8 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
                 self.create_screen_shot(launch_screenshot_path)
                 time.sleep(3)
                 self.lp.logout()
-                self.wait_element_load_end(login_button)
-                if self.is_element_exist(login_button) is True:
+                self.wait_element_load_end(LoginPageLocators.LOGINBUTTON)
+                if self.is_element_exist(LoginPageLocators.LOGINBUTTON) is True:
                     logging.info("账号登出成功,用例执行通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
