@@ -15,7 +15,9 @@ import logging
 
 class LoginPageAction(BasePage):
     """
-    封装登入以及登出步骤的页面对象
+    Name        :  登入登出
+    Author      :  刘建民
+    Create Date :  2016/08/23
     """
 
     def type_username(self, usr):
