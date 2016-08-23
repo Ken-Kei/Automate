@@ -12,7 +12,6 @@ import time
 import os
 import xlrd
 from xlutils3.copy import copy
-from selenium.webdriver.common.by import By
 
 
 # ====================================================================
