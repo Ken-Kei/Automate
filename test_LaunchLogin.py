@@ -22,18 +22,17 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
     def setUp(self):
         self.verificationErrors = []
         self.driver = self.get_driver()
-        self.action = LoginPageAction(self.driver)
+        self.lp = LoginPageAction(self.driver)
 
     def test_Login(self):
         """登入以及登出O2O平台"""
 
-        action = self.action
         flag = False
         logging.info("执行用例：登入以及登出O2O平台")
         # 登录后台
         try:
             # 打开O2O主页的url并验证登入登出
-            action.login(main_url, username, password)
+            self.lp.login(main_url, username, password)
             logging.info(loging_in % username)
             self.wait_element_load_end(logout_button)
             if self.is_element_exist(logout_button) is False:
@@ -44,7 +43,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(login_succeed)
                 self.create_screen_shot(launch_screenshot_path)
                 time.sleep(3)
-                action.logout()
+                self.lp.logout()
                 self.wait_element_load_end(login_button)
                 if self.is_element_exist(login_button) is True:
                     logging.info("账号登出成功,用例执行通过")
