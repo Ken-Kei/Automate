@@ -547,7 +547,8 @@ class MicroHelpAction(PublicMethod, BasePage):
             self.wait_element_load_end(MicroHelpPage.PRIZENAME)
             self.find_element(MicroHelpPage.PRIZENAME).click()
             for i in range(1, 11):
-                self.find_element(MicroHelpPage.SELECT % i).click()
+                select = (By.XPATH, MicroHelpPage.SELECT % i)
+                self.find_element(select).click()
                 if int(self.find_element(MicroHelpPage.PRIZENUMBER).get_attribute("value")) > 0:
                     self.find_element(MicroHelpPage.PRIZENUMBER).clear()
                     self.find_element(MicroHelpPage.PRIZENUMBER).send_keys(prize_number)
@@ -563,6 +564,7 @@ class MicroHelpAction(PublicMethod, BasePage):
         self.type_activity_name()
         self.upload_big_pic(MicroHelpPage.BIGPIC, MicroHelpPage.DOC,
                             MicroHelpPage.DOCLOCATE, MicroHelpPage.CONFIRM)
+        time.sleep(1)
         self.upload_small_pic(MicroHelpPage.SMALLPIC, MicroHelpPage.DOC,
                               MicroHelpPage.DOCLOCATE, MicroHelpPage.CONFIRM)
         self.type_mh_start_time()

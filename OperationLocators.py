@@ -76,7 +76,6 @@ class MicroHelpPage:
     ADDPRIZEBUTTON              = (By.XPATH, ".//*[@id='setForm']/div[4]/div[3]/div[5]/div")
     PRIZENAME                   = (By.XPATH, ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select")
     PRIZENUMBER                 = (By.XPATH, ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[3]/td/div/input")
-    SELECT                      = (By.XPATH,
-                                   ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select/option[%d]")
+    SELECT                      = ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select/option[%d]"
     PRIZECONFIRM                = (By.ID, 'addAward')
     NEWCREATEMICROHELP          = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]")
