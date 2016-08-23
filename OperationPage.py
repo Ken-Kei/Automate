@@ -317,8 +317,8 @@ class PictureManageAction(PublicMethod, BasePage):
         try:
             self.wait_element_load_end(PictureMangePage.PICTUREBELONGCLASSIFYDROP)
             self.find_element(PictureMangePage.PICTUREBELONGCLASSIFYDROP).click()
-            logging.info("选择套图的所属分类：%s" % self.find_element(PictureMangePage.PICTUREBELONGCLASSIFYDROP).text)
-            self.find_element(PictureMangePage.PICTUREBELONGCLASSIFYDROP).click()
+            logging.info("选择套图的所属分类：%s" % self.find_element(PictureMangePage.PICTUREBELONGCLASSIFY).text)
+            self.find_element(PictureMangePage.PICTUREBELONGCLASSIFY).click()
         except NoSuchElementException:
             logging.error("找不到套图分类下拉框位置")
         except Exception as e:
