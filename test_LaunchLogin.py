@@ -3,7 +3,7 @@
 
 """
 Author       :  刘建民
-Create Date  :  2016/7/7
+Create Date  :  2016/07/07
 """
 
 from LoginPage import LoginPageAction
