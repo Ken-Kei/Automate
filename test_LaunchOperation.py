@@ -16,8 +16,8 @@ from BasePage import BasePage
 import logging
 
 
-class LaunchOperationCase(unittest.TestCase, BasePage):
-    """家居精灵-> 运营模块 - 自动化测试用例"""
+class LaunchOperationPMCase(unittest.TestCase, BasePage):
+    """家居精灵-> 运营 - 套图管理"""
     
     def setUp(self):
         self.verificationErrors = []
@@ -26,11 +26,12 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         self.ccpa = CardCenterPageAction(self.driver)
         self.pma = PictureManageAction(self.driver)
         self.mha = MicroHelpAction(self.driver)
-        self.public = PublicMethod(self.driver)
 
-    def test_CreatePictureKitClassify(self):
+    def test_CreatePictureClassify(self):
         """创建套图分类"""
 
+        self.lpa = LoginPageAction(self.driver)
+        self.pma = PictureManageAction(self.driver)
         flag = False
         logging.info("执行用例：创建套图分类")
         # 如果登录失败的话就重新尝试登录，一共尝试3次
@@ -41,41 +42,12 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.pma.create_pickit_classify()  # 判断登录成功后开始创建套图分类
-                if self.public.is_create_succeed(PictureMangePageLocators.NEWPICTURECLASSIFY,
-                                                 picture_classify_name) is True:
+                if self.is_create_succeed(PMPageLocators.NEWPICTURECLASSIFY, picture_classify_name) is True:
                     logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
                 else:
                     logging.error("没有找到套图分类，用例执行不通过")
-                    self.create_screen_shot(launch_screenshot_path)
-            else:
-                logging.error(login_failed)
-                self.create_screen_shot(launch_screenshot_path)
-                self.driver.delete_all_cookies()
-        except Exception as e:
-            raise e
-        self.assertEqual(flag, True)
-
-    def test_CreateCard(self):
-        """创建卡券"""
-
-        flag = False
-        logging.info("执行用例：创建卡券")
-        # 如果登录失败的话就重新尝试登录，一共尝试3
-        try:
-            self.lpa.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
-            logging.info(loging_in % username)
-            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
-            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
-                logging.info(login_succeed)
-                self.ccpa.create_rebate_card()  # 判断登录成功后开始创建卡券
-                if self.public.is_create_succeed(CardCenterPageLocators.NEWCARD, card_name) is True:
-                    logging.info("卡券创建成功,用例执行通过")
-                    self.create_screen_shot(launch_screenshot_path)
-                    flag = True
-                else:
-                    logging.error("没有找到卡券，用例执行不通过")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)
@@ -98,12 +70,40 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.pma.create_pickit()  # 判断登录成功后开始创建套图
-                if self.public.is_create_succeed(PictureMangePageLocators.NEWPICTURE, picture_name) is True:
+                if self.is_create_succeed(PMPageLocators.NEWPICTURE, picture_name) is True:
                     logging.info("套图创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
                 else:
                     logging.error("没有找到套图，用例执行不通过")
+                    self.create_screen_shot(launch_screenshot_path)
+            else:
+                logging.error(login_failed)
+                self.create_screen_shot(launch_screenshot_path)
+                self.driver.delete_all_cookies()
+        except Exception as e:
+            raise e
+        self.assertEqual(flag, True)
+
+    def test_CreateCard(self):
+        """创建卡券"""
+
+        flag = False
+        logging.info("执行用例：创建卡券")
+        # 如果登录失败的话就重新尝试登录，一共尝试3
+        try:
+            self.lpa.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
+            logging.info(loging_in % username)
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
+                logging.info(login_succeed)
+                self.ccpa.create_rebate_card()  # 判断登录成功后开始创建卡券
+                if self.is_create_succeed(CCPageLocators.NEWCARD, card_name) is True:
+                    logging.info("卡券创建成功,用例执行通过")
+                    self.create_screen_shot(launch_screenshot_path)
+                    flag = True
+                else:
+                    logging.error("没有找到卡券，用例执行不通过")
                     self.create_screen_shot(launch_screenshot_path)
             else:
                 logging.error(login_failed)
@@ -126,7 +126,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.mha.create_micro_help()  # 判断登录成功后开始创建微助力活动
-                if self.public.is_create_succeed(MicroHelpPageLocators.NEWMICROHELP, activity_name) is True:
+                if self.is_create_succeed(MHPageLocators.NEWMICROHELP, activity_name) is True:
                     logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True

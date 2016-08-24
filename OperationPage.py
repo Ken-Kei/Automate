@@ -9,101 +9,14 @@ Create Date  :  2016/7/1
 from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from OperationLocators import *
+from LogInfo import *
 from BasePage import BasePage
 import logging
 import datetime
 import time
 
 
-class PublicMethod(BasePage):
-    """
-    Name        :  运营 - 公用方法
-    Author      :  刘建民
-    Create Date :  2016/08/23
-    """
-
-    # 点击上传大图按钮
-    def click_big_pic(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("没找到上传大图的按钮")
-        except Exception as e:
-            raise e
-
-    # 点击上传小图按钮
-    def click_small_pic(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("没找到上传小图的按钮")
-        except Exception as e:
-            raise e
-
-    # 上传图片元素为fileImage且存在style = none
-    def upload_file_image_pic(self, ele, ele_locate, picture):
-        try:
-            self.upload_file(ele, ele_locate, picture)
-        except NoSuchElementException:
-            logging.error("找不到上传图片的元素位置")
-        except Exception as e:
-            raise e
-
-    # 上传封面大图
-    def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
-        try:
-            self.click_big_pic(button_ele)
-            logging.info("正在上传大图：%s" % big_pic_name)
-            self.upload_file_image_pic(ele, ele_locate, big_pic_name)
-            self.click_confirm_button(confrim_ele)
-            logging.info("上传大图完毕")
-        except Exception as e:
-            raise e
-
-    # 上传封面小图
-    def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
-        try:
-            self.click_small_pic(button_ele)
-            logging.info("正在上传小图：%s" % small_pic_name)
-            self.upload_file_image_pic(ele, ele_locate, small_pic_name)
-            self.click_confirm_button(confrim_ele)
-            logging.info("上传小图完毕")
-        except Exception as e:
-            raise e
-
-    # 上传图片后点击确认
-    def click_confirm_button(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except Exception as e:
-            raise e
-
-    # 点击保存按钮
-    def click_save_button(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except Exception as e:
-            raise e
-
-    # 验证是否成功创建对应内容
-    def is_create_succeed(self, ele, event_name):
-        try:
-            self.wait_element_load_end(ele)
-            if self.is_element_exist(ele) is False:
-                return False
-            elif self.find_element(ele).text == event_name:
-                return True
-            else:
-                return False
-        except:
-            return False
-
-
-class CardCenterPageAction(PublicMethod, BasePage):
+class CardCenterPageAction(BasePage):
     """
     Name        :  运营 -> 卡券中心
     Author      :  刘建民
@@ -113,8 +26,8 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 点击运营模块标签
     def click_operation_tab(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.OPERATIONTAB)
-            self.find_element(CardCenterPageLocators.OPERATIONTAB).click()
+            self.wait_element_load_end(CCPageLocators.OPERATIONTAB)
+            self.find_element(CCPageLocators.OPERATIONTAB).click()
         except NoSuchElementException:
             logging.error("没找到运营模块的标签元素")
         except Exception as e:
@@ -123,8 +36,8 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 点击运营模块下的“卡券中心”标签
     def click_card_center_tab(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.CARDCENTER)
-            self.find_element(CardCenterPageLocators.CARDCENTER).click()
+            self.wait_element_load_end(CCPageLocators.CARDCENTER)
+            self.find_element(CCPageLocators.CARDCENTER).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -133,9 +46,9 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 输入卡券名称
     def type_card_name(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.CARDNAME)
+            self.wait_element_load_end(CCPageLocators.CARDNAME)
             logging.info("输入卡券名称：%s" % card_name)
-            self.find_element(CardCenterPageLocators.CARDNAME).send_keys(card_name)
+            self.find_element(CCPageLocators.CARDNAME).send_keys(card_name)
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -144,9 +57,9 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 输入折扣券的折扣率
     def type_card_rebate(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.CARDREBATE)
+            self.wait_element_load_end(CCPageLocators.CARDREBATE)
             logging.info("输入折扣率：%s" % rebate_data)
-            self.find_element(CardCenterPageLocators.CARDREBATE).send_keys(rebate_data)
+            self.find_element(CCPageLocators.CARDREBATE).send_keys(rebate_data)
         except NoSuchElementException as e:
             raise e
         except Exception as e:
@@ -155,10 +68,10 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 选择折扣券有效期为领取后生效
     def select_validity_to_immediately(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.CARDVALIDITY)
+            self.wait_element_load_end(CCPageLocators.CARDVALIDITY)
             time.sleep(1)
             logging.info("选择卡券有效期类型为：领取后生效")
-            self.find_element(CardCenterPageLocators.CARDVALIDITY).click()
+            self.find_element(CCPageLocators.CARDVALIDITY).click()
         except NoSuchElementException:
             pass
         except Exception as e:
@@ -167,8 +80,8 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 点击适用商品上传图片按钮
     def click_suite_goods_button(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.SUITEGOODSUPLOADBUTTON)
-            self.find_element(CardCenterPageLocators.SUITEGOODSUPLOADBUTTON).click()
+            self.wait_element_load_end(CCPageLocators.SUITEGOODSUPLOADBUTTON)
+            self.find_element(CCPageLocators.SUITEGOODSUPLOADBUTTON).click()
         except NoSuchElementException:
             logging.error("没找到上传适用商品的按钮")
         except Exception as e:
@@ -179,9 +92,9 @@ class CardCenterPageAction(PublicMethod, BasePage):
         try:
             self.click_suite_goods_button()
             logging.info("正在上传适用商品图：%s" % big_pic_name)
-            self.upload_file_image_pic(CardCenterPageLocators.FILEIMAGE,
-                                       CardCenterPageLocators.FILEIMAGELOCATE, big_pic_name)
-            self.click_confirm_button(CardCenterPageLocators.SUITEGOODSUPLOADCONFIRM)
+            self.upload_picture(CCPageLocators.FILEIMAGE,
+                                CCPageLocators.FILEIMAGELOCATE, big_pic_name)
+            self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
             logging.info("上传适用商品图完毕")
         except Exception as e:
             raise e
@@ -190,9 +103,9 @@ class CardCenterPageAction(PublicMethod, BasePage):
     def type_goods_summary(self):
 
         try:
-            self.wait_element_load_end(CardCenterPageLocators.GOODSSUMMARY)
+            self.wait_element_load_end(CCPageLocators.GOODSSUMMARY)
             logging.info("输入商品简介：%s" % inventory_data)
-            self.find_element(CardCenterPageLocators.GOODSSUMMARY).send_keys(goods_summary)
+            self.find_element(CCPageLocators.GOODSSUMMARY).send_keys(goods_summary)
         except NoSuchElementException:
             logging.error("没找到商品简介的元素位置")
         except Exception as e:
@@ -201,9 +114,9 @@ class CardCenterPageAction(PublicMethod, BasePage):
     # 输入优惠券的库存
     def type_card_inventory(self):
         try:
-            self.wait_element_load_end(CardCenterPageLocators.CARDINVENTORY)
+            self.wait_element_load_end(CCPageLocators.CARDINVENTORY)
             logging.info("输入卡券库存：%s" % inventory_data)
-            self.find_element(CardCenterPageLocators.CARDINVENTORY).send_keys(inventory_data)
+            self.find_element(CCPageLocators.CARDINVENTORY).send_keys(inventory_data)
         except NoSuchElementException:
             logging.error("没找到优惠券库存的元素位置")
         except Exception as e:
@@ -211,22 +124,22 @@ class CardCenterPageAction(PublicMethod, BasePage):
 
     # 创建折扣券
     def create_rebate_card(self):
-        self.upload_big_pic(CardCenterPageLocators.BIGPIC, CardCenterPageLocators.FILEIMAGE,
-                            CardCenterPageLocators.FILEIMAGELOCATE, CardCenterPageLocators.CONFIRM)
-        self.upload_small_pic(CardCenterPageLocators.SMALLPIC, CardCenterPageLocators.FILEIMAGE,
-                              CardCenterPageLocators.FILEIMAGELOCATE, CardCenterPageLocators.CONFIRM)
+        self.upload_big_pic(CCPageLocators.BIGPIC, CCPageLocators.FILEIMAGE,
+                            CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM)
+        self.upload_small_pic(CCPageLocators.SMALLPIC, CCPageLocators.FILEIMAGE,
+                              CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM)
         self.type_card_name()
         self.type_card_rebate()
         self.select_validity_to_immediately()
         self.upload_suite_goods_pic()
         self.type_goods_summary()
         self.type_card_inventory()
-        self.click_save_button(CardCenterPageLocators.SAVE)
+        self.click_save_button(CCPageLocators.SAVE)
         time.sleep(1)
         self.driver.switch_to_alert().accept()
 
 
-class PictureManageAction(PublicMethod, BasePage):
+class PictureManageAction(BasePage):
     """
     Name        :  运营 -> 套图管理
     Author      :  刘建民
@@ -236,8 +149,8 @@ class PictureManageAction(PublicMethod, BasePage):
     # 点击套图管理的新建分类按钮
     def click_create_picture_classify_button(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.CREATEPICTURECLASSIFY)
-            self.find_element(PictureMangePageLocators.CREATEPICTURECLASSIFY).click()
+            self.wait_element_load_end(PMPageLocators.CREATEPICTURECLASSIFY)
+            self.find_element(PMPageLocators.CREATEPICTURECLASSIFY).click()
         except NoSuchElementException:
             logging.error("找不到新建分类按钮")
         except Exception as e:
@@ -246,9 +159,9 @@ class PictureManageAction(PublicMethod, BasePage):
     # 输入套图的分类名称
     def type_classify_name(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.CLASSIFYNAME)
+            self.wait_element_load_end(PMPageLocators.CLASSIFYNAME)
             logging.info("输入套图分类名称：%s" % picture_classify_name)
-            self.find_element(PictureMangePageLocators.CLASSIFYNAME).send_keys(picture_classify_name)
+            self.find_element(PMPageLocators.CLASSIFYNAME).send_keys(picture_classify_name)
         except NoSuchElementException:
             logging.error("找不到套图分类名称输入框，输入失败")
         except Exception as e:
@@ -257,9 +170,9 @@ class PictureManageAction(PublicMethod, BasePage):
     # 选择套图分类的颜色标识
     def select_classify_color_type(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.COLORTYPE)
+            self.wait_element_load_end(PMPageLocators.COLORTYPE)
             logging.info("选择分类的颜色标识：绿色")
-            self.find_element(PictureMangePageLocators.COLORTYPE).click()
+            self.find_element(PMPageLocators.COLORTYPE).click()
         except NoSuchElementException:
             logging.error("找不到套图分类颜色标识")
         except Exception as e:
@@ -268,8 +181,8 @@ class PictureManageAction(PublicMethod, BasePage):
     # 创建套图分类完毕后点击保存
     def click_pickit_classify_save_button(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.SAVEPICTURECLASSIFY)
-            self.find_element(PictureMangePageLocators.SAVEPICTURECLASSIFY).click()
+            self.wait_element_load_end(PMPageLocators.SAVEPICTURECLASSIFY)
+            self.find_element(PMPageLocators.SAVEPICTURECLASSIFY).click()
         except NoSuchElementException:
             logging.error("找不到保存按钮")
         except Exception as e:
@@ -279,10 +192,10 @@ class PictureManageAction(PublicMethod, BasePage):
     def create_pickit_classify(self):
         self.click_create_picture_classify_button()
         self.type_classify_name()
-        self.upload_big_pic(PictureMangePageLocators.BIGPIC, PictureMangePageLocators.FILEIMAGE,
-                            PictureMangePageLocators.FILEIMAGELOCATE, PictureMangePageLocators.CONFIRM)
-        self.upload_small_pic(PictureMangePageLocators.SMALLPIC, PictureMangePageLocators.FILEIMAGE,
-                              PictureMangePageLocators.FILEIMAGELOCATE, PictureMangePageLocators.CONFIRM)
+        self.upload_big_pic(PMPageLocators.BIGPIC, PMPageLocators.FILEIMAGE,
+                            PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
+        self.upload_small_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
+                              PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
         self.select_classify_color_type()
         self.click_pickit_classify_save_button()
         time.sleep(2)
@@ -291,9 +204,9 @@ class PictureManageAction(PublicMethod, BasePage):
     # 输入套图的名称
     def type_pickit_name(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.PICTURETITLE)
+            self.wait_element_load_end(PMPageLocators.PICTURETITLE)
             logging.info("输入套图的名称：%s" % picture_name)
-            self.find_element(PictureMangePageLocators.PICTURETITLE).send_keys(picture_name)
+            self.find_element(PMPageLocators.PICTURETITLE).send_keys(picture_name)
         except NoSuchElementException:
             logging.error("找不到套图名称输入框位置")
         except Exception as e:
@@ -302,10 +215,10 @@ class PictureManageAction(PublicMethod, BasePage):
     # 选择套图的所属分类
     def select_picture_classify(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.PICTUREBELONGDROP)
-            self.find_element(PictureMangePageLocators.PICTUREBELONGDROP).click()
-            logging.info("选择套图的所属分类：%s" % self.find_element(PictureMangePageLocators.PICTUREBELONG).text)
-            self.find_element(PictureMangePageLocators.PICTUREBELONG).click()
+            self.wait_element_load_end(PMPageLocators.PICTUREBELONGDROP)
+            self.find_element(PMPageLocators.PICTUREBELONGDROP).click()
+            logging.info("选择套图的所属分类：%s" % self.find_element(PMPageLocators.PICTUREBELONG).text)
+            self.find_element(PMPageLocators.PICTUREBELONG).click()
         except NoSuchElementException:
             logging.error("找不到套图分类下拉框位置")
         except Exception as e:
@@ -314,9 +227,9 @@ class PictureManageAction(PublicMethod, BasePage):
     # 输入套图介绍
     def type_pickit_description(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.PICTUREDESCRIPTION)
+            self.wait_element_load_end(PMPageLocators.PICTUREDESCRIPTION)
             logging.info("输入套图介绍：%s" % pickit_description)
-            self.find_element(PictureMangePageLocators.PICTUREDESCRIPTION).send_keys(pickit_description)
+            self.find_element(PMPageLocators.PICTUREDESCRIPTION).send_keys(pickit_description)
         except NoSuchElementException:
             logging.error("找不到套图介绍输入框位置")
         except Exception as e:
@@ -325,8 +238,8 @@ class PictureManageAction(PublicMethod, BasePage):
     # 点击上传套图按钮
     def click_add_pickit_pic(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.ADDPITCURE)
-            self.find_element(PictureMangePageLocators.ADDPITCURE).click()
+            self.wait_element_load_end(PMPageLocators.ADDPITCURE)
+            self.find_element(PMPageLocators.ADDPITCURE).click()
         except NoSuchElementException:
             logging.error("找不到上传套图按钮位置")
         except Exception as e:
@@ -337,9 +250,9 @@ class PictureManageAction(PublicMethod, BasePage):
         try:
             self.click_add_pickit_pic()
             logging.info("正在上传第一张套图：%s" % pickit1)
-            self.upload_file(PictureMangePageLocators.UPLOADPICTURE,
-                             PictureMangePageLocators.UPLOADPICTURELOACTE, big_pic_name)
-            self.click_save_button(PictureMangePageLocators.PICTURECONFIRM)
+            self.upload_file(PMPageLocators.UPLOADPICTURE,
+                             PMPageLocators.UPLOADPICTURELOACTE, big_pic_name)
+            self.click_save_button(PMPageLocators.PICTURECONFIRM)
             logging.info("上传套图完毕")
         except Exception as e:
             raise e
@@ -348,18 +261,18 @@ class PictureManageAction(PublicMethod, BasePage):
     def create_pickit(self):
         self.type_pickit_name()
         self.select_picture_classify()
-        self.upload_big_pic(PictureMangePageLocators.BIGPIC, PictureMangePageLocators.FILEIMAGE,
-                            PictureMangePageLocators.FILEIMAGELOCATE, PictureMangePageLocators.CONFIRM)
-        self.upload_small_pic(PictureMangePageLocators.SMALLPIC, PictureMangePageLocators.FILEIMAGE,
-                              PictureMangePageLocators.FILEIMAGELOCATE, PictureMangePageLocators.CONFIRM)
+        self.upload_big_pic(PMPageLocators.BIGPIC, PMPageLocators.FILEIMAGE,
+                            PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
+        self.upload_small_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
+                              PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
         self.type_pickit_description()
         self.upload_pickit_pic()
-        self.click_save_button(PictureMangePageLocators.PICTURESAVE)
+        self.click_save_button(PMPageLocators.PICTURESAVE)
         time.sleep(1)
         self.driver.switch_to_alert().accept()
 
 
-class MicroHelpAction(PublicMethod, BasePage):
+class MicroHelpAction(BasePage):
     """
     Name        :  运营 -> 微助力
     Author      :  刘建民
@@ -406,23 +319,13 @@ class MicroHelpAction(PublicMethod, BasePage):
         except Exception as e:
             raise e
 
-    # 点击微助力的上传背景图按钮
-    def click_micro_help_bgpic(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-        except NoSuchElementException:
-            logging.error("找不到上传微助力背景图位置")
-        except Exception as e:
-            raise e
-
     # 上传微助力背景图
     def upload_mh_background_pic(self):
         try:
-            self.click_micro_help_bgpic(MicroHelpPageLocators.BACKGROUNDBUTTON)
+            self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON, MHLogInfo.MHBACKGROUNDERROR)
             logging.info("正在上传微助力背景图：%s" % big_pic_name)
-            self.upload_file(MicroHelpPageLocators.DOC, MicroHelpPageLocators.DOCLOCATE, big_pic_name)
-            self.click_confirm_button(MicroHelpPageLocators.BACKGROUNDCONFIRM)
+            self.upload_picture(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_pic_name)
+            self.click_confirm_button(MHPageLocators.BACKGROUNDCONFIRM)
             logging.info("上传背景图完毕")
         except Exception as e:
             raise e
@@ -430,9 +333,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入微助力分享标题
     def type_share_title(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.SHARETITLE)
+            self.wait_element_load_end(MHPageLocators.SHARETITLE)
             logging.info("输入分享标题：%s" % share_title)
-            self.find_element(MicroHelpPageLocators.SHARETITLE).send_keys(share_title)
+            self.find_element(MHPageLocators.SHARETITLE).send_keys(share_title)
         except NoSuchElementException:
             logging.error("找不到分享标题输入框位置")
         except Exception as e:
@@ -441,9 +344,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入分享描述
     def type_share_description(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.SHAREDESCRIPTION)
+            self.wait_element_load_end(MHPageLocators.SHAREDESCRIPTION)
             logging.info("输入分享描述：%s" % share_description)
-            self.find_element(MicroHelpPageLocators.SHAREDESCRIPTION).send_keys(share_description)
+            self.find_element(MHPageLocators.SHAREDESCRIPTION).send_keys(share_description)
         except NoSuchElementException:
             logging.error("找不到分享描述输入框位置")
         except Exception as e:
@@ -452,9 +355,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入活动详情
     def type_event_description(self):
         try:
-            self.driver.switch_to_frame(MicroHelpPageLocators.IFRAME)
-            self.wait_element_load_end(MicroHelpPageLocators.EVENTMAINBODY)
-            self.find_element(MicroHelpPageLocators.EVENTMAINBODY).send_keys(event_description)
+            self.driver.switch_to_frame(MHPageLocators.IFRAME)
+            self.wait_element_load_end(MHPageLocators.EVENTMAINBODY)
+            self.find_element(MHPageLocators.EVENTMAINBODY).send_keys(event_description)
             self.driver.switch_to_default_content()
         except NoSuchElementException:
             logging.error("找不到活动详情的元素位置")
@@ -464,9 +367,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入好友集满数量
     def type_friend_collect_number(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.FRIENDCOLLECTNUM)
+            self.wait_element_load_end(MHPageLocators.FRIENDCOLLECTNUM)
             logging.info("输入好友集满数量：%s" % friend_collect_number)
-            self.find_element(MicroHelpPageLocators.FRIENDCOLLECTNUM).send_keys(friend_collect_number)
+            self.find_element(MHPageLocators.FRIENDCOLLECTNUM).send_keys(friend_collect_number)
         except NoSuchElementException:
             logging.error("找不到好友集满数量输入框位置")
         except Exception as e:
@@ -475,9 +378,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入好友集满数量的单位
     def type_friend_collect_unit(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.UNIT)
+            self.wait_element_load_end(MHPageLocators.UNIT)
             logging.info("输入好友集满数量：%s" % unit)
-            self.find_element(MicroHelpPageLocators.UNIT).send_keys(unit)
+            self.find_element(MHPageLocators.UNIT).send_keys(unit)
         except NoSuchElementException:
             logging.error("找不到单位输入框位置")
         except Exception as e:
@@ -486,9 +389,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入好友有效助力概率
     def type_friend_valid_chance(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.VALIDCHANCE)
+            self.wait_element_load_end(MHPageLocators.VALIDCHANCE)
             logging.info("输入好友有效助力概率：%s" % friend_valid_chance)
-            self.find_element(MicroHelpPageLocators.VALIDCHANCE).send_keys(friend_valid_chance)
+            self.find_element(MHPageLocators.VALIDCHANCE).send_keys(friend_valid_chance)
         except NoSuchElementException:
             logging.error("找不到好友有效助力概率输入框位置")
         except Exception as e:
@@ -497,9 +400,9 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 输入数量设置
     def type_number_config(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.NUMBERCONFIG)
+            self.wait_element_load_end(MHPageLocators.NUMBERCONFIG)
             logging.info("输入数量设置：%s" % number_config)
-            self.find_element(MicroHelpPageLocators.NUMBERCONFIG).send_keys(number_config)
+            self.find_element(MHPageLocators.NUMBERCONFIG).send_keys(number_config)
         except NoSuchElementException:
             logging.error("找不到数量设置输入框位置")
         except Exception as e:
@@ -508,8 +411,8 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 点击添加奖品
     def click_add_prize(self):
         try:
-            self.wait_element_load_end(MicroHelpPageLocators.ADDPRIZEBUTTON)
-            self.find_element(MicroHelpPageLocators.ADDPRIZEBUTTON).click()
+            self.wait_element_load_end(MHPageLocators.ADDPRIZEBUTTON)
+            self.find_element(MHPageLocators.ADDPRIZEBUTTON).click()
         except NoSuchElementException:
             logging.error("找不到添加奖品按钮位置")
         except Exception as e:
@@ -519,15 +422,15 @@ class MicroHelpAction(PublicMethod, BasePage):
     def select_prize(self):
         try:
             self.click_add_prize()
-            self.wait_element_load_end(MicroHelpPageLocators.PRIZENAME)
-            self.find_element(MicroHelpPageLocators.PRIZENAME).click()
+            self.wait_element_load_end(MHPageLocators.PRIZENAME)
+            self.find_element(MHPageLocators.PRIZENAME).click()
             for i in range(1, 11):
-                select = (By.XPATH, MicroHelpPageLocators.SELECT % i)
+                select = (By.XPATH, MHPageLocators.SELECT % i)
                 self.find_element(select).click()
-                if int(self.find_element(MicroHelpPageLocators.PRIZENUMBER).get_attribute("value")) > 0:
-                    self.find_element(MicroHelpPageLocators.PRIZENUMBER).clear()
-                    self.find_element(MicroHelpPageLocators.PRIZENUMBER).send_keys(prize_number)
-                    self.click_confirm_button(MicroHelpPageLocators.PRIZECONFIRM)
+                if int(self.find_element(MHPageLocators.PRIZENUMBER).get_attribute("value")) > 0:
+                    self.find_element(MHPageLocators.PRIZENUMBER).clear()
+                    self.find_element(MHPageLocators.PRIZENUMBER).send_keys(prize_number)
+                    self.click_confirm_button(MHPageLocators.PRIZECONFIRM)
                     break
         except NoSuchElementException:
             logging.error("找不到添加奖品按钮位置")
@@ -537,11 +440,11 @@ class MicroHelpAction(PublicMethod, BasePage):
     # 创建一个微助力活动
     def create_micro_help(self):
         self.type_activity_name()
-        self.upload_big_pic(MicroHelpPageLocators.BIGPIC, MicroHelpPageLocators.DOC,
-                            MicroHelpPageLocators.DOCLOCATE, MicroHelpPageLocators.CONFIRM)
+        self.upload_big_pic(MHPageLocators.BIGPIC, MHPageLocators.DOC,
+                            MHPageLocators.DOCLOCATE, MHPageLocators.CONFIRM)
         time.sleep(1)
-        self.upload_small_pic(MicroHelpPageLocators.SMALLPIC, MicroHelpPageLocators.DOC,
-                              MicroHelpPageLocators.DOCLOCATE, MicroHelpPageLocators.CONFIRM)
+        self.upload_small_pic(MHPageLocators.SMALLPIC, MHPageLocators.DOC,
+                              MHPageLocators.DOCLOCATE, MHPageLocators.CONFIRM)
         self.type_mh_start_time()
         self.type_mh_end_time()
         self.upload_mh_background_pic()
@@ -553,6 +456,6 @@ class MicroHelpAction(PublicMethod, BasePage):
         self.type_friend_valid_chance()
         self.type_number_config()
         self.select_prize()
-        self.click_save_button(MicroHelpPageLocators.SAVE)
+        self.click_save_button(MHPageLocators.SAVE)
         time.sleep(1)
         self.driver.switch_to_alert().accept()

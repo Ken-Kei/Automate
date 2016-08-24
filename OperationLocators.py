@@ -10,7 +10,13 @@ Create Date  :  2016/08/23
 from selenium.webdriver.common.by import By
 
 
-class CardCenterPageLocators:
+class CCPageLocators:
+    """
+    Name         :  运营 - 卡券中心 - 元素定位
+    Author       :  刘建民
+    Create Date  :  2016/08/23
+    """
+
     OPERATIONTAB                = (By.CSS_SELECTOR, "#current3")
     CARDCENTER                  = (By.XPATH, ".//*[@id='sidebar']/ul/li[5]/a/span[2]")
     BIGPIC                      = (By.ID, "ccPicBigImg")
@@ -30,7 +36,13 @@ class CardCenterPageLocators:
     NEWCARD                     = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
 
 
-class PictureMangePageLocators:
+class PMPageLocators:
+    """
+    Name         :  运营 - 套图管理 - 元素定位
+    Author       :  刘建民
+    Create Date  :  2016/08/23
+    """
+
     CREATEPICTURECLASSIFY       = (By.XPATH, ".//*[@id='content_body']/tbody/tr/td[1]/button")
     CLASSIFYNAME                = (By.ID, "pmName")
     COLORTYPE                   = (By.XPATH, ".//*[@id='color_type']/li[1]")
@@ -54,7 +66,12 @@ class PictureMangePageLocators:
     PICTURECONFIRM              = (By.ID, "dialog_save")
 
 
-class MicroHelpPageLocators:
+class MHPageLocators:
+    """
+    Name         :  运营 - 微助力 - 元素定位
+    Author       :  刘建民
+    Create Date  :  2016/08/23
+    """
     BIGPIC                      = (By.ID, "BgiImgUrl")
     SMALLPIC                    = (By.ID, "ImgSmallUrl")
     CONFIRM                     = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")

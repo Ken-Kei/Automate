@@ -14,6 +14,7 @@ from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import logging
 from selenium.common.exceptions import NoSuchElementException
+from LogInfo import *
 
 com = CommonUtils()
 
@@ -137,3 +138,73 @@ class BasePage(object):
                 logging.error("need_screenshot配置错误，请检查配置文件！")
         except Exception as e:
             raise e
+
+    # 点击上传图片按钮
+    def click_upload_button(self, ele, log):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except NoSuchElementException:
+            logging.error(log)
+        except Exception as e:
+            raise e
+
+    # 上传图片并判断style属性是否为none
+    def upload_picture(self, ele, ele_locate, picture):
+        try:
+            self.upload_file(ele, ele_locate, picture)
+        except NoSuchElementException:
+            logging.error(PublicLogInfo.UPLOADNOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 上传封面大图
+    def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
+        try:
+            self.click_upload_button(button_ele, PublicLogInfo.BIGPICERROR)
+            logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_pic_name)
+            self.upload_picture(ele, ele_locate, big_pic_name)
+            self.click_confirm_button(confrim_ele)
+            logging.info(PublicLogInfo.UPLOADBIGPICFIN)
+        except Exception as e:
+            raise e
+
+    # 上传封面小图
+    def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
+        try:
+            self.click_upload_button(button_ele, PublicLogInfo.SMALLPICERROR)
+            logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_pic_name)
+            self.upload_picture(ele, ele_locate, small_pic_name)
+            self.click_confirm_button(confrim_ele)
+            logging.info(PublicLogInfo.UPLOADSMALLPICFIN)
+        except Exception as e:
+            raise e
+
+    # 上传图片后点击确认
+    def click_confirm_button(self, ele):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except Exception as e:
+            raise e
+
+    # 点击保存按钮
+    def click_save_button(self, ele):
+        try:
+            self.wait_element_load_end(ele)
+            self.find_element(ele).click()
+        except Exception as e:
+            raise e
+
+    # 验证是否成功创建对应内容
+    def is_create_succeed(self, ele, event_name):
+        try:
+            self.wait_element_load_end(ele)
+            if self.is_element_exist(ele) is False:
+                return False
+            elif self.find_element(ele).text == event_name:
+                return True
+            else:
+                return False
+        except:
+            return False
