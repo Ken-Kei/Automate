@@ -72,6 +72,7 @@ class MHPageLocators:
     Author       :  刘建民
     Create Date  :  2016/08/23
     """
+
     BIGPIC                      = (By.ID, "BgiImgUrl")
     SMALLPIC                    = (By.ID, "ImgSmallUrl")
     CONFIRM                     = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
@@ -96,3 +97,9 @@ class MHPageLocators:
     SELECT                      = ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select/option[%d]"
     PRIZECONFIRM                = (By.ID, 'addAward')
     NEWMICROHELP                = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]")
+    EVENTNAME                   = (By.ID, "raName")
+    TYPESTARTDATE               = (By.ID, "js-startDate")
+
+
+
+

@@ -11,6 +11,12 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPageLocators:
+    """
+    Name         :  登入登出 - 元素定位
+    Author       :  刘建民
+    Create Date  :  2016/08/23
+    """
+
     USERNAME                    = (By.CSS_SELECTOR, "#username")
     PASSWORD                    = (By.CSS_SELECTOR, "#password")
     LOGINBUTTON                 = (By.CSS_SELECTOR, ".loginBtn")

@@ -281,26 +281,24 @@ class MicroHelpAction(BasePage):
 
     # 输入微助力活动名称
     def type_activity_name(self):
-        ele = (By.ID, "raName")
         try:
-            self.wait_element_load_end(ele)
-            logging.info("输入活动名称：%s" % activity_name)
-            self.find_element(ele).send_keys(activity_name)
+            self.wait_element_load_end(MHPageLocators.EVENTNAME)
+            logging.info(MHLogInfo.TYPENAME % activity_name)
+            self.find_element(MHPageLocators.EVENTNAME).send_keys(activity_name)
         except NoSuchElementException:
-            logging.error("找不到套图介绍输入框位置")
+            logging.error(MHLogInfo.NAMEFIELDNOTFOUND)
         except Exception as e:
             raise e
 
     # 输入微助力活动开始时间
     def type_mh_start_time(self):
-        ele = (By.ID, "js-startDate")
         date = time.strftime("%Y-%m-%d %H:%M:%S")
         try:
-            self.wait_element_load_end(ele)
+            self.wait_element_load_end(MHPageLocators.TYPESTARTDATE)
             self.driver.execute_script(remove_sd_read_only)
-            self.find_element(ele).send_keys(date)
+            self.find_element(MHPageLocators.TYPESTARTDATE).send_keys(date)
         except NoSuchElementException:
-            logging.error("找不到微助力活动开始时间位置")
+            logging.error(MHLogInfo.STARTDATENOTFOUND)
         except Exception as e:
             raise e
 
