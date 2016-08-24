@@ -304,16 +304,15 @@ class MicroHelpAction(BasePage):
 
     # 输入微助力活动结束时间
     def type_mh_end_time(self):
-        ele = (By.ID, "js-endDate")
         now_time = datetime.datetime.now()
         fur_time = now_time + datetime.timedelta(days=3)
         date = fur_time.strftime("%Y-%m-%d %H:%M:%S")
         try:
-            self.wait_element_load_end(ele)
+            self.wait_element_load_end(MHPageLocators.TYPEENDDATE)
             self.driver.execute_script(remove_ed_read_only)
-            self.find_element(ele).send_keys(date)
+            self.find_element(MHPageLocators.TYPEENDDATE).send_keys(date)
         except NoSuchElementException:
-            logging.error("找不到微助力活动结束时间位置")
+            logging.error(MHLogInfo.ENDDATENOTFOUND)
         except Exception as e:
             raise e
 
@@ -321,10 +320,10 @@ class MicroHelpAction(BasePage):
     def upload_mh_background_pic(self):
         try:
             self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON, MHLogInfo.MHBACKGROUNDERROR)
-            logging.info("正在上传微助力背景图：%s" % big_pic_name)
+            logging.info(MHLogInfo.UPLOADINGBGPIC % big_pic_name)
             self.upload_picture(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_pic_name)
             self.click_confirm_button(MHPageLocators.BACKGROUNDCONFIRM)
-            logging.info("上传背景图完毕")
+            logging.info(MHLogInfo.UPLOADBGPICFIN)
         except Exception as e:
             raise e
 
@@ -332,10 +331,10 @@ class MicroHelpAction(BasePage):
     def type_share_title(self):
         try:
             self.wait_element_load_end(MHPageLocators.SHARETITLE)
-            logging.info("输入分享标题：%s" % share_title)
+            logging.info(MHLogInfo.TYPESHARETITLE % share_title)
             self.find_element(MHPageLocators.SHARETITLE).send_keys(share_title)
         except NoSuchElementException:
-            logging.error("找不到分享标题输入框位置")
+            logging.error(MHLogInfo.SHARETITLENOTFOUND)
         except Exception as e:
             raise e
 
@@ -343,10 +342,10 @@ class MicroHelpAction(BasePage):
     def type_share_description(self):
         try:
             self.wait_element_load_end(MHPageLocators.SHAREDESCRIPTION)
-            logging.info("输入分享描述：%s" % share_description)
+            logging.info(MHLogInfo.TYPESHAREDESC % share_description)
             self.find_element(MHPageLocators.SHAREDESCRIPTION).send_keys(share_description)
         except NoSuchElementException:
-            logging.error("找不到分享描述输入框位置")
+            logging.error(MHLogInfo.SHAREDESCNOTFOUND)
         except Exception as e:
             raise e
 

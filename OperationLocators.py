@@ -99,6 +99,7 @@ class MHPageLocators:
     NEWMICROHELP                = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]")
     EVENTNAME                   = (By.ID, "raName")
     TYPESTARTDATE               = (By.ID, "js-startDate")
+    TYPEENDDATE                 = (By.ID, "js-endDate")
 
 
 
