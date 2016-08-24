@@ -300,12 +300,12 @@ class PictureManageAction(PublicMethod, BasePage):
             raise e
 
     # 选择套图的所属分类
-    def select_pickit_classify(self):
+    def select_picture_classify(self):
         try:
-            self.wait_element_load_end(PictureMangePageLocators.PICTUREBELONGCLASSIFYDROP)
-            self.find_element(PictureMangePageLocators.PICTUREBELONGCLASSIFYDROP).click()
-            logging.info("选择套图的所属分类：%s" % self.find_element(PictureMangePageLocators.PICTUREBELONGCLASSIFY).text)
-            self.find_element(PictureMangePageLocators.PICTUREBELONGCLASSIFY).click()
+            self.wait_element_load_end(PictureMangePageLocators.PICTUREBELONGDROP)
+            self.find_element(PictureMangePageLocators.PICTUREBELONGDROP).click()
+            logging.info("选择套图的所属分类：%s" % self.find_element(PictureMangePageLocators.PICTUREBELONG).text)
+            self.find_element(PictureMangePageLocators.PICTUREBELONG).click()
         except NoSuchElementException:
             logging.error("找不到套图分类下拉框位置")
         except Exception as e:
@@ -347,7 +347,7 @@ class PictureManageAction(PublicMethod, BasePage):
     # 创建套图
     def create_pickit(self):
         self.type_pickit_name()
-        self.select_pickit_classify()
+        self.select_picture_classify()
         self.upload_big_pic(PictureMangePageLocators.BIGPIC, PictureMangePageLocators.FILEIMAGE,
                             PictureMangePageLocators.FILEIMAGELOCATE, PictureMangePageLocators.CONFIRM)
         self.upload_small_pic(PictureMangePageLocators.SMALLPIC, PictureMangePageLocators.FILEIMAGE,
