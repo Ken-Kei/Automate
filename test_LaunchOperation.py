@@ -26,6 +26,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         self.ccpa = CardCenterPageAction(self.driver)
         self.pma = PictureManageAction(self.driver)
         self.mha = MicroHelpAction(self.driver)
+        self.public = PublicMethod(self.driver)
 
     def test_CreatePictureKitClassify(self):
         """创建套图分类"""
@@ -40,7 +41,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.pma.create_pickit_classify()  # 判断登录成功后开始创建套图分类
-                if self.pma.is_pickit_classify_create_succeed() is True:
+                if self.public.is_create_succeed(PictureMangePageLocators.NEWPICTURECLASSIFY,
+                                                 picture_classify_name) is True:
                     logging.info("套图分类创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
@@ -68,7 +70,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.ccpa.create_rebate_card()  # 判断登录成功后开始创建卡券
-                if self.ccpa.is_card_create_succeed() is True:
+                if self.public.is_create_succeed(CardCenterPageLocators.NEWCARD, card_name) is True:
                     logging.info("卡券创建成功,用例执行通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
@@ -96,7 +98,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.pma.create_pickit()  # 判断登录成功后开始创建套图
-                if self.pma.is_pickit_create_succeed() is True:
+                if self.public.is_create_succeed(PictureMangePageLocators.NEWPICTURE, picture_name) is True:
                     logging.info("套图创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True
@@ -124,7 +126,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(login_succeed)
                 self.mha.create_micro_help()  # 判断登录成功后开始创建微助力活动
-                if self.mha.is_mh_create_succeed() is True:
+                if self.public.is_create_succeed(MicroHelpPageLocators.NEWMICROHELP, activity_name) is True:
                     logging.info("微助力活动创建成功，用例通过")
                     self.create_screen_shot(launch_screenshot_path)
                     flag = True

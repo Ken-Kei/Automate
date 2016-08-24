@@ -66,11 +66,11 @@ big_pic_name = config.get("operation_data_setting", "big_pic_name")  # 卡券封
 small_pic_name = config.get("operation_data_setting", "small_pic_name")  # 卡券封面小图
 
 
-pickit_classify_name = config.get("operation_data_setting", "pickit_classify_name")  # 套图分类名称
+picture_classify_name = config.get("operation_data_setting", "pickit_classify_name")  # 套图分类名称
 pickit_manage_url = config.get("operation_data_setting", "pickit_manage_url")  # 套图管理的url
 
 pickit_url = config.get("operation_data_setting", "pickit_url")  # 新建套图的url
-pickit_name = config.get("operation_data_setting", "pickit_name")  # 套图的名称
+picture_name = config.get("operation_data_setting", "pickit_name")  # 套图的名称
 pickit_description = config.get("operation_data_setting", "pickit_description")  # 套图介绍
 pickit1 = config.get("operation_data_setting", "pickit1")  # 上传的第一张套图的名称
 

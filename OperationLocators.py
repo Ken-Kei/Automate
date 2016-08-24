@@ -27,21 +27,21 @@ class CardCenterPageLocators:
     FILEIMAGE                   = (By.ID, "fileImage")
     FILEIMAGELOCATE             = "fileImage"
     GOODSSUMMARY                = (By.ID, "ccProductInfo")
-    NEWCREATECARD               = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
+    NEWCARD                     = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
 
 
-class PictureMangePage:
+class PictureMangePageLocators:
     CREATEPICTURECLASSIFY       = (By.XPATH, ".//*[@id='content_body']/tbody/tr/td[1]/button")
     CLASSIFYNAME                = (By.ID, "pmName")
     COLORTYPE                   = (By.XPATH, ".//*[@id='color_type']/li[1]")
     SAVEPICTURECLASSIFY         = (By.ID, "button")
-    NEWCREATEPICTURECLASSIFY    = (By.XPATH, ".//*[@class='cm_type active']/dl/dd[1]")
+    NEWPICTURECLASSIFY          = (By.XPATH, ".//*[@class='cm_type active']/dl/dd[1]")
     PICTURETITLE                = (By.ID, "pmTitle")
     PICTUREBELONGCLASSIFYDROP   = (By.ID, "pmCgSysuuid")
     PICTUREBELONGCLASSIFY       = (By.XPATH, ".//*[@id='pmCgSysuuid']/option[2]")
     PICTUREDESCRIPTION          = (By.ID, "pmDesc")
     ADDPITCURE                  = (By.ID, "img_add_btn")
-    NEWCREATEPICTURE            = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
+    NEWPICTURE                  = (By.XPATH, ".//*[@id='tableData']/tbody/tr/td[1]")
     PICTURESMALLPIC             = (By.XPATH, ".//*[@id='setting']/form/div[1]/table/tbody/tr[3]/td/div/div[2]/div[1]")
     PICTURESAVE                 = (By.XPATH, ".//*[@id='setting']/form/div[2]/table/tbody/tr[4]/td/div/input")
     BIGPIC                      = (By.ID, "ccPicBigImg")
@@ -54,7 +54,7 @@ class PictureMangePage:
     PICTURECONFIRM              = (By.ID, "dialog_save")
 
 
-class MicroHelpPage:
+class MicroHelpPageLocators:
     BIGPIC                      = (By.ID, "BgiImgUrl")
     SMALLPIC                    = (By.ID, "ImgSmallUrl")
     CONFIRM                     = (By.XPATH, ".//*[@id='upImgs']/div/div/div[5]/button[2]")
@@ -78,4 +78,4 @@ class MicroHelpPage:
     PRIZENUMBER                 = (By.XPATH, ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[3]/td/div/input")
     SELECT                      = ".//*[@id='awardForm']/div/div[2]/table/tbody/tr[2]/td/div/select/option[%d]"
     PRIZECONFIRM                = (By.ID, 'addAward')
-    NEWCREATEMICROHELP          = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]")
+    NEWMICROHELP                = (By.XPATH, ".//*[@id='section']/div[1]/table/tbody/tr[1]/td[3]")
