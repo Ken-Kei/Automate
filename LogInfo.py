@@ -41,7 +41,17 @@ class MHLogInfo:
     SHARETITLENOTFOUND              = '找不到分享标题输入框位置'
     TYPESHAREDESC                   = '输入分享描述：%s'
     SHAREDESCNOTFOUND               = '找不到分享描述输入框位置'
-
+    EVENTDESC                       = '找不到活动详情的元素位置'
+    FRIENDCOLLECTNUM                = '输入好友集满数量：%s'
+    FCNOTFOUND                      = '找不到好友集满数量输入框位置'
+    TYPEUNIT                        = '输入好友集满数量：%s'
+    UNITNOTFOUND                    = '找不到单位输入框位置'
+    TYPEVALIDCHANCE                 = '输入好友有效助力概率：%s'
+    VCNOTFOUND                      = '找不到好友有效助力概率输入框位置'
+    TYPENUMCONFIG                   = '输入数量设置：%s'
+    NCNOTFOUND                      = '找不到数量设置输入框位置'
+    ADDPRIZE                        = '正在添加奖品'
+    APNOTFOUND                      = ''
 
 
 

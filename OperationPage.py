@@ -357,7 +357,7 @@ class MicroHelpAction(BasePage):
             self.find_element(MHPageLocators.EVENTMAINBODY).send_keys(event_description)
             self.driver.switch_to_default_content()
         except NoSuchElementException:
-            logging.error("找不到活动详情的元素位置")
+            logging.error(MHLogInfo.EVENTDESC)
         except Exception as e:
             raise e
 
@@ -365,10 +365,10 @@ class MicroHelpAction(BasePage):
     def type_friend_collect_number(self):
         try:
             self.wait_element_load_end(MHPageLocators.FRIENDCOLLECTNUM)
-            logging.info("输入好友集满数量：%s" % friend_collect_number)
+            logging.info(MHLogInfo.FRIENDCOLLECTNUM % friend_collect_number)
             self.find_element(MHPageLocators.FRIENDCOLLECTNUM).send_keys(friend_collect_number)
         except NoSuchElementException:
-            logging.error("找不到好友集满数量输入框位置")
+            logging.error(MHLogInfo.FCNOTFOUND)
         except Exception as e:
             raise e
 
@@ -376,10 +376,10 @@ class MicroHelpAction(BasePage):
     def type_friend_collect_unit(self):
         try:
             self.wait_element_load_end(MHPageLocators.UNIT)
-            logging.info("输入好友集满数量：%s" % unit)
+            logging.info(MHLogInfo.TYPEUNIT % unit)
             self.find_element(MHPageLocators.UNIT).send_keys(unit)
         except NoSuchElementException:
-            logging.error("找不到单位输入框位置")
+            logging.error(MHLogInfo.UNITNOTFOUND)
         except Exception as e:
             raise e
 
@@ -387,10 +387,10 @@ class MicroHelpAction(BasePage):
     def type_friend_valid_chance(self):
         try:
             self.wait_element_load_end(MHPageLocators.VALIDCHANCE)
-            logging.info("输入好友有效助力概率：%s" % friend_valid_chance)
+            logging.info(MHLogInfo.TYPEVALIDCHANCE % friend_valid_chance)
             self.find_element(MHPageLocators.VALIDCHANCE).send_keys(friend_valid_chance)
         except NoSuchElementException:
-            logging.error("找不到好友有效助力概率输入框位置")
+            logging.error(MHLogInfo.VCNOTFOUND)
         except Exception as e:
             raise e
 
@@ -398,10 +398,10 @@ class MicroHelpAction(BasePage):
     def type_number_config(self):
         try:
             self.wait_element_load_end(MHPageLocators.NUMBERCONFIG)
-            logging.info("输入数量设置：%s" % number_config)
+            logging.info(MHLogInfo.TYPENUMCONFIG % number_config)
             self.find_element(MHPageLocators.NUMBERCONFIG).send_keys(number_config)
         except NoSuchElementException:
-            logging.error("找不到数量设置输入框位置")
+            logging.error(MHLogInfo.NCNOTFOUND)
         except Exception as e:
             raise e
 
@@ -409,6 +409,7 @@ class MicroHelpAction(BasePage):
     def click_add_prize(self):
         try:
             self.wait_element_load_end(MHPageLocators.ADDPRIZEBUTTON)
+            logging.info(MHLogInfo.ADDPRIZE % number_config)
             self.find_element(MHPageLocators.ADDPRIZEBUTTON).click()
         except NoSuchElementException:
             logging.error("找不到添加奖品按钮位置")
