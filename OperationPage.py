@@ -272,7 +272,7 @@ class PictureManageAction(BasePage):
         self.driver.switch_to_alert().accept()
 
 
-class MicroHelpAction(BasePage):
+class MicroHelpPageAction(BasePage):
     """
     Name        :  运营 -> 微助力
     Author      :  刘建民
