@@ -16,18 +16,20 @@ from BasePage import BasePage
 import logging
 
 
-class PicttureManageCase(unittest.TestCase, BasePage):
+class LaunchOperationCase(unittest.TestCase, BasePage):
     """家居精灵-> 运营 - 套图管理"""
     
     def setUp(self):
         self.verificationErrors = []
         self.driver = self.get_driver()
+        self.lpa = LoginPageAction(self.driver)
+        self.pma = PictureManageAction(self.driver)
+        self.ccpa = CardCenterPageAction(self.driver)
+        self.mha = MicroHelpPageAction(self.driver)
 
     def test_CreatePictureClassify(self):
         """创建套图分类"""
 
-        self.lpa = LoginPageAction(self.driver)
-        self.pma = PictureManageAction(self.driver)
         flag = False
         logging.info("执行用例：创建套图分类")
         # 如果登录失败的话就重新尝试登录，一共尝试3次
@@ -81,18 +83,9 @@ class PicttureManageCase(unittest.TestCase, BasePage):
             raise e
         self.assertEqual(flag, True)
 
-
-class CardCenterCase(unittest.TestCase, BasePage):
-
-    def setUp(self):
-        self.verificationErrors = []
-        self.driver = self.get_driver()
-
     def test_CreateCard(self):
         """创建卡券"""
 
-        self.lpa = LoginPageAction(self.driver)
-        self.ccpa = CardCenterPageAction(self.driver)
         flag = False
         logging.info("执行用例：创建卡券")
         # 如果登录失败的话就重新尝试登录，一共尝试3
@@ -118,18 +111,9 @@ class CardCenterCase(unittest.TestCase, BasePage):
             raise e
         self.assertEqual(flag, True)
 
-
-class MicroHelpCase(unittest.TestCase, BasePage):
-
-    def setUp(self):
-        self.verificationErrors = []
-        self.driver = self.get_driver()
-
     def test_CreateMicroHelp(self):
         """创建微助力活动"""
 
-        self.lpa = LoginPageAction(self.driver)
-        self.mha = MicroHelpPageAction(self.driver)
         flag = False
         logging.info("执行用例：创建微助力活动")
         # 登录
