@@ -52,6 +52,3 @@ class MHLogInfo:
     NCNOTFOUND                      = '找不到数量设置输入框位置'
     ADDPRIZE                        = '正在添加奖品'
     APNOTFOUND                      = ''
-
-
-

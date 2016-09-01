@@ -100,7 +100,3 @@ class MHPageLocators:
     EVENTNAME                   = (By.ID, "raName")
     TYPESTARTDATE               = (By.ID, "js-startDate")
     TYPEENDDATE                 = (By.ID, "js-endDate")
-
-
-
-
