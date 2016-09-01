@@ -8,7 +8,7 @@ Create Date  :  2016/07/01
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as ec
 from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -47,7 +47,6 @@ class BasePage(object):
     
     # wait until finish the element loading
     def wait_element_load_end(self, element):
-        ec = expected_conditions
         wait = WebDriverWait(self.driver, waiting_time)
         try:
             wait.until(ec.presence_of_element_located(*element))
@@ -57,7 +56,6 @@ class BasePage(object):
 
     # 判断是否有alert窗口
     def is_alert_exist(self):
-        ec = expected_conditions
         wait = WebDriverWait(self.driver, waiting_time)
         for i in range(0, 3):
             try:
