@@ -11,7 +11,6 @@ from common import CommonUtils
 import unittest
 from HTMLTestRunner import HTMLTestRunner
 import logging
-import test_LaunchOperation
 
 
 com = CommonUtils()
