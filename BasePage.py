@@ -8,13 +8,19 @@ Create Date  :  2016/07/01
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
+
 from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import logging
 from selenium.common.exceptions import NoSuchElementException
 from LogInfo import *
+import sys
+
+sys_path_saved = sys.path
+sys.path = ['D:\\Python35\\Lib\\site-packages']
+
+from selenium.webdriver.support import expected_conditions as ec
 
 com = CommonUtils()
 
