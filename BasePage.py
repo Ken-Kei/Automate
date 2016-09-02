@@ -6,7 +6,7 @@ Create Date  :  2016/07/01
 """
 
 
-from ThirdParty.selenium import webdriver
+from selenium import webdriver
 from ThirdParty.selenium.webdriver.support.wait import WebDriverWait
 from attribute import *  # @UnusedWildImport
 from common import CommonUtils
