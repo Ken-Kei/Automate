@@ -62,8 +62,8 @@ card_name = config.get("operation_data_setting", "card_name")  # 卡券名称
 rebate_data = config.get("operation_data_setting", "rebate_data")  # 折扣率
 goods_summary = config.get("operation_data_setting", "goods_summary")  # 商品简介
 inventory_data = config.get("operation_data_setting", "inventory_data")  # 优惠券库存
-big_pic_name = config.get("operation_data_setting", "big_pic_name")  # 卡券封面大图
-small_pic_name = config.get("operation_data_setting", "small_pic_name")  # 卡券封面小图
+big_image_path = config.get("operation_data_setting", "big_pic_name")  # 卡券封面大图
+small_image_path = config.get("operation_data_setting", "small_pic_name")  # 卡券封面小图
 
 
 picture_classify_name = config.get("operation_data_setting", "pickit_classify_name")  # 套图分类名称
@@ -103,6 +103,8 @@ copy_sheet = copy_data.get_sheet(0)
 launch_log_path = os.path.join("./Log/Log_" + time.strftime("%Y%m%d"))
 launch_screenshot_path = os.path.join("./Log/Screenshot_" + time.strftime("%Y%m%d"))
 launch_result_path = os.path.join("./Result/Result_" + time.strftime("%Y%m%d"))
+big_image_path = os.path.join("./Image/" + big_image_path)
+small_image_path = os.path.join("./Image/" + small_image_path)
 # ====================================================================
 
 

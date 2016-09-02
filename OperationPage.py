@@ -92,9 +92,9 @@ class CardCenterPageAction(BasePage):
     def upload_suite_goods_pic(self):
         try:
             self.click_suite_goods_button()
-            logging.info("正在上传适用商品图：%s" % big_pic_name)
+            logging.info("正在上传适用商品图：%s" % big_image_path)
             self.upload_picture(CCPageLocators.FILEIMAGE,
-                                CCPageLocators.FILEIMAGELOCATE, big_pic_name)
+                                CCPageLocators.FILEIMAGELOCATE, big_image_path)
             self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
             logging.info("上传适用商品图完毕")
         except Exception as e:
@@ -253,7 +253,7 @@ class PictureManageAction(BasePage):
             self.click_add_pickit_pic()
             logging.info("正在上传第一张套图：%s" % pickit1)
             self.upload_file(PMPageLocators.UPLOADPICTURE,
-                             PMPageLocators.UPLOADPICTURELOACTE, big_pic_name)
+                             PMPageLocators.UPLOADPICTURELOACTE, big_image_path)
             self.click_save_button(PMPageLocators.PICTURECONFIRM)
             logging.info("上传套图完毕")
         except Exception as e:
@@ -323,8 +323,8 @@ class MicroHelpPageAction(BasePage):
     def upload_mh_background_pic(self):
         try:
             self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON, MHLogInfo.MHBACKGROUNDERROR)
-            logging.info(MHLogInfo.UPLOADINGBGPIC % big_pic_name)
-            self.upload_picture(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_pic_name)
+            logging.info(MHLogInfo.UPLOADINGBGPIC % big_image_path)
+            self.upload_picture(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_image_path)
             self.click_confirm_button(MHPageLocators.BACKGROUNDCONFIRM)
             logging.info(MHLogInfo.UPLOADBGPICFIN)
         except Exception as e:

@@ -165,8 +165,8 @@ class BasePage(object):
     def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
         try:
             self.click_upload_button(button_ele, PublicLogInfo.BIGPICERROR)
-            logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_pic_name)
-            self.upload_picture(ele, ele_locate, big_pic_name)
+            logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_path)
+            self.upload_picture(ele, ele_locate, big_image_path)
             self.click_confirm_button(confrim_ele)
             logging.info(PublicLogInfo.UPLOADBIGPICFIN)
         except Exception as e:
@@ -176,8 +176,8 @@ class BasePage(object):
     def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
         try:
             self.click_upload_button(button_ele, PublicLogInfo.SMALLPICERROR)
-            logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_pic_name)
-            self.upload_picture(ele, ele_locate, small_pic_name)
+            logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_path)
+            self.upload_picture(ele, ele_locate, small_image_path)
             self.click_confirm_button(confrim_ele)
             logging.info(PublicLogInfo.UPLOADSMALLPICFIN)
         except Exception as e:
