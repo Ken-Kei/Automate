@@ -90,7 +90,8 @@ prize_number = config.getint("operation_data_setting", "prize_number")  # 奖品
 # ====================================================================
 """初始化读excel操作"""
 
-data = xlrd.open_workbook(data_source)
+data_source_path = os.path.join("./DataSource/" + data_source)
+data = xlrd.open_workbook(data_source_path)
 table = data.sheet_by_name('account')
 copy_data = copy(data)
 copy_sheet = copy_data.get_sheet(0)
