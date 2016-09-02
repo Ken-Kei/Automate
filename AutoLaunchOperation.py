@@ -37,14 +37,15 @@ fp = open(file_path, 'wb')
 runner = HTMLTestRunner(stream=fp,
                         title='家居精灵后台自动化测试报告',
                         description='环境：Windows 7   浏览器：Chrome')
-runner.run(discover)
+
 # 找到最新的报告目录
 new_report_path = com.find_new_report_path('./Result')
 # 找到最新的报告文件路径
 # new_file_path = com.find_new_report_path(new_report_path)
 # 找到最新的报告文件的文件名
 new_file = com.find_new_report_file(new_report_path)
+runner.run(discover)
 fp.close()
 # 以邮件和附件形式发送用例执行结果到指定邮箱地址
 com.send_email(file_path, new_file)
-# com.hangProgram()
+com.hang_program()

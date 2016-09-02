@@ -412,7 +412,7 @@ class MicroHelpPageAction(BasePage):
     def click_add_prize(self):
         try:
             self.wait_element_load_end(MHPageLocators.ADDPRIZEBUTTON)
-            logging.info(MHLogInfo.ADDPRIZE % number_config)
+            logging.info(MHLogInfo.ADDPRIZE)
             self.find_element(MHPageLocators.ADDPRIZEBUTTON).click()
         except NoSuchElementException:
             logging.error("找不到添加奖品按钮位置")
