@@ -72,7 +72,7 @@ class BasePage(object):
             if browser.lower() == "chrome":
                 caps = DesiredCapabilities.CHROME
                 caps['trustAllSSLCertificates'] = True
-                self.driver = webdriver.Chrome()
+                self.driver = webdriver.Chrome(chrome_driver_path)
                 self.driver.set_page_load_timeout(40)
             elif browser.lower() == "firefox":
                 self.driver = webdriver.Firefox()
@@ -83,7 +83,7 @@ class BasePage(object):
                 caps['requireWindowFocus'] = True
                 caps['acceptSslCerts'] = True
                 caps['trustAllSSLCertificates'] = True
-                self.driver = webdriver.Ie()
+                self.driver = webdriver.Ie(ie_driver_path)
                 self.driver.set_page_load_timeout(40)
             else:
                 print("It doesn't support other browsers except ie/chrome/firefox")
