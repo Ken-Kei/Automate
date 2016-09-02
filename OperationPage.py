@@ -6,11 +6,11 @@ Create Date  :  2016/7/1
 """
 
 
-from ThirdParty.selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from OperationLocators import *
 from LogInfo import *
-import BasePage
+from BasePage import BasePage
 import logging
 import datetime
 import time
