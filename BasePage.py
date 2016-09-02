@@ -10,9 +10,9 @@ from ThirdParty.selenium import webdriver
 from ThirdParty.selenium.webdriver.support.wait import WebDriverWait
 from attribute import *  # @UnusedWildImport
 from common import CommonUtils
-from ThirdParty.selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import logging
-from ThirdParty.selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException
 from LogInfo import *
 from ThirdParty.selenium.webdriver.support import expected_conditions as ec
 

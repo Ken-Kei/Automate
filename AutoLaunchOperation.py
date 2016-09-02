@@ -10,7 +10,7 @@ from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 import unittest
 import logging
-from ThirdParty.HTMLTestRunner import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner
 
 
 com = CommonUtils()
