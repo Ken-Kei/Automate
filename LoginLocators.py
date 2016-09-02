@@ -11,6 +11,7 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPageLocators:
+
     """
     Name         :  登入登出 - 元素定位
     Author       :  刘建民

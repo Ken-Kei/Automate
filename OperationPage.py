@@ -17,6 +17,7 @@ import time
 
 
 class CardCenterPageAction(BasePage):
+
     """
     Name        :  运营 -> 卡券中心
     Author      :  刘建民
@@ -140,6 +141,7 @@ class CardCenterPageAction(BasePage):
 
 
 class PictureManageAction(BasePage):
+
     """
     Name        :  运营 -> 套图管理
     Author      :  刘建民
@@ -273,6 +275,7 @@ class PictureManageAction(BasePage):
 
 
 class MicroHelpPageAction(BasePage):
+
     """
     Name        :  运营 -> 微助力
     Author      :  刘建民

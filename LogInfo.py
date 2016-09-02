@@ -8,6 +8,7 @@ Create Date  :  2016/08/24
 
 
 class PublicLogInfo:
+
     """
     Name         :  公共日志 - 打印信息
     Author       :  刘建民
@@ -24,6 +25,7 @@ class PublicLogInfo:
 
 
 class MHLogInfo:
+
     """
     Name         :  微助力 - 打印信息
     Author       :  刘建民

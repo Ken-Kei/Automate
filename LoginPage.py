@@ -15,6 +15,7 @@ import logging
 
 
 class LoginPageAction(BasePage):
+
     """
     Name        :  登入登出
     Author      :  刘建民

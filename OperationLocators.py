@@ -11,6 +11,7 @@ from selenium.webdriver.common.by import By
 
 
 class CCPageLocators:
+
     """
     Name         :  运营 - 卡券中心 - 元素定位
     Author       :  刘建民
@@ -37,6 +38,7 @@ class CCPageLocators:
 
 
 class PMPageLocators:
+
     """
     Name         :  运营 - 套图管理 - 元素定位
     Author       :  刘建民
@@ -67,6 +69,7 @@ class PMPageLocators:
 
 
 class MHPageLocators:
+
     """
     Name         :  运营 - 微助力 - 元素定位
     Author       :  刘建民

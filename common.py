@@ -20,8 +20,11 @@ from email.header import Header
 
 
 class CommonUtils:
+
     """
-    封装一些工具函数如创建目录，创建log文件等全部在这里封装
+    Name         :  公共方法 - 工具类
+    Author       :  刘建民
+    Create Date  :  2016/08/24
     """
 
     # get the browser version
