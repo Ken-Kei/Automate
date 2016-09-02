@@ -6,7 +6,7 @@ Create Date  :  2016/7/1
 """
 
 
-from selenium.common.exceptions import NoSuchElementException
+from ThirdParty.selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from OperationLocators import *
 from LogInfo import *

@@ -7,7 +7,7 @@ Create Date  :  2016/07/01
 """
 
 
-from LoginPage import LoginPageAction
+from LoginPage import *
 from OperationPage import *
 import unittest
 from attribute import *  # @UnusedWildImport

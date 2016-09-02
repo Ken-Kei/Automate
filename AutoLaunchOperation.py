@@ -9,8 +9,8 @@ Create Date  :  2016/07/01
 from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 import unittest
-from HTMLTestRunner import HTMLTestRunner
 import logging
+from ThirdParty.HTMLTestRunner import HTMLTestRunner
 
 
 com = CommonUtils()
@@ -29,7 +29,7 @@ logging.info("浏览器版本: %s" % com.get_browser_version())
 path = com.create_result_path(launch_result_path)
 # 找到报告的文件路径位置
 file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
-discover = unittest.defaultTestLoader.discover('./', pattern='test*.py')
+discover = unittest.defaultTestLoader.discover('./', pattern='test*')
 
 # 定义报告存放路径
 fp = open(file_path, 'wb')

@@ -7,7 +7,7 @@ Create Date  :  2016/07/01
 """
 
 
-from selenium import webdriver
+from ThirdParty.selenium import webdriver
 from attribute import *  # @UnusedWildImport
 import logging
 import sys

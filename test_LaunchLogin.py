@@ -6,15 +6,9 @@ Author       :  刘建民
 Create Date  :  2016/07/07
 """
 
-from LoginPage import LoginPageAction
+from LoginPage import *
 import unittest
-from attribute import *  # @UnusedWildImport
-from LoginLocators import *
-from BasePage import BasePage
-from common import CommonUtils
 import logging
-
-com = CommonUtils()
 
 
 class LaunchLoginCase(unittest.TestCase, BasePage):

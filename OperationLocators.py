@@ -7,7 +7,7 @@ Create Date  :  2016/08/23
 """
 
 
-from selenium.webdriver.common.by import By
+from ThirdParty.selenium.webdriver.common.by import By
 
 
 class CCPageLocators:

@@ -11,7 +11,7 @@ import configparser
 import time
 import os
 import xlrd
-from xlutils3.copy import copy
+from ThirdParty.xlutils3.copy import copy
 
 
 # ====================================================================
