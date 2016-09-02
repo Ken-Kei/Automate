@@ -7,7 +7,7 @@ Create Date  :  2016/07/01
 """
 
 
-from ThirdParty.selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException
 from attribute import *  # @UnusedWildImport
 from LoginLocators import *
 import BasePage
