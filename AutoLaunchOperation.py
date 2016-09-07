@@ -12,7 +12,6 @@ import unittest
 import logging
 from HTMLTestRunner import HTMLTestRunner
 
-
 com = CommonUtils()
 # 创建log文件并初始化logging模块
 com.create_log_file(launch_log_path)
@@ -35,7 +34,7 @@ discover = unittest.defaultTestLoader.discover('./', pattern='test*')
 fp = open(file_path, 'wb')
 # 定义测试报告
 runner = HTMLTestRunner(stream=fp,
-                        title='家居精灵后台自动化测试报告',
+                        title='精灵后台自动化测试报告',
                         description='环境：Windows 7   浏览器：Chrome')
 
 # 找到最新的报告目录
