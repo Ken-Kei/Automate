@@ -201,7 +201,7 @@ class PictureManageAction(BasePage):
         self.select_classify_color_type()
         self.click_pickit_classify_save_button()
         time.sleep(2)
-        self.driver.switch_to_alert().accept()
+        self.handle_alert()
 
     # 套图管理 - 输入套图的名称
     def type_pickit_name(self):
@@ -271,7 +271,7 @@ class PictureManageAction(BasePage):
         self.upload_pickit_pic()
         self.click_save_button(PMPageLocators.PICTURESAVE)
         time.sleep(1)
-        self.driver.switch_to_alert().accept()
+        self.handle_alert()
 
 
 class MicroHelpPageAction(BasePage):
@@ -462,4 +462,4 @@ class MicroHelpPageAction(BasePage):
         self.select_prize()
         self.click_save_button(MHPageLocators.SAVE)
         time.sleep(1)
-        self.driver.switch_to_alert().accept()
+        self.handle_alert()

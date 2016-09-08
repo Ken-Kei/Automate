@@ -58,20 +58,12 @@ class BasePage(object):
         except:
             time.sleep(1)
 
-    # 判断是否有alert窗口
-    def is_alert_exist(self):
-        try:
-            self.driver.switch_to_alert()
-            return True
-        except NoAlertPresentException:
-            return False
-
     # 对alert窗口作处理
     def handle_alert(self):
-        if self.is_alert_exist() is False:
-            logging.error(PublicLogInfo.ALERTNOTFOUND)
-        else:
+        try:
             self.driver.switch_to_alert().accept()
+        except NoAlertPresentException:
+            logging.error(PublicLogInfo.ALERTNOTFOUND)
 
     def get_driver(self):
         try:
