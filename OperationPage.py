@@ -44,7 +44,7 @@ class CardCenterPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入卡券名称
+    # 卡券中心 - 输入卡券名称
     def type_card_name(self):
         try:
             self.wait_element_load_end(CCPageLocators.CARDNAME)
