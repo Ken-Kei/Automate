@@ -35,6 +35,7 @@ class CCPageLocators:
     FILEIMAGELOCATE             = "fileImage"
     GOODSSUMMARY                = (By.ID, "ccProductInfo")
     NEWCARD                     = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
+    TITLEFAULTTIP               = (By.ID, "title_fault_tips")
 
 
 class PMPageLocators:

@@ -73,3 +73,4 @@ class CCLogInfo:
     CARDREBATENOTFOUND              = '没找到卡券折扣率的元素位置'
     CHOOSEIMMEDIATE                 = '选择卡券有效期类型为：领取后生效'
     CCVNOTFOUND                     = '没找到选择卡券有效期类型的单选框'
+    CARDNAMEEXIST                   = '卡券名称已存在，请使用一个新的卡券名称'
