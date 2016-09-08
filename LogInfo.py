@@ -53,4 +53,5 @@ class MHLogInfo:
     TYPENUMCONFIG                   = '输入数量设置：%s'
     NCNOTFOUND                      = '找不到数量设置输入框位置'
     ADDPRIZE                        = '正在添加奖品'
-    APNOTFOUND                      = ''
+    APNOTFOUND                      = '找不到添加奖品按钮位置'
+    PRIZENOTFOUND                   = '找不到奖品'

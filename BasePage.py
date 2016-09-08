@@ -114,7 +114,7 @@ class BasePage(object):
             return False
 
     # 上传图片
-    def upload_file(self, ue, locator, file_name):
+    def upload_image(self, ue, locator, file_name):
         try:
             file_path = os.path.join(os.path.abspath(file_name))
             if self.is_attribute_style_exist(ue, locator) is True:
@@ -152,21 +152,12 @@ class BasePage(object):
         except Exception as e:
             raise e
 
-    # 上传图片并判断style属性是否为none
-    def upload_picture(self, ele, ele_locate, picture):
-        try:
-            self.upload_file(ele, ele_locate, picture)
-        except NoSuchElementException:
-            logging.error(PublicLogInfo.UPLOADNOTFOUND)
-        except Exception as e:
-            raise e
-
     # 上传封面大图
     def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
         try:
             self.click_upload_button(button_ele, PublicLogInfo.BIGPICERROR)
-            logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_path)
-            self.upload_picture(ele, ele_locate, big_image_path)
+            logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_name)
+            self.upload_image(ele, ele_locate, big_image_name)
             self.click_confirm_button(confrim_ele)
             logging.info(PublicLogInfo.UPLOADBIGPICFIN)
         except Exception as e:
@@ -176,8 +167,8 @@ class BasePage(object):
     def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
         try:
             self.click_upload_button(button_ele, PublicLogInfo.SMALLPICERROR)
-            logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_path)
-            self.upload_picture(ele, ele_locate, small_image_path)
+            logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_name)
+            self.upload_image(ele, ele_locate, small_image_name)
             self.click_confirm_button(confrim_ele)
             logging.info(PublicLogInfo.UPLOADSMALLPICFIN)
         except Exception as e:

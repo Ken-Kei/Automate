@@ -92,9 +92,9 @@ class CardCenterPageAction(BasePage):
     def upload_suite_goods_pic(self):
         try:
             self.click_suite_goods_button()
-            logging.info("正在上传适用商品图：%s" % big_image_path)
-            self.upload_picture(CCPageLocators.FILEIMAGE,
-                                CCPageLocators.FILEIMAGELOCATE, big_image_path)
+            logging.info("正在上传适用商品图：%s" % big_image_name)
+            self.upload_image(CCPageLocators.FILEIMAGE,
+                              CCPageLocators.FILEIMAGELOCATE, big_image_name)
             self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
             logging.info("上传适用商品图完毕")
         except Exception as e:
@@ -252,8 +252,8 @@ class PictureManageAction(BasePage):
         try:
             self.click_add_pickit_pic()
             logging.info("正在上传第一张套图：%s" % pickit1)
-            self.upload_file(PMPageLocators.UPLOADPICTURE,
-                             PMPageLocators.UPLOADPICTURELOACTE, big_image_path)
+            self.upload_image(PMPageLocators.UPLOADPICTURE,
+                              PMPageLocators.UPLOADPICTURELOACTE, big_image_name)
             self.click_save_button(PMPageLocators.PICTURECONFIRM)
             logging.info("上传套图完毕")
         except Exception as e:
@@ -323,8 +323,8 @@ class MicroHelpPageAction(BasePage):
     def upload_mh_background_pic(self):
         try:
             self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON, MHLogInfo.MHBACKGROUNDERROR)
-            logging.info(MHLogInfo.UPLOADINGBGPIC % big_image_path)
-            self.upload_picture(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_image_path)
+            logging.info(MHLogInfo.UPLOADINGBGPIC % big_image_name)
+            self.upload_image(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_image_name)
             self.click_confirm_button(MHPageLocators.BACKGROUNDCONFIRM)
             logging.info(MHLogInfo.UPLOADBGPICFIN)
         except Exception as e:
@@ -408,33 +408,36 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 点击添加奖品
+    # 微助力 - 点击添加奖品
     def click_add_prize(self):
         try:
             self.wait_element_load_end(MHPageLocators.ADDPRIZEBUTTON)
             logging.info(MHLogInfo.ADDPRIZE)
             self.find_element(MHPageLocators.ADDPRIZEBUTTON).click()
         except NoSuchElementException:
-            logging.error("找不到添加奖品按钮位置")
+            logging.error(MHLogInfo.APNOTFOUND)
         except Exception as e:
             raise e
 
-    # 选择奖品
+    # 微助力 - 选择奖品
     def select_prize(self):
+        self.click_add_prize()
+        self.wait_element_load_end(MHPageLocators.PRIZENAME)
+        self.find_element(MHPageLocators.PRIZENAME).click()
+        # 在下拉框的前十个option里面挑选奖品
+        option_num = 10
         try:
-            self.click_add_prize()
-            self.wait_element_load_end(MHPageLocators.PRIZENAME)
-            self.find_element(MHPageLocators.PRIZENAME).click()
-            for i in range(1, 11):
+            for i in range(option_num):
                 select = (By.XPATH, MHPageLocators.SELECT % i)
                 self.find_element(select).click()
+                # 如果挑选的奖品库存大于0，才会选择
                 if int(self.find_element(MHPageLocators.PRIZENUMBER).get_attribute("value")) > 0:
                     self.find_element(MHPageLocators.PRIZENUMBER).clear()
                     self.find_element(MHPageLocators.PRIZENUMBER).send_keys(prize_number)
                     self.click_confirm_button(MHPageLocators.PRIZECONFIRM)
                     break
         except NoSuchElementException:
-            logging.error("找不到添加奖品按钮位置")
+            logging.error(MHLogInfo.PRIZENOTFOUND)
         except Exception as e:
             raise e
 
