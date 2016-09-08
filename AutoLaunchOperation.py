@@ -28,7 +28,7 @@ suite.addTest(LaunchOperationCase("test_CreateCard"))
 path = com.create_result_path(launch_result_path)
 # 找到报告的文件路径位置
 file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
-discover = unittest.defaultTestLoader.discover('./', pattern='test_*.py')
+discover = unittest.defaultTestLoader.discover('./', pattern='test*.py')
 
 # 定义报告存放路径
 fp = open(file_path, 'wb')

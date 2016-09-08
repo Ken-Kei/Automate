@@ -436,7 +436,7 @@ class MicroHelpPageAction(BasePage):
         # 在下拉框的前十个option里面挑选奖品
         option_num = 10
         try:
-            for i in range(option_num):
+            for i in range(1, option_num):
                 select = (By.XPATH, MHPageLocators.SELECT % i)
                 self.find_element(select).click()
                 # 如果挑选的奖品库存大于0，才会选择
