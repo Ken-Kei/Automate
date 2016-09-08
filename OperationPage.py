@@ -30,7 +30,7 @@ class CardCenterPageAction(BasePage):
             self.wait_element_load_end(CCPageLocators.OPERATIONTAB)
             self.find_element(CCPageLocators.OPERATIONTAB).click()
         except NoSuchElementException:
-            logging.error("没找到运营模块的标签元素")
+            logging.error(CCLogInfo.OPERTABNOTFOUND)
         except Exception as e:
             raise e
 
@@ -48,37 +48,37 @@ class CardCenterPageAction(BasePage):
     def type_card_name(self):
         try:
             self.wait_element_load_end(CCPageLocators.CARDNAME)
-            logging.info("输入卡券名称：%s" % card_name)
+            logging.info(CCLogInfo.TYPECARDNAME % card_name)
             self.find_element(CCPageLocators.CARDNAME).send_keys(card_name)
         except NoSuchElementException:
-            pass
+            logging.error(CCLogInfo.CARDNAMENOTFOUND)
         except Exception as e:
             raise e
 
-    # 输入折扣券的折扣率
+    # 卡券中心 - 输入折扣券的折扣率
     def type_card_rebate(self):
         try:
             self.wait_element_load_end(CCPageLocators.CARDREBATE)
-            logging.info("输入折扣率：%s" % rebate_data)
+            logging.info(CCLogInfo.TYPECARDREBATE % rebate_data)
             self.find_element(CCPageLocators.CARDREBATE).send_keys(rebate_data)
-        except NoSuchElementException as e:
-            raise e
+        except NoSuchElementException:
+            logging.error(CCLogInfo.CARDREBATENOTFOUND)
         except Exception as e:
             raise e
 
-    # 选择折扣券有效期为领取后生效
+    # 卡券中心 - 选择折扣券有效期为领取后生效
     def select_validity_to_immediately(self):
         try:
             self.wait_element_load_end(CCPageLocators.CARDVALIDITY)
             time.sleep(1)
-            logging.info("选择卡券有效期类型为：领取后生效")
+            logging.info(CCLogInfo.CHOOSEIMMEDIATE)
             self.find_element(CCPageLocators.CARDVALIDITY).click()
         except NoSuchElementException:
-            pass
+            logging.error(CCLogInfo.CCVNOTFOUND)
         except Exception as e:
             raise e
 
-    # 点击适用商品上传图片按钮
+    # 卡券中心 - 点击适用商品上传图片按钮
     def click_suite_goods_button(self):
         try:
             self.wait_element_load_end(CCPageLocators.SUITEGOODSUPLOADBUTTON)
@@ -88,7 +88,7 @@ class CardCenterPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 上传适用商品图片
+    # 卡券中心 - 上传适用商品图片
     def upload_suite_goods_pic(self):
         try:
             self.click_suite_goods_button()
@@ -100,7 +100,7 @@ class CardCenterPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入商品简介
+    # 卡券中心 - 输入商品简介
     def type_goods_summary(self):
 
         try:
@@ -112,7 +112,7 @@ class CardCenterPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入优惠券的库存
+    # 卡券中心 - 输入优惠券的库存
     def type_card_inventory(self):
         try:
             self.wait_element_load_end(CCPageLocators.CARDINVENTORY)
@@ -123,7 +123,7 @@ class CardCenterPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 创建折扣券
+    # 卡券中心 - 创建折扣券
     def create_rebate_card(self):
         self.upload_big_pic(CCPageLocators.BIGPIC, CCPageLocators.FILEIMAGE,
                             CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM)
@@ -148,7 +148,7 @@ class PictureManageAction(BasePage):
     Create Date :  2016/08/23
     """
 
-    # 点击套图管理的新建分类按钮
+    # 套图管理 - 点击套图管理的新建分类按钮
     def click_create_picture_classify_button(self):
         try:
             self.wait_element_load_end(PMPageLocators.CREATEPICTURECLASSIFY)
@@ -158,7 +158,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入套图的分类名称
+    # 套图管理 - 输入套图的分类名称
     def type_classify_name(self):
         try:
             self.wait_element_load_end(PMPageLocators.CLASSIFYNAME)
@@ -169,7 +169,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 选择套图分类的颜色标识
+    # 套图管理 - 选择套图分类的颜色标识
     def select_classify_color_type(self):
         try:
             self.wait_element_load_end(PMPageLocators.COLORTYPE)
@@ -180,7 +180,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 创建套图分类完毕后点击保存
+    # 套图管理 - 创建套图分类完毕后点击保存
     def click_pickit_classify_save_button(self):
         try:
             self.wait_element_load_end(PMPageLocators.SAVEPICTURECLASSIFY)
@@ -190,7 +190,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 创建套图分类
+    # 套图管理 - 创建套图分类
     def create_pickit_classify(self):
         self.click_create_picture_classify_button()
         self.type_classify_name()
@@ -203,7 +203,7 @@ class PictureManageAction(BasePage):
         time.sleep(2)
         self.driver.switch_to_alert().accept()
 
-    # 输入套图的名称
+    # 套图管理 - 输入套图的名称
     def type_pickit_name(self):
         try:
             self.wait_element_load_end(PMPageLocators.PICTURETITLE)
@@ -214,7 +214,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 选择套图的所属分类
+    # 套图管理 - 选择套图的所属分类
     def select_picture_classify(self):
         try:
             self.wait_element_load_end(PMPageLocators.PICTUREBELONGDROP)
@@ -226,7 +226,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入套图介绍
+    # 套图管理 - 输入套图介绍
     def type_pickit_description(self):
         try:
             self.wait_element_load_end(PMPageLocators.PICTUREDESCRIPTION)
@@ -237,7 +237,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 点击上传套图按钮
+    # 套图管理 - 点击上传套图按钮
     def click_add_pickit_pic(self):
         try:
             self.wait_element_load_end(PMPageLocators.ADDPITCURE)
@@ -247,7 +247,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 上传套图
+    # 套图管理 - 上传套图
     def upload_pickit_pic(self):
         try:
             self.click_add_pickit_pic()
@@ -259,7 +259,7 @@ class PictureManageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 创建套图
+    # 套图管理 - 创建套图
     def create_pickit(self):
         self.type_pickit_name()
         self.select_picture_classify()
@@ -282,7 +282,7 @@ class MicroHelpPageAction(BasePage):
     Create Date :  2016/08/23
     """
 
-    # 输入微助力活动名称
+    # 微助力 - 输入微助力活动名称
     def type_activity_name(self):
         try:
             self.wait_element_load_end(MHPageLocators.EVENTNAME)
@@ -293,7 +293,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入微助力活动开始时间
+    # 微助力 - 输入微助力活动开始时间
     def type_mh_start_time(self):
         date = time.strftime("%Y-%m-%d %H:%M:%S")
         try:
@@ -305,7 +305,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入微助力活动结束时间
+    # 微助力 - 输入微助力活动结束时间
     def type_mh_end_time(self):
         now_time = datetime.datetime.now()
         fur_time = now_time + datetime.timedelta(days=3)
@@ -319,7 +319,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 上传微助力背景图
+    # 微助力 - 上传微助力背景图
     def upload_mh_background_pic(self):
         try:
             self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON, MHLogInfo.MHBACKGROUNDERROR)
@@ -330,7 +330,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入微助力分享标题
+    # 微助力 - 输入微助力分享标题
     def type_share_title(self):
         try:
             self.wait_element_load_end(MHPageLocators.SHARETITLE)
@@ -341,7 +341,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入分享描述
+    # 微助力 - 输入分享描述
     def type_share_description(self):
         try:
             self.wait_element_load_end(MHPageLocators.SHAREDESCRIPTION)
@@ -352,7 +352,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入活动详情
+    # 微助力 - 输入活动详情
     def type_event_description(self):
         try:
             self.driver.switch_to_frame(MHPageLocators.IFRAME)
@@ -364,7 +364,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入好友集满数量
+    # 微助力 - 输入好友集满数量
     def type_friend_collect_number(self):
         try:
             self.wait_element_load_end(MHPageLocators.FRIENDCOLLECTNUM)
@@ -375,7 +375,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入好友集满数量的单位
+    # 微助力 - 输入好友集满数量的单位
     def type_friend_collect_unit(self):
         try:
             self.wait_element_load_end(MHPageLocators.UNIT)
@@ -386,7 +386,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入好友有效助力概率
+    # 微助力 - 输入好友有效助力概率
     def type_friend_valid_chance(self):
         try:
             self.wait_element_load_end(MHPageLocators.VALIDCHANCE)
@@ -397,7 +397,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 输入数量设置
+    # 微助力 - 输入数量设置
     def type_number_config(self):
         try:
             self.wait_element_load_end(MHPageLocators.NUMBERCONFIG)
@@ -441,7 +441,7 @@ class MicroHelpPageAction(BasePage):
         except Exception as e:
             raise e
 
-    # 创建一个微助力活动
+    # 微助力 - 创建一个微助力活动 - 模板一
     def create_micro_help(self):
         self.type_activity_name()
         self.upload_big_pic(MHPageLocators.BIGPIC, MHPageLocators.DOC,

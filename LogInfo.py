@@ -55,3 +55,24 @@ class MHLogInfo:
     ADDPRIZE                        = '正在添加奖品'
     APNOTFOUND                      = '找不到添加奖品按钮位置'
     PRIZENOTFOUND                   = '找不到奖品'
+
+
+class CCLogInfo:
+
+    """
+    Name         :  卡券中心 - 打印信息
+    Author       :  刘建民
+    Create Date  :  2016/09/08
+    """
+
+    OPERTABNOTFOUND                 = '没找到运营模块的标签元素'
+    TYPECARDNAME                    = '输入卡券名称：%s'
+    CARDNAMENOTFOUND                = '没找到卡券名称的元素位置'
+    TYPECARDREBATE                  = '输入折扣率：%s'
+    CARDREBATENOTFOUND              = '没找到卡券折扣率的元素位置'
+    CHOOSEIMMEDIATE                 = '选择卡券有效期类型为：领取后生效'
+    CCVNOTFOUND                     = '没找到选择卡券有效期类型的单选框'
+
+
+
+
