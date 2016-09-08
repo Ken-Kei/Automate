@@ -137,7 +137,7 @@ class CardCenterPageAction(BasePage):
         self.type_card_inventory()
         self.click_save_button(CCPageLocators.SAVE)
         time.sleep(1)
-        self.driver.switch_to_alert().accept()
+        self.handle_alert()
 
 
 class PictureManageAction(BasePage):

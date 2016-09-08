@@ -22,6 +22,7 @@ class PublicLogInfo:
     UPLOADINGSMALLPIC               = '正在上传封面小图：%s'
     UPLOADSMALLPICFIN               = '上传封面小图完毕'
     UPLOADNOTFOUND                  = '找不到上传图片的元素位置'
+    ALERTNOTFOUND                   = '找不到alert窗口   '
 
 
 class MHLogInfo:
@@ -72,7 +73,3 @@ class CCLogInfo:
     CARDREBATENOTFOUND              = '没找到卡券折扣率的元素位置'
     CHOOSEIMMEDIATE                 = '选择卡券有效期类型为：领取后生效'
     CCVNOTFOUND                     = '没找到选择卡券有效期类型的单选框'
-
-
-
-

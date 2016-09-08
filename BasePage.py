@@ -13,6 +13,7 @@ from common import CommonUtils
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import logging
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
 from LogInfo import *
 from selenium.webdriver.support import expected_conditions as ec
 
@@ -59,13 +60,18 @@ class BasePage(object):
 
     # 判断是否有alert窗口
     def is_alert_exist(self):
-        wait = WebDriverWait(self.driver, waiting_time)
-        for i in range(0, 3):
-            try:
-                wait.until(ec.alert_is_present())
-                break
-            except:
-                time.sleep(i * 1)
+        try:
+            self.driver.switch_to_alert()
+            return True
+        except NoAlertPresentException:
+            return False
+
+    # 对alert窗口作处理
+    def handle_alert(self):
+        if self.is_alert_exist() is False:
+            logging.error(PublicLogInfo.ALERTNOTFOUND)
+        else:
+            self.driver.switch_to_alert().accept()
 
     def get_driver(self):
         try:
