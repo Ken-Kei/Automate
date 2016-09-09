@@ -13,6 +13,7 @@ import logging
 from HTMLTestRunner import HTMLTestRunner
 from test_LaunchOperation import LaunchOperationCase
 
+
 com = CommonUtils()
 # 创建log文件并初始化logging模块
 com.create_log_file(launch_log_path)
