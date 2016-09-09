@@ -10,7 +10,7 @@ from attribute import *  # @UnusedWildImport
 from common import CommonUtils
 import unittest
 import logging
-from HTMLTestRunner import HTMLTestRunner
+from Lib.HTMLTestRunner import HTMLTestRunner
 from TestCase.test_LaunchOperation import LaunchOperationCase
 
 
