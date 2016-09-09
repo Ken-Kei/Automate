@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['AutoLaunchOperation.py'],
+a = Analysis(['AutoLaunch.py'],
              pathex=['D:\Python35\Lib',
                      'D:\Python35\Lib\site-packages'],
              binaries=None,
@@ -25,7 +25,7 @@ pyz = PYZ(a.pure, a.zipped_data,
 exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
-          name='AutoLaunchOperation',
+          name='AutoLaunch',
           debug=False,
           strip=False,
           upx=True,
@@ -36,4 +36,4 @@ coll = COLLECT(exe,
                a.datas,
                strip=False,
                upx=True,
-               name='AutoLaunchOperation')
+               name='AutoLaunch')
