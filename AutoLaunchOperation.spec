@@ -3,11 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['AutoLaunchOperation.py',
-              'common.py',
-              'test_LaunchLogin.py',
-              'test_LaunchOperation.py',
-              'attribute.py'],
+a = Analysis(['AutoLaunchOperation.py'],
              pathex=['D:\Python35\Lib',
                      'D:\Python35\Lib\site-packages'],
              binaries=None,
