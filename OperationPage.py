@@ -50,8 +50,10 @@ class CardCenterPageAction(BasePage):
             logging.info(CCLogInfo.TYPECARDNAME % card_name)
             self.find_element(CCPageLocators.CARDNAME).send_keys(card_name)
             self.driver.switch_to_active_element().send_keys(Keys.TAB)
+            time.sleep(1)
             if self.find_element(CCPageLocators.TITLEFAULTTIP).text == '卡券名称已存在!':
-                raise logging.error(CCLogInfo.CARDNAMEEXIST)
+                logging.error(CCLogInfo.CARDNAMEEXIST)
+                raise ValueError(CCLogInfo.CARDNAMEEXIST)
         except NoSuchElementException:
             logging.error(CCLogInfo.CARDNAMENOTFOUND)
         except Exception as e:
@@ -125,15 +127,6 @@ class CardCenterPageAction(BasePage):
         except Exception as e:
             raise e
 
-    def click_create_card_save_button(self, ele):
-        try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
-            if self.find_element(CCPageLocators.TITLEFAULTTIP).text == '卡券名称已存在!':
-                logging.error('卡券名称已存在，请使用一个新的卡券名称')
-        except Exception as e:
-            raise e
-
     # 卡券中心 - 创建折扣券
     def create_rebate_card(self):
         self.upload_big_pic(CCPageLocators.BIGPIC, CCPageLocators.FILEIMAGE,
@@ -146,7 +139,7 @@ class CardCenterPageAction(BasePage):
         self.upload_suite_goods_pic()
         self.type_goods_summary()
         self.type_card_inventory()
-        self.click_create_card_save_button(CCPageLocators.SAVE)
+        self.click_save_button(CCPageLocators.SAVE)
         time.sleep(1)
         self.handle_alert()
 
