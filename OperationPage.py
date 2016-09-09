@@ -140,7 +140,6 @@ class CardCenterPageAction(BasePage):
         self.type_goods_summary()
         self.type_card_inventory()
         self.click_save_button(CCPageLocators.SAVE)
-        time.sleep(1)
         self.handle_alert()
 
 
@@ -203,7 +202,6 @@ class PictureManageAction(BasePage):
                               PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
         self.select_classify_color_type()
         self.click_pickit_classify_save_button()
-        time.sleep(2)
         self.handle_alert()
 
     # 套图管理 - 输入套图的名称
@@ -273,7 +271,6 @@ class PictureManageAction(BasePage):
         self.type_pickit_description()
         self.upload_pickit_pic()
         self.click_save_button(PMPageLocators.PICTURESAVE)
-        time.sleep(1)
         self.handle_alert()
 
 
@@ -463,5 +460,4 @@ class MicroHelpPageAction(BasePage):
         self.type_number_config()
         self.select_prize()
         self.click_save_button(MHPageLocators.SAVE)
-        time.sleep(1)
         self.handle_alert()
