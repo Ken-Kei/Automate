@@ -32,11 +32,13 @@ class CommonUtils:
     def get_browser_version():
         browser_version = ""
         if browser.lower() == "ie":
-            my_driver = webdriver.Ie()
+            os.environ['webdriver.chrome.driver'] = ie_driver_path
+            my_driver = webdriver.Ie(ie_driver_path)
             browser_version = my_driver.capabilities['version']
             my_driver.close()
         elif browser.lower() == "chrome":
-            my_driver = webdriver.Chrome()
+            os.environ['webdriver.chrome.driver'] = chrome_driver_path
+            my_driver = webdriver.Chrome(chrome_driver_path)
             browser_version = my_driver.capabilities['version']
             my_driver.close()
         elif browser.lower() == "firefox":

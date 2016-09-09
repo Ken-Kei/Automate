@@ -21,8 +21,8 @@ config.read("config.ini", encoding='UTF-8')
 
 # ====================================================================
 """指定驱动文件位置"""
-chrome_driver_path = os.path.join("./Driver/" + "chromedriver.exe")
-ie_driver_path = os.path.join("./Driver/" + "IEDriverServer.exe")
+chrome_driver_path = os.path.join("./Driver/chromedriver.exe")
+ie_driver_path = os.path.join("./Driver/IEDriverServer.exe")
 # ====================================================================
 
 
