@@ -58,9 +58,18 @@ class BasePage(object):
         except:
             time.sleep(1)
 
+    # 等待alert窗口
+    def wait_alert_load_end(self):
+        wait = WebDriverWait(self.driver, waiting_time)
+        try:
+            wait.until(ec.alert_is_present())
+        except:
+            time.sleep(1)
+
     # 对alert窗口作处理
     def handle_alert(self):
         try:
+            self.wait_alert_load_end()
             self.driver.switch_to_alert().accept()
         except NoAlertPresentException:
             logging.error(PublicLogInfo.ALERTNOTFOUND)
