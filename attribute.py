@@ -106,7 +106,7 @@ copy_sheet = copy_data.get_sheet(0)
 """log文件和截图文件路径变量"""
 
 launch_log_path = os.path.join("./Log/Log_" + time.strftime("%Y%m%d"))
-launch_screenshot_path = os.path.join("./Log/Screenshot_" + time.strftime("%Y%m%d"))
+launch_screenshot_path = os.path.join("./Log/Screenshot_" + time.strftime("%Y%m%d") + "/" + time.strftime("%H%M%S"))
 launch_result_path = os.path.join("./Result/Result_" + time.strftime("%Y%m%d"))
 big_image_name = os.path.join("./Image/" + big_image_name)
 small_image_name = os.path.join("./Image/" + small_image_name)
@@ -117,27 +117,27 @@ small_image_name = os.path.join("./Image/" + small_image_name)
 """截图文件名"""
 
 # 登入登出截图
-login_failed_screenshot = '登录失败_%s.jpg' % time.strftime("%H%M%S")
-login_succeed_screenshot = '登录成功_%s.jpg' % time.strftime("%H%M%S")
-logout_succeed_screenshot = '登出成功_%s.jpg' % time.strftime("%H%M%S")
-logout_failed_screenshot = '登出失败_%s.jpg' % time.strftime("%H%M%S")
+login_failed_screenshot = '登录失败'
+login_succeed_screenshot = '登录成功'
+logout_succeed_screenshot = '登出成功'
+logout_failed_screenshot = '登出失败'
 
 # 创建套图分类
-create_pc_succeed_screenshot = '创建套图分类成功_%s.jpg' % time.strftime("%H%M%S")
-create_pc_failed_screenshot = '创建套图分类失败_%s.jpg' % time.strftime("%H%M%S")
+create_pc_succeed_screenshot = '创建套图分类成功_%s.jpg'
+create_pc_failed_screenshot = '创建套图分类失败_%s.jpg'
 
 # 创建套图
-create_pk_succeed_screenshot = '创建套图成功_%s.jpg' % time.strftime("%H%M%S")
-create_pk_failed_screenshot = '创建套图失败_%s.jpg' % time.strftime("%H%M%S")
+create_pk_succeed_screenshot = '创建套图成功_%s.jpg'
+create_pk_failed_screenshot = '创建套图失败_%s.jpg'
 
 # 创建卡券
-create_card_succeed_screenshot = '创建卡券成功_%s.jpg' % time.strftime("%H%M%S")
-create_card_failed_screenshot = '创建卡券失败_%s.jpg' % time.strftime("%H%M%S")
-card_name_exist_screenshot = '创建卡券失败-卡券名称重复_%s.jpg' % time.strftime("%H%M%S")
+create_card_succeed_screenshot = '创建卡券成功_%s.jpg'
+create_card_failed_screenshot = '创建卡券失败_%s.jpg'
+card_name_exist_screenshot = '创建卡券失败-卡券名称重复_%s.jpg'
 
 # 创建微助力活动
-create_mh_succeed_screenshot = '创建微助力成功_%s.jpg' % time.strftime("%H%M%S")
-create_mh_failed_screenshot = '创建微助力失败_%s.jpg' % time.strftime("%H%M%S")
+create_mh_succeed_screenshot = '创建微助力成功_%s.jpg'
+create_mh_failed_screenshot = '创建微助力失败_%s.jpg'
 # ====================================================================
 
 # ====================================================================

@@ -32,21 +32,21 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
             self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is False:
                 logging.error(login_failed)
-                self.create_screen_shot(launch_screenshot_path, login_failed_screenshot)
+                self.create_screen_shot(login_failed_screenshot)
                 self.driver.delete_all_cookies()
             else:
                 logging.info(login_succeed)
-                self.create_screen_shot(launch_screenshot_path, login_succeed_screenshot)
+                self.create_screen_shot(login_succeed_screenshot)
                 time.sleep(3)
                 self.lp.logout()
                 self.wait_element_load_end(LoginPageLocators.LOGINBUTTON)
                 if self.is_element_exist(LoginPageLocators.LOGINBUTTON) is True:
                     logging.info("账号登出成功,用例执行通过")
-                    self.create_screen_shot(launch_screenshot_path, logout_succeed_screenshot)
+                    self.create_screen_shot(logout_succeed_screenshot)
                     flag = True
                 else:
                     logging.error("账号登出失败，用例执行不通过")
-                    self.create_screen_shot(launch_screenshot_path, logout_failed_screenshot)
+                    self.create_screen_shot(logout_failed_screenshot)
                     self.driver.delete_all_cookies()
         except Exception as e:
             raise e

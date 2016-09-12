@@ -136,14 +136,23 @@ class BasePage(object):
         except Exception as e:
             raise e
 
+    # # 创建截图存放目录
+    # @staticmethod
+    # def create_screenshot_path():
+    #     try:
+    #         screenshot_path = com.create_path(launch_screenshot_path)
+    #         return screenshot_path
+    #     except Exception as e:
+    #         raise e
+
     # 截图
-    def create_screen_shot(self, screenshot_path, screenshot_name):
+    def create_screen_shot(self, screenshot_name):
         try:
             if need_screenshot.lower() == 'n':
                 return None
             elif need_screenshot.lower() == 'y':
-                screenshot_path = com.create_path(screenshot_path)
-                screenshot = os.path.join(screenshot_path, screenshot_name)
+                screenshot_path = com.create_path(launch_screenshot_path)
+                screenshot = os.path.join(screenshot_path, screenshot_name + '_%s.jpg') % time.strftime("%H%M%S")
                 self.driver.save_screenshot(screenshot)
                 time.sleep(2)
             else:
