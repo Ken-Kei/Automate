@@ -133,6 +133,7 @@ create_pk_failed_screenshot = '创建套图失败_%s.jpg' % time.strftime("%H%M%
 # 创建卡券
 create_card_succeed_screenshot = '创建卡券成功_%s.jpg' % time.strftime("%H%M%S")
 create_card_failed_screenshot = '创建卡券失败_%s.jpg' % time.strftime("%H%M%S")
+card_name_exist_screenshot = '创建卡券失败-卡券名称重复_%s.jpg' % time.strftime("%H%M%S")
 
 # 创建微助力活动
 create_mh_succeed_screenshot = '创建微助力成功_%s.jpg' % time.strftime("%H%M%S")
