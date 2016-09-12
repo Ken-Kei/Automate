@@ -11,7 +11,7 @@ from common import CommonUtils
 import unittest
 import logging
 from Lib.HTMLTestRunner import HTMLTestRunner
-from TestCase.test_LaunchOperation import LaunchOperationCase
+# from TestCase.test_LaunchOperation import LaunchOperationCase
 from TestCase.test_LaunchLogin import LaunchLoginCase
 
 
@@ -29,12 +29,11 @@ suite.addTest(LaunchLoginCase("test_Login"))
 
 # 创建存放测试报告文件的目录
 path = com.create_result_path(launch_result_path)
-# 找到报告的文件路径位置
 file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
-discover = unittest.defaultTestLoader.discover('./TestCase', pattern='test*.py')
-
-# 定义报告存放路径
+# 创建测试报告文件
 fp = open(file_path, 'wb')
+
+discover = unittest.defaultTestLoader.discover('./TestCase', pattern='test*.py')
 # 定义测试报告
 description = '操作系统：' + operation_system + '      ' + '浏览器：' + browser
 runner = HTMLTestRunner(stream=fp,
@@ -47,7 +46,7 @@ new_report_path = com.find_new_report_path('./Result')
 # new_file_path = com.find_new_report_path(new_report_path)
 # 找到最新的报告文件的文件名
 new_file = com.find_new_report_file(new_report_path)
-runner.run(discover)
+runner.run(suite)
 fp.close()
 # 以邮件和附件形式发送用例执行结果到指定邮箱地址
 com.send_email(file_path, new_file)
