@@ -32,7 +32,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
 
         flag = False
         logging.info("执行用例：创建套图分类")
-        # 如果登录失败的话就重新尝试登录，一共尝试3次
         try:
             self.lpa.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
             logging.info(loging_in % username)
@@ -42,14 +41,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.pma.create_pickit_classify()  # 判断登录成功后开始创建套图分类
                 if self.is_create_succeed(PMPageLocators.NEWPICTURECLASSIFY, picture_classify_name) is True:
                     logging.info("套图分类创建成功，用例通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_pc_succeed_screenshot)
                     flag = True
                 else:
                     logging.error("没有找到套图分类，用例执行不通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_pc_failed_screenshot)
             else:
                 logging.error(login_failed)
-                self.create_screen_shot(launch_screenshot_path)
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
@@ -62,7 +60,8 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         logging.info("执行用例：创建套图")
         # 登录
         try:
-            self.lpa.login(pickit_url, username, password)  # 打开卡券中心的url并验证登录
+            # 打开卡券中心的url并验证登录
+            self.lpa.login(pickit_url, username, password)
             logging.info(loging_in % username)
             self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
@@ -70,14 +69,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.pma.create_pickit()  # 判断登录成功后开始创建套图
                 if self.is_create_succeed(PMPageLocators.NEWPICTURE, picture_name) is True:
                     logging.info("套图创建成功，用例通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_pk_succeed_screenshot)
                     flag = True
                 else:
                     logging.error("没有找到套图，用例执行不通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_pk_failed_screenshot)
             else:
                 logging.error(login_failed)
-                self.create_screen_shot(launch_screenshot_path)
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
@@ -98,14 +96,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.ccpa.create_rebate_card()  # 判断登录成功后开始创建卡券
                 if self.is_create_succeed(CCPageLocators.NEWCARD, card_name) is True:
                     logging.info("卡券创建成功,用例执行通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_card_succeed_screenshot)
                     flag = True
                 else:
                     logging.error("没有找到卡券，用例执行不通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_card_failed_screenshot)
             else:
                 logging.error(login_failed)
-                self.create_screen_shot(launch_screenshot_path)
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e
@@ -126,14 +123,13 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 self.mha.create_micro_help()  # 判断登录成功后开始创建微助力活动
                 if self.is_create_succeed(MHPageLocators.NEWMICROHELP, activity_name) is True:
                     logging.info("微助力活动创建成功，用例通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_mh_succeed_screenshot)
                     flag = True
                 else:
                     logging.error("没有找到微助力活动，用例执行不通过")
-                    self.create_screen_shot(launch_screenshot_path)
+                    self.create_screen_shot(launch_screenshot_path, create_mh_failed_screenshot)
             else:
                 logging.error(login_failed)
-                self.create_screen_shot(launch_screenshot_path)
                 self.driver.delete_all_cookies()
         except Exception as e:
             raise e

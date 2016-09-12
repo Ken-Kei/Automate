@@ -97,19 +97,20 @@ class CommonUtils:
         logger.addHandler(hdr)
         return logger
 
-    def create_screen_shot(self, driver, screenshot_path):
-        try:
-            if need_screenshot.lower() == 'n':
-                return None
-            elif need_screenshot.lower() == 'y':
-                screenshot_path = self.create_path(screenshot_path)
-                screenshot = os.path.join(screenshot_path, "screenshot_%s.jpg") % time.strftime("%H%M%S")
-                time.sleep(3)
-                driver.save_screenshot(screenshot)
-        except Exception as e:
-            raise e
+    # # 截图
+    # def create_screen_shot(self, driver, screenshot_path):
+    #     try:
+    #         if need_screenshot.lower() == 'n':
+    #             return None
+    #         elif need_screenshot.lower() == 'y':
+    #             screenshot_path = self.create_path(screenshot_path)
+    #             screenshot = os.path.join(screenshot_path, "screenshot_%s.jpg") % time.strftime("%H%M%S")
+    #             time.sleep(3)
+    #             driver.save_screenshot(screenshot)
+    #     except Exception as e:
+    #         raise e
 
-    # 创建自动化测试用例文件路径
+    # 创建自动化测试用例报告文件路径
     def create_result_path(self, result_path):
         path = self.create_path(result_path)
         # report = os.path.join(result_path, "Automation_Case_Result_%s.html") % time.strftime("%H%M%S")
@@ -162,6 +163,7 @@ class CommonUtils:
         except:
             pass
 
+    # 发送邮件
     @staticmethod
     def send_email(file_path, att_file):
         try:
@@ -171,7 +173,7 @@ class CommonUtils:
             part = MIMEText(main_body, 'plain', 'utf-8')
             msg.attach(part)
 
-            # 邮件标题和收发地址
+            # 邮件标题、收发、抄送地址
             msg['Subject'] = Header(subject, 'utf-8')
             msg['From'] = from_email_address
             msg['To'] = ','.join(to_mail_address)
@@ -195,6 +197,7 @@ class CommonUtils:
         except Exception as e:
             raise e
 
+    # 定时器
     @staticmethod
     def cron_job_set():
         #         SECONDS_PER_DAY = 24 * 60 * 60

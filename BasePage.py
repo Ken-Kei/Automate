@@ -137,17 +137,17 @@ class BasePage(object):
             raise e
 
     # 截图
-    def create_screen_shot(self, screenshot_path):
+    def create_screen_shot(self, screenshot_path, screenshot_name):
         try:
             if need_screenshot.lower() == 'n':
                 return None
             elif need_screenshot.lower() == 'y':
                 screenshot_path = com.create_path(screenshot_path)
-                screenshot = os.path.join(screenshot_path, "screenshot_%s.jpg") % time.strftime("%H%M%S")
-                time.sleep(2)
+                screenshot = os.path.join(screenshot_path, screenshot_name)
                 self.driver.save_screenshot(screenshot)
+                time.sleep(2)
             else:
-                logging.error("need_screenshot配置错误，请检查配置文件！")
+                logging.error("need_screenshot字段配置错误，请检查配置文件！")
         except Exception as e:
             raise e
 

@@ -114,6 +114,32 @@ small_image_name = os.path.join("./Image/" + small_image_name)
 
 
 # ====================================================================
+"""截图文件名"""
+
+# 登入登出截图
+login_failed_screenshot = '登录失败_%s.jpg' % time.strftime("%H%M%S")
+login_succeed_screenshot = '登录成功_%s.jpg' % time.strftime("%H%M%S")
+logout_succeed_screenshot = '登出成功_%s.jpg' % time.strftime("%H%M%S")
+logout_failed_screenshot = '登出失败_%s.jpg' % time.strftime("%H%M%S")
+
+# 创建套图分类
+create_pc_succeed_screenshot = '创建套图分类成功_%s.jpg' % time.strftime("%H%M%S")
+create_pc_failed_screenshot = '创建套图分类失败_%s.jpg' % time.strftime("%H%M%S")
+
+# 创建套图
+create_pk_succeed_screenshot = '创建套图成功_%s.jpg' % time.strftime("%H%M%S")
+create_pk_failed_screenshot = '创建套图失败_%s.jpg' % time.strftime("%H%M%S")
+
+# 创建卡券
+create_card_succeed_screenshot = '创建卡券成功_%s.jpg' % time.strftime("%H%M%S")
+create_card_failed_screenshot = '创建卡券失败_%s.jpg' % time.strftime("%H%M%S")
+
+# 创建微助力活动
+create_mh_succeed_screenshot = '创建微助力成功_%s.jpg' % time.strftime("%H%M%S")
+create_mh_failed_screenshot = '创建微助力失败_%s.jpg' % time.strftime("%H%M%S")
+# ====================================================================
+
+# ====================================================================
 """log信息"""
 
 login_succeed = "登录成功"
