@@ -123,22 +123,26 @@ logout_succeed_screenshot = '登出成功'
 logout_failed_screenshot = '登出失败'
 
 # 创建套图分类
-create_pc_succeed_screenshot = '创建套图分类成功_%s.jpg'
-create_pc_failed_screenshot = '创建套图分类失败_%s.jpg'
+create_pc_succeed_screenshot = '创建套图分类成功'
+create_pc_failed_screenshot = '创建套图分类失败'
 
 # 创建套图
-create_pk_succeed_screenshot = '创建套图成功_%s.jpg'
-create_pk_failed_screenshot = '创建套图失败_%s.jpg'
+create_pk_succeed_screenshot = '创建套图成功'
+create_pk_failed_screenshot = '创建套图失败'
 
 # 创建卡券
-create_card_succeed_screenshot = '创建卡券成功_%s.jpg'
-create_card_failed_screenshot = '创建卡券失败_%s.jpg'
-card_name_exist_screenshot = '创建卡券失败-卡券名称重复_%s.jpg'
+create_card_succeed_screenshot = '创建卡券成功'
+create_card_failed_screenshot = '创建卡券失败'
+card_name_exist_screenshot = '创建卡券失败-卡券名称重复'
 
 # 创建微助力活动
-create_mh_succeed_screenshot = '创建微助力成功_%s.jpg'
-create_mh_failed_screenshot = '创建微助力失败_%s.jpg'
+create_mh_succeed_screenshot = '创建微助力成功'
+create_mh_failed_screenshot = '创建微助力失败'
 # ====================================================================
+
+
+# .//*[@id='upImgs']/div/div/div[4]/div/div[2]/div/div[1]/div
+
 
 # ====================================================================
 """log信息"""
