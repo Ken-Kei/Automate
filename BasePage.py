@@ -42,6 +42,22 @@ class BasePage(object):
         except Exception as e:
             raise e
 
+    def click(self, locator):
+        self.wait_element_load_end(locator)
+        self.find_element(locator).click()
+
+    def type(self, locator, text):
+        self.find_element(locator).clear()
+        self.wait_element_load_end(locator)
+        self.find_element(locator).send_keys(text)
+
+    def type_in_iframe(self, frame_loc, loc, text):
+        self.driver.switch_to_frame(frame_loc)
+        self.find_element(loc).clear()
+        self.wait_element_load_end(loc)
+        self.find_element(loc).send_keys(text)
+        self.driver.switch_to_default_content()
+
     # to add the "https://" string when the given url doesn't contain it.
     @staticmethod
     def merge_launch_url(hosturl):
@@ -161,50 +177,45 @@ class BasePage(object):
             raise e
 
     # 点击上传图片按钮
-    def click_upload_button(self, ele, log):
+    def click_upload_button(self, ele):
         try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
+            self.click(ele)
         except NoSuchElementException:
-            logging.error(log)
+            logging.error(PublicLogInfo.UPLOADNOTFOUND)
         except Exception as e:
             raise e
 
     # 上传封面大图
     def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
-        try:
-            self.click_upload_button(button_ele, PublicLogInfo.BIGPICERROR)
-            logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_name)
-            self.upload_image(ele, ele_locate, big_image_name)
-            self.click_confirm_button(confrim_ele)
-            logging.info(PublicLogInfo.UPLOADBIGPICFIN)
-        except Exception as e:
-            raise e
+        logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_name)
+        self.click_upload_button(button_ele)
+        self.upload_image(ele, ele_locate, big_image_name)
+        self.click_confirm_button(confrim_ele)
+        logging.info(PublicLogInfo.UPLOADBIGPICFIN)
 
     # 上传封面小图
     def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
-        try:
-            self.click_upload_button(button_ele, PublicLogInfo.SMALLPICERROR)
             logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_name)
+            self.click_upload_button(button_ele)
             self.upload_image(ele, ele_locate, small_image_name)
             self.click_confirm_button(confrim_ele)
             logging.info(PublicLogInfo.UPLOADSMALLPICFIN)
-        except Exception as e:
-            raise e
 
     # 上传图片后点击确认
     def click_confirm_button(self, ele):
         try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
+            self.click(ele)
+        except NoSuchElementException:
+            logging.error(PublicLogInfo.CONFIRMNOTFOUND)
         except Exception as e:
             raise e
 
     # 点击保存按钮
     def click_save_button(self, ele):
         try:
-            self.wait_element_load_end(ele)
-            self.find_element(ele).click()
+            self.click(ele)
+        except NoSuchElementException:
+            logging.error(PublicLogInfo.SAVEBUTTONNOTFOUND)
         except Exception as e:
             raise e
 

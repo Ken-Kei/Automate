@@ -136,7 +136,7 @@ class CommonUtils:
     # to hang the program instead of shut it down immediately
     @staticmethod
     def hang_program():
-        print("*****************Press Enter to exit program.*****************")
+        print("***********************Press Enter to exit program.***********************")
         input()
         sys.exit()
 

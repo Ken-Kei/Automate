@@ -86,8 +86,7 @@ class CardCenterPageAction(BasePage):
     # 卡券中心 - 点击适用商品上传图片按钮
     def click_suite_goods_button(self):
         try:
-            self.wait_element_load_end(CCPageLocators.SUITEGOODSUPLOADBUTTON)
-            self.find_element(CCPageLocators.SUITEGOODSUPLOADBUTTON).click()
+            self.click(CCPageLocators.SUITEGOODSUPLOADBUTTON)
         except NoSuchElementException:
             logging.error(CCLogInfo.SUITENOTFOUND)
         except Exception as e:
@@ -95,15 +94,12 @@ class CardCenterPageAction(BasePage):
 
     # 卡券中心 - 上传适用商品图片
     def upload_suite_goods_pic(self):
-        try:
-            self.click_suite_goods_button()
-            logging.info(CCLogInfo.UPLOADINGSUITEPIC % big_image_name)
-            self.upload_image(CCPageLocators.FILEIMAGE,
-                              CCPageLocators.FILEIMAGELOCATE, big_image_name)
-            self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
-            logging.info(CCLogInfo.UPLOADSUITEPICFIN)
-        except Exception as e:
-            raise e
+        self.click_suite_goods_button()
+        logging.info(CCLogInfo.UPLOADINGSUITEPIC % big_image_name)
+        self.upload_image(CCPageLocators.FILEIMAGE,
+                          CCPageLocators.FILEIMAGELOCATE, big_image_name)
+        self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
+        logging.info(CCLogInfo.UPLOADSUITEPICFIN)
 
     # 卡券中心 - 输入商品简介
     def type_goods_summary(self):
@@ -285,9 +281,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入微助力活动名称
     def type_activity_name(self):
         try:
-            self.wait_element_load_end(MHPageLocators.EVENTNAME)
             logging.info(MHLogInfo.TYPENAME % activity_name)
-            self.find_element(MHPageLocators.EVENTNAME).send_keys(activity_name)
+            self.type(MHPageLocators.EVENTNAME, activity_name)
         except NoSuchElementException:
             logging.error(MHLogInfo.NAMEFIELDNOTFOUND)
         except Exception as e:
@@ -297,9 +292,9 @@ class MicroHelpPageAction(BasePage):
     def type_mh_start_time(self):
         date = time.strftime("%Y-%m-%d %H:%M:%S")
         try:
-            self.wait_element_load_end(MHPageLocators.TYPESTARTDATE)
+            logging.info(MHLogInfo.TYPESTARTTIME % date)
             self.driver.execute_script(remove_sd_read_only)
-            self.find_element(MHPageLocators.TYPESTARTDATE).send_keys(date)
+            self.type(MHPageLocators.TYPESTARTDATE, date)
         except NoSuchElementException:
             logging.error(MHLogInfo.STARTDATENOTFOUND)
         except Exception as e:
@@ -311,9 +306,9 @@ class MicroHelpPageAction(BasePage):
         fur_time = now_time + datetime.timedelta(days=3)
         date = fur_time.strftime("%Y-%m-%d %H:%M:%S")
         try:
-            self.wait_element_load_end(MHPageLocators.TYPEENDDATE)
+            logging.info(MHLogInfo.TYPEENDTIME % date)
             self.driver.execute_script(remove_ed_read_only)
-            self.find_element(MHPageLocators.TYPEENDDATE).send_keys(date)
+            self.type(MHPageLocators.TYPEENDDATE, date)
         except NoSuchElementException:
             logging.error(MHLogInfo.ENDDATENOTFOUND)
         except Exception as e:
@@ -321,21 +316,17 @@ class MicroHelpPageAction(BasePage):
 
     # 微助力 - 上传微助力背景图
     def upload_mh_background_pic(self):
-        try:
-            self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON, MHLogInfo.MHBACKGROUNDERROR)
-            logging.info(MHLogInfo.UPLOADINGBGPIC % big_image_name)
-            self.upload_image(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_image_name)
-            self.click_confirm_button(MHPageLocators.BACKGROUNDCONFIRM)
-            logging.info(MHLogInfo.UPLOADBGPICFIN)
-        except Exception as e:
-            raise e
+        logging.info(MHLogInfo.UPLOADINGBGPIC % big_image_name)
+        self.click_upload_button(MHPageLocators.BACKGROUNDBUTTON)
+        self.upload_image(MHPageLocators.DOC, MHPageLocators.DOCLOCATE, big_image_name)
+        self.click_confirm_button(MHPageLocators.BACKGROUNDCONFIRM)
+        logging.info(MHLogInfo.UPLOADBGPICFIN)
 
     # 微助力 - 输入微助力分享标题
     def type_share_title(self):
         try:
-            self.wait_element_load_end(MHPageLocators.SHARETITLE)
             logging.info(MHLogInfo.TYPESHARETITLE % share_title)
-            self.find_element(MHPageLocators.SHARETITLE).send_keys(share_title)
+            self.type(MHPageLocators.SHARETITLE, share_title)
         except NoSuchElementException:
             logging.error(MHLogInfo.SHARETITLENOTFOUND)
         except Exception as e:
@@ -344,9 +335,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入分享描述
     def type_share_description(self):
         try:
-            self.wait_element_load_end(MHPageLocators.SHAREDESCRIPTION)
             logging.info(MHLogInfo.TYPESHAREDESC % share_description)
-            self.find_element(MHPageLocators.SHAREDESCRIPTION).send_keys(share_description)
+            self.type(MHPageLocators.SHAREDESCRIPTION, share_description)
         except NoSuchElementException:
             logging.error(MHLogInfo.SHAREDESCNOTFOUND)
         except Exception as e:
@@ -355,10 +345,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入活动详情
     def type_event_description(self):
         try:
-            self.driver.switch_to_frame(MHPageLocators.IFRAME)
-            self.wait_element_load_end(MHPageLocators.EVENTMAINBODY)
-            self.find_element(MHPageLocators.EVENTMAINBODY).send_keys(event_description)
-            self.driver.switch_to_default_content()
+            logging.info(MHLogInfo.TYPEEVENTDESC % event_description)
+            self.type_in_iframe(MHPageLocators.IFRAME, MHPageLocators.EVENTMAINBODY, event_description)
         except NoSuchElementException:
             logging.error(MHLogInfo.EVENTDESC)
         except Exception as e:
@@ -367,9 +355,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入好友集满数量
     def type_friend_collect_number(self):
         try:
-            self.wait_element_load_end(MHPageLocators.FRIENDCOLLECTNUM)
             logging.info(MHLogInfo.FRIENDCOLLECTNUM % friend_collect_number)
-            self.find_element(MHPageLocators.FRIENDCOLLECTNUM).send_keys(friend_collect_number)
+            self.type(MHPageLocators.FRIENDCOLLECTNUM, friend_collect_number)
         except NoSuchElementException:
             logging.error(MHLogInfo.FCNOTFOUND)
         except Exception as e:
@@ -378,9 +365,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入好友集满数量的单位
     def type_friend_collect_unit(self):
         try:
-            self.wait_element_load_end(MHPageLocators.UNIT)
             logging.info(MHLogInfo.TYPEUNIT % unit)
-            self.find_element(MHPageLocators.UNIT).send_keys(unit)
+            self.type(MHPageLocators.UNIT, unit)
         except NoSuchElementException:
             logging.error(MHLogInfo.UNITNOTFOUND)
         except Exception as e:
@@ -389,9 +375,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入好友有效助力概率
     def type_friend_valid_chance(self):
         try:
-            self.wait_element_load_end(MHPageLocators.VALIDCHANCE)
             logging.info(MHLogInfo.TYPEVALIDCHANCE % friend_valid_chance)
-            self.find_element(MHPageLocators.VALIDCHANCE).send_keys(friend_valid_chance)
+            self.type(MHPageLocators.VALIDCHANCE, friend_valid_chance)
         except NoSuchElementException:
             logging.error(MHLogInfo.VCNOTFOUND)
         except Exception as e:
@@ -400,9 +385,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入数量设置
     def type_number_config(self):
         try:
-            self.wait_element_load_end(MHPageLocators.NUMBERCONFIG)
             logging.info(MHLogInfo.TYPENUMCONFIG % number_config)
-            self.find_element(MHPageLocators.NUMBERCONFIG).send_keys(number_config)
+            self.type(MHPageLocators.NUMBERCONFIG, number_config)
         except NoSuchElementException:
             logging.error(MHLogInfo.NCNOTFOUND)
         except Exception as e:
@@ -411,9 +395,8 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 点击添加奖品
     def click_add_prize(self):
         try:
-            self.wait_element_load_end(MHPageLocators.ADDPRIZEBUTTON)
             logging.info(MHLogInfo.ADDPRIZE)
-            self.find_element(MHPageLocators.ADDPRIZEBUTTON).click()
+            self.click(MHPageLocators.ADDPRIZEBUTTON)
         except NoSuchElementException:
             logging.error(MHLogInfo.APNOTFOUND)
         except Exception as e:
@@ -422,18 +405,19 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 选择奖品
     def select_prize(self):
         self.click_add_prize()
-        self.wait_element_load_end(MHPageLocators.PRIZENAME)
-        self.find_element(MHPageLocators.PRIZENAME).click()
+        # 选择奖品类型为折扣券
+        self.click(MHPageLocators.PRIZENAME)
         # 在下拉框的前十个option里面挑选奖品
-        option_num = 10
+        option_num = 11
         try:
             for i in range(1, option_num):
                 select = (By.XPATH, MHPageLocators.SELECT % i)
-                self.find_element(select).click()
+                self.click(select)
                 # 如果挑选的奖品库存大于0，才会选择
                 if int(self.find_element(MHPageLocators.PRIZENUMBER).get_attribute("value")) > 0:
-                    self.find_element(MHPageLocators.PRIZENUMBER).clear()
-                    self.find_element(MHPageLocators.PRIZENUMBER).send_keys(prize_number)
+                    logging.info(MHLogInfo.SELECTPRIZE % self.find_element(select).text)
+                    self.type(MHPageLocators.PRIZENUMBER, prize_number)
+                    logging.info(MHLogInfo.TYPEPRIZENUMBER % prize_number)
                     self.click_confirm_button(MHPageLocators.PRIZECONFIRM)
                     break
         except NoSuchElementException:

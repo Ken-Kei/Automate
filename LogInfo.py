@@ -15,14 +15,14 @@ class PublicLogInfo:
     Create Date  :  2016/08/24
     """
 
-    BIGPICERROR                     = '找不到上传封面大图按钮位置'
     UPLOADINGBIGPIC                 = '正在上传大图：%s'
     UPLOADBIGPICFIN                 = '上传大图完毕'
-    SMALLPICERROR                   = '找不到上传封面小图按钮位置'
     UPLOADINGSMALLPIC               = '正在上传封面小图：%s'
     UPLOADSMALLPICFIN               = '上传封面小图完毕'
-    UPLOADNOTFOUND                  = '找不到上传图片的元素位置'
-    ALERTNOTFOUND                   = '找不到alert窗口   '
+    UPLOADNOTFOUND                  = '找不到上传图片的按钮位置'
+    ALERTNOTFOUND                   = '找不到alert窗口'
+    SAVEBUTTONNOTFOUND              = '找不到保存按钮'
+    CONFIRMNOTFOUND                 = '找不到确定按钮'
 
 
 class MHLogInfo:
@@ -33,11 +33,10 @@ class MHLogInfo:
     Create Date  :  2016/08/24
     """
 
-    MHBACKGROUNDERROR               = '找不到上传微助力背景图位置'
     TYPENAME                        = '输入活动名称：%s'
     NAMEFIELDNOTFOUND               = '找不到活动名称输入框位置'
-    STARTDATENOTFOUND               = '找不到微助力活动开始时间位置'
-    ENDDATENOTFOUND                 = '找不到微助力活动结束时间位置'
+    STARTDATENOTFOUND               = '找不到微助力活动开始时间输入框位置'
+    ENDDATENOTFOUND                 = '找不到微助力活动结束时间输入框位置'
     UPLOADINGBGPIC                  = '正在上传微助力背景图：%s'
     UPLOADBGPICFIN                  = '上传背景图完毕'
     TYPESHARETITLE                  = '输入分享标题：%s'
@@ -47,7 +46,7 @@ class MHLogInfo:
     EVENTDESC                       = '找不到活动详情的元素位置'
     FRIENDCOLLECTNUM                = '输入好友集满数量：%s'
     FCNOTFOUND                      = '找不到好友集满数量输入框位置'
-    TYPEUNIT                        = '输入好友集满数量：%s'
+    TYPEUNIT                        = '输入好友集满数量的单位：%s'
     UNITNOTFOUND                    = '找不到单位输入框位置'
     TYPEVALIDCHANCE                 = '输入好友有效助力概率：%s'
     VCNOTFOUND                      = '找不到好友有效助力概率输入框位置'
@@ -56,6 +55,11 @@ class MHLogInfo:
     ADDPRIZE                        = '正在添加奖品'
     APNOTFOUND                      = '找不到添加奖品按钮位置'
     PRIZENOTFOUND                   = '找不到奖品'
+    TYPEEVENTDESC                   = '输入活动详情：%s'
+    TYPESTARTTIME                   = '输入微助力活动开始时间：%s'
+    TYPEENDTIME                     = '输入微助力活动结束时间：%s'
+    SELECTPRIZE                     = '选择了奖品：%s'
+    TYPEPRIZENUMBER                 = '输入奖品数量：%s'
 
 
 class CCLogInfo:
@@ -81,3 +85,4 @@ class CCLogInfo:
     GSNOTFOUND                      = '没找到商品简介的元素位置'
     TYPECARDINVENT                  = '输入卡券库存：%s'
     CARDINVENTNOTFOUND              = '没找到优惠券库存的元素位置'
+
