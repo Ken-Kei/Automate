@@ -89,7 +89,7 @@ class CardCenterPageAction(BasePage):
             self.wait_element_load_end(CCPageLocators.SUITEGOODSUPLOADBUTTON)
             self.find_element(CCPageLocators.SUITEGOODSUPLOADBUTTON).click()
         except NoSuchElementException:
-            logging.error("没找到上传适用商品的按钮")
+            logging.error(CCLogInfo.SUITENOTFOUND)
         except Exception as e:
             raise e
 
@@ -97,11 +97,11 @@ class CardCenterPageAction(BasePage):
     def upload_suite_goods_pic(self):
         try:
             self.click_suite_goods_button()
-            logging.info("正在上传适用商品图：%s" % big_image_name)
+            logging.info(CCLogInfo.UPLOADINGSUITEPIC % big_image_name)
             self.upload_image(CCPageLocators.FILEIMAGE,
                               CCPageLocators.FILEIMAGELOCATE, big_image_name)
             self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
-            logging.info("上传适用商品图完毕")
+            logging.info(CCLogInfo.UPLOADSUITEPICFIN)
         except Exception as e:
             raise e
 
@@ -110,10 +110,10 @@ class CardCenterPageAction(BasePage):
 
         try:
             self.wait_element_load_end(CCPageLocators.GOODSSUMMARY)
-            logging.info("输入商品简介：%s" % inventory_data)
+            logging.info(CCLogInfo.TYPEGOODSUMMARY % inventory_data)
             self.find_element(CCPageLocators.GOODSSUMMARY).send_keys(goods_summary)
         except NoSuchElementException:
-            logging.error("没找到商品简介的元素位置")
+            logging.error(CCLogInfo.GSNOTFOUND)
         except Exception as e:
             raise e
 
@@ -121,10 +121,10 @@ class CardCenterPageAction(BasePage):
     def type_card_inventory(self):
         try:
             self.wait_element_load_end(CCPageLocators.CARDINVENTORY)
-            logging.info("输入卡券库存：%s" % inventory_data)
+            logging.info(CCLogInfo.TYPECARDINVENT % inventory_data)
             self.find_element(CCPageLocators.CARDINVENTORY).send_keys(inventory_data)
         except NoSuchElementException:
-            logging.error("没找到优惠券库存的元素位置")
+            logging.error(CCLogInfo.CARDINVENTNOTFOUND)
         except Exception as e:
             raise e
 
