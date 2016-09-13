@@ -54,12 +54,11 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
 
     def tearDown(self):
         logging.info("用例结束")
-        driver = self.driver
+
         self.assertEqual([], self.verificationErrors)
         # 关闭浏览器、清除缓存
-        driver.delete_all_cookies()
-        driver.close()
-        driver.quit()
+        self.driver.delete_all_cookies()
+        self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()

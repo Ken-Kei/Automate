@@ -86,7 +86,6 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
 
         flag = False
         logging.info("执行用例：创建卡券")
-        # 如果登录失败的话就重新尝试登录，一共尝试3
         try:
             self.lpa.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
@@ -137,11 +136,10 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
 
     def tearDown(self):
         logging.info("用例结束")
-        driver = self.driver
         self.assertEqual([], self.verificationErrors)
         # 关闭浏览器
-        driver.delete_all_cookies()
-        driver.quit()
+        self.driver.delete_all_cookies()
+        self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()
