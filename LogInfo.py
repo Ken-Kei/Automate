@@ -86,3 +86,39 @@ class CCLogInfo:
     TYPECARDINVENT                  = '输入卡券库存：%s'
     CARDINVENTNOTFOUND              = '没找到优惠券库存的元素位置'
 
+
+class LoginLogInfo:
+
+    """
+    Name         :  登入登出 - 打印信息
+    Author       :  刘建民
+    Create Date  :  2016/09/13
+    """
+
+    ACCOUNTNOTFOUND                 = '找不到账号输入框'
+    PASSNOTFOUND                    = '找不到密码输入框'
+    LOGINBUTTONNOTFOUND             = '找不到登录按钮'
+    LOGOUTNOTFOUND                  = '找不到登出按钮'
+
+
+class PMLogInfo:
+
+    """
+    Name         :  登入登出 - 打印信息
+    Author       :  刘建民
+    Create Date  :  2016/09/13
+    """
+
+    PCBUTTONNOTFOUND                = '找不到新建分类按钮'
+    TYPECLASSNAME                   = '输入套图分类名称：%s'
+    CLASSNAMEFIELDNOTFOUND          = '找不到套图分类名称输入框，输入失败'
+    COLORFIELD                      = '选择分类的颜色标识：绿色'
+    COLORFIELDNOTFOUND              = '找不到套图分类颜色标识'
+    TYPEPICNAME                     = '输入套图的名称：%s'
+    PICNAMEFIELDNOTFOUND            = '找不到套图名称输入框位置'
+    SELECTCLASSBELONG               = '选择套图的所属分类：%s'
+    CBDROPDOWNNOTFOUND              = '找不到套图分类下拉框下的分类'
+    TYPEPICDESC                     = '输入套图介绍：%s'
+    PICDESCFIELDNOTFOUND            = '找不到套图介绍输入框位置'
+    UPLOADFIRSTPIC                  = '正在上传第一张套图：%s'
+    PICUPLOADFIN                    = '上传套图完毕'

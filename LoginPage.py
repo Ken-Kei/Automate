@@ -12,6 +12,7 @@ from attribute import *  # @UnusedWildImport
 from LoginLocators import *
 from BasePage import BasePage
 import logging
+from LogInfo import *
 
 
 class LoginPageAction(BasePage):
@@ -24,19 +25,17 @@ class LoginPageAction(BasePage):
 
     def type_username(self, usr):
         try:
-            self.find_element(LoginPageLocators.USERNAME).clear()
-            self.find_element(LoginPageLocators.USERNAME).send_keys(usr)
+            self.type(LoginPageLocators.USERNAME, usr)
         except NoSuchElementException:
-            logging.info("找不到账号输入框")
+            logging.error(LoginLogInfo.ACCOUNTNOTFOUND)
         except Exception as e:
             raise e
 
     def type_password(self, pwd):
         try:
-            self.find_element(LoginPageLocators.PASSWORD).clear()
-            self.find_element(LoginPageLocators.PASSWORD).send_keys(pwd)
+            self.type(LoginPageLocators.PASSWORD, pwd)
         except NoSuchElementException:
-            logging.info("找不到密码输入框")
+            logging.error(LoginLogInfo.PASSNOTFOUND)
         except Exception as e:
             raise e
 
@@ -49,23 +48,19 @@ class LoginPageAction(BasePage):
 
     def logout(self):
         self.click_logout_button()
-        time.sleep(5)
 
     def click_login_button(self):
         try:
-            self.wait_element_load_end(LoginPageLocators.LOGINBUTTON)
-            self.find_element(LoginPageLocators.LOGINBUTTON).click()
+            self.click(LoginPageLocators.LOGINBUTTON)
         except NoSuchElementException:
-            pass
+            logging.error(LoginLogInfo.LOGINBUTTONNOTFOUND)
         except Exception as e:
             raise e
 
     def click_logout_button(self):
         try:
-            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
-            ele_id = self.find_element(LoginPageLocators.LOGOUTBUTTON)
-            ele_id.click()
+            self.click(LoginPageLocators.LOGOUTBUTTON)
         except NoSuchElementException:
-            pass
+            logging.error(LoginLogInfo.LOGOUTNOTFOUND)
         except Exception as e:
             raise e

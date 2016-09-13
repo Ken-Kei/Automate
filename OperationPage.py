@@ -46,9 +46,8 @@ class CardCenterPageAction(BasePage):
     # 卡券中心 - 输入卡券名称
     def type_card_name(self):
         try:
-            self.wait_element_load_end(CCPageLocators.CARDNAME)
             logging.info(CCLogInfo.TYPECARDNAME % card_name)
-            self.find_element(CCPageLocators.CARDNAME).send_keys(card_name)
+            self.type(CCPageLocators.CARDNAME, card_name)
             self.driver.switch_to_active_element().send_keys(Keys.TAB)
             time.sleep(1)
             if self.find_element(CCPageLocators.TITLEFAULTTIP).text == '卡券名称已存在!':
@@ -63,9 +62,8 @@ class CardCenterPageAction(BasePage):
     # 卡券中心 - 输入折扣券的折扣率
     def type_card_rebate(self):
         try:
-            self.wait_element_load_end(CCPageLocators.CARDREBATE)
             logging.info(CCLogInfo.TYPECARDREBATE % rebate_data)
-            self.find_element(CCPageLocators.CARDREBATE).send_keys(rebate_data)
+            self.type(CCPageLocators.CARDREBATE, rebate_data)
         except NoSuchElementException:
             logging.error(CCLogInfo.CARDREBATENOTFOUND)
         except Exception as e:
@@ -74,10 +72,8 @@ class CardCenterPageAction(BasePage):
     # 卡券中心 - 选择折扣券有效期为领取后生效
     def select_validity_to_immediately(self):
         try:
-            self.wait_element_load_end(CCPageLocators.CARDVALIDITY)
-            time.sleep(1)
             logging.info(CCLogInfo.CHOOSEIMMEDIATE)
-            self.find_element(CCPageLocators.CARDVALIDITY).click()
+            self.click(CCPageLocators.CARDVALIDITY)
         except NoSuchElementException:
             logging.error(CCLogInfo.CCVNOTFOUND)
         except Exception as e:
@@ -94,8 +90,8 @@ class CardCenterPageAction(BasePage):
 
     # 卡券中心 - 上传适用商品图片
     def upload_suite_goods_pic(self):
-        self.click_suite_goods_button()
         logging.info(CCLogInfo.UPLOADINGSUITEPIC % big_image_name)
+        self.click_suite_goods_button()
         self.upload_image(CCPageLocators.FILEIMAGE,
                           CCPageLocators.FILEIMAGELOCATE, big_image_name)
         self.click_confirm_button(CCPageLocators.SUITEGOODSUPLOADCONFIRM)
@@ -103,11 +99,9 @@ class CardCenterPageAction(BasePage):
 
     # 卡券中心 - 输入商品简介
     def type_goods_summary(self):
-
         try:
-            self.wait_element_load_end(CCPageLocators.GOODSSUMMARY)
             logging.info(CCLogInfo.TYPEGOODSUMMARY % inventory_data)
-            self.find_element(CCPageLocators.GOODSSUMMARY).send_keys(goods_summary)
+            self.type(CCPageLocators.GOODSSUMMARY, goods_summary)
         except NoSuchElementException:
             logging.error(CCLogInfo.GSNOTFOUND)
         except Exception as e:
@@ -116,9 +110,8 @@ class CardCenterPageAction(BasePage):
     # 卡券中心 - 输入优惠券的库存
     def type_card_inventory(self):
         try:
-            self.wait_element_load_end(CCPageLocators.CARDINVENTORY)
             logging.info(CCLogInfo.TYPECARDINVENT % inventory_data)
-            self.find_element(CCPageLocators.CARDINVENTORY).send_keys(inventory_data)
+            self.type(CCPageLocators.CARDINVENTORY, inventory_data)
         except NoSuchElementException:
             logging.error(CCLogInfo.CARDINVENTNOTFOUND)
         except Exception as e:
@@ -147,49 +140,36 @@ class PictureManageAction(BasePage):
     Create Date :  2016/08/23
     """
 
-    # 套图管理 - 点击套图管理的新建分类按钮
+    # 套图管理 - 新建套图分类 - 点击套图管理的新建分类按钮
     def click_create_picture_classify_button(self):
         try:
-            self.wait_element_load_end(PMPageLocators.CREATEPICTURECLASSIFY)
-            self.find_element(PMPageLocators.CREATEPICTURECLASSIFY).click()
+            self.click(PMPageLocators.CREATEPICTURECLASSIFY)
         except NoSuchElementException:
-            logging.error("找不到新建分类按钮")
+            logging.error(PMLogInfo.PCBUTTONNOTFOUND)
         except Exception as e:
             raise e
 
-    # 套图管理 - 输入套图的分类名称
+    # 套图管理 - 新建套图分类 - 输入套图的分类名称
     def type_classify_name(self):
         try:
-            self.wait_element_load_end(PMPageLocators.CLASSIFYNAME)
-            logging.info("输入套图分类名称：%s" % picture_classify_name)
-            self.find_element(PMPageLocators.CLASSIFYNAME).send_keys(picture_classify_name)
+            logging.info(PMLogInfo.TYPECLASSNAME % picture_classify_name)
+            self.type(PMPageLocators.CLASSIFYNAME, picture_classify_name)
         except NoSuchElementException:
-            logging.error("找不到套图分类名称输入框，输入失败")
+            logging.error(PMLogInfo.CLASSNAMEFIELDNOTFOUND)
         except Exception as e:
             raise e
 
-    # 套图管理 - 选择套图分类的颜色标识
+    # 套图管理 - 新建套图分类 - 选择套图分类的颜色标识
     def select_classify_color_type(self):
         try:
-            self.wait_element_load_end(PMPageLocators.COLORTYPE)
-            logging.info("选择分类的颜色标识：绿色")
-            self.find_element(PMPageLocators.COLORTYPE).click()
+            logging.info(PMLogInfo.COLORFIELD)
+            self.click(PMPageLocators.COLORTYPE)
         except NoSuchElementException:
-            logging.error("找不到套图分类颜色标识")
+            logging.error(PMLogInfo.COLORFIELDNOTFOUND)
         except Exception as e:
             raise e
 
-    # 套图管理 - 创建套图分类完毕后点击保存
-    def click_pickit_classify_save_button(self):
-        try:
-            self.wait_element_load_end(PMPageLocators.SAVEPICTURECLASSIFY)
-            self.find_element(PMPageLocators.SAVEPICTURECLASSIFY).click()
-        except NoSuchElementException:
-            logging.error("找不到保存按钮")
-        except Exception as e:
-            raise e
-
-    # 套图管理 - 创建套图分类
+    # 套图管理 - 新建套图分类 - 创建套图分类
     def create_pickit_classify(self):
         self.click_create_picture_classify_button()
         self.type_classify_name()
@@ -198,66 +178,52 @@ class PictureManageAction(BasePage):
         self.upload_small_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
                               PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
         self.select_classify_color_type()
-        self.click_pickit_classify_save_button()
+        self.click_save_button(PMPageLocators.SAVEPICTURECLASSIFY)
         self.handle_alert()
 
-    # 套图管理 - 输入套图的名称
+    # 套图管理 - 新建套图 - 输入套图的名称
     def type_pickit_name(self):
         try:
-            self.wait_element_load_end(PMPageLocators.PICTURETITLE)
-            logging.info("输入套图的名称：%s" % picture_name)
-            self.find_element(PMPageLocators.PICTURETITLE).send_keys(picture_name)
+            logging.info(PMLogInfo.TYPEPICNAME % picture_name)
+            self.type(PMPageLocators.PICTURETITLE, picture_name)
         except NoSuchElementException:
-            logging.error("找不到套图名称输入框位置")
+            logging.error(PMLogInfo.PICNAMEFIELDNOTFOUND)
         except Exception as e:
             raise e
 
-    # 套图管理 - 选择套图的所属分类
+    # 套图管理 - 新建套图 - 选择套图的所属分类
     def select_picture_classify(self):
         try:
-            self.wait_element_load_end(PMPageLocators.PICTUREBELONGDROP)
-            self.find_element(PMPageLocators.PICTUREBELONGDROP).click()
-            logging.info("选择套图的所属分类：%s" % self.find_element(PMPageLocators.PICTUREBELONG).text)
-            self.find_element(PMPageLocators.PICTUREBELONG).click()
+            # 点击所属分类的下拉框
+            self.click(PMPageLocators.PICTUREBELONGDROP)
+            logging.info(PMLogInfo.SELECTCLASSBELONG % self.find_element(PMPageLocators.PICTUREBELONG).text)
+            self.click(PMPageLocators.PICTUREBELONG)
         except NoSuchElementException:
-            logging.error("找不到套图分类下拉框位置")
+            logging.error(PMLogInfo.CBDROPDOWNNOTFOUND)
         except Exception as e:
             raise e
 
-    # 套图管理 - 输入套图介绍
+    # 套图管理 - 新建套图 - 输入套图介绍
     def type_pickit_description(self):
         try:
-            self.wait_element_load_end(PMPageLocators.PICTUREDESCRIPTION)
-            logging.info("输入套图介绍：%s" % pickit_description)
-            self.find_element(PMPageLocators.PICTUREDESCRIPTION).send_keys(pickit_description)
+            logging.info(PMLogInfo.TYPEPICDESC % pickit_description)
+            self.type(PMPageLocators.PICTUREDESCRIPTION, pickit_description)
         except NoSuchElementException:
-            logging.error("找不到套图介绍输入框位置")
+            logging.error(PMLogInfo.PICDESCFIELDNOTFOUND)
         except Exception as e:
             raise e
 
-    # 套图管理 - 点击上传套图按钮
-    def click_add_pickit_pic(self):
-        try:
-            self.wait_element_load_end(PMPageLocators.ADDPITCURE)
-            self.find_element(PMPageLocators.ADDPITCURE).click()
-        except NoSuchElementException:
-            logging.error("找不到上传套图按钮位置")
-        except Exception as e:
-            raise e
-
-    # 套图管理 - 上传套图
+    # 套图管理 - 新建套图 - 上传套图
     def upload_pickit_pic(self):
-        try:
-            self.click_add_pickit_pic()
-            logging.info("正在上传第一张套图：%s" % pickit1)
-            self.upload_image(PMPageLocators.UPLOADPICTURE,
-                              PMPageLocators.UPLOADPICTURELOACTE, big_image_name)
-            self.click_save_button(PMPageLocators.PICTURECONFIRM)
-            logging.info("上传套图完毕")
-        except Exception as e:
-            raise e
+        # 点击上传套图的按钮
+        self.click_upload_button(PMPageLocators.ADDPITCURE)
+        logging.info(PMLogInfo.UPLOADFIRSTPIC % pickit1)
+        self.upload_image(PMPageLocators.UPLOADPICTURE,
+                          PMPageLocators.UPLOADPICTURELOACTE, big_image_name)
+        self.click_save_button(PMPageLocators.PICTURECONFIRM)
+        logging.info(PMLogInfo.PICUPLOADFIN)
 
-    # 套图管理 - 创建套图
+    # 套图管理 - 新建套图 - 创建套图
     def create_pickit(self):
         self.type_pickit_name()
         self.select_picture_classify()
