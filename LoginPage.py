@@ -8,7 +8,6 @@ Create Date  :  2016/07/01
 
 
 from selenium.common.exceptions import NoSuchElementException
-from attribute import *  # @UnusedWildImport
 from LoginLocators import *
 from BasePage import BasePage
 import logging

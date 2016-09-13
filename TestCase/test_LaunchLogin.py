@@ -7,6 +7,7 @@ Create Date  :  2016/07/07
 """
 
 from LoginPage import *
+from attribute import *  # @UnusedWildImport
 import unittest
 import logging
 
