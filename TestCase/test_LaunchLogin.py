@@ -57,7 +57,7 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
         """错误的用户名登录"""
 
         flag = False
-        logging.info("执行用例：登入以及登出O2O平台成功")
+        logging.info("执行用例：错误的用户名登录")
         # 登录后台
         try:
             # 打开O2O主页的url并使用错误的用户名登录
@@ -69,7 +69,7 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
                 self.create_screen_shot(login_failed_screenshot)
                 self.driver.delete_all_cookies()
             else:
-                logging.ERROR(LoginLogInfo.WRONGUSERLOGINSUCCEED)
+                logging.error(LoginLogInfo.WRONGUSERLOGINSUCCEED)
                 self.create_screen_shot(login_succeed_screenshot)
                 flag = True
         except Exception as e:

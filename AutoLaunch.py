@@ -25,7 +25,7 @@ logging.info("浏览器版本: %s" % com.get_browser_version())
 # 初始化测试套件并添加测试用例
 suite = unittest.TestSuite()
 # suite.addTest(LaunchOperationCase("test_CreatePictureClassify"))
-suite.addTest(LaunchLoginCase("test_Login"))
+suite.addTest(LaunchLoginCase("test_LoginFailedWithWrongUser"))
 
 # 创建存放测试报告文件的目录
 path = com.create_result_path(launch_result_path)
