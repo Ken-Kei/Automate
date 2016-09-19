@@ -71,7 +71,7 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
             else:
                 logging.ERROR(LoginLogInfo.WRONGUSERLOGINSUCCEED)
                 self.create_screen_shot(login_succeed_screenshot)
-                time.sleep(3)
+                flag = True
         except Exception as e:
             raise e
         self.assertEqual(flag, False)
