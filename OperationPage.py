@@ -52,7 +52,7 @@ class CardCenterPageAction(BasePage):
             time.sleep(1)
             if self.find_element(CCPageLocators.TITLEFAULTTIP).text == '卡券名称已存在!':
                 logging.error(CCLogInfo.CARDNAMEEXIST)
-                self.create_screen_shot(card_name_exist_screenshot)
+                self.create_screen_shot(card_name_exist_screenshot, tc_name=test_CreateCard)
                 raise ValueError(CCLogInfo.CARDNAMEEXIST)
         except NoSuchElementException:
             logging.error(CCLogInfo.CARDNAMENOTFOUND)

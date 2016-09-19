@@ -49,8 +49,11 @@ class CommonUtils:
 
     # create a directory
     @staticmethod
-    def create_path(report_path):
-        report_path = os.path.join(os.path.curdir, report_path)
+    def create_path(report_path, tc_name=None):
+        if tc_name is None:
+            report_path = os.path.join(os.path.curdir, report_path)
+        elif tc_name is not None:
+            report_path = os.path.join(os.path.curdir, report_path, tc_name)
         #        print os.path.isdir(report_path)
         if not os.path.isdir(report_path):
             os.makedirs(report_path)

@@ -147,6 +147,17 @@ create_mh_failed_screenshot = '创建微助力失败'
 
 
 # ====================================================================
+"""用例名"""
+test_LoginSucceed = '登入以及登出O2O平台成功'
+test_LoginFailedWithWrongUser = '错误的用户名登录'
+test_CreatePictureClassify = '创建套图分类'
+test_CreatePictureKit = '创建套图'
+test_CreateCard = '创建卡券'
+test_CreateMicroHelp = '创建微助力活动'
+# ====================================================================
+
+
+# ====================================================================
 """log信息"""
 
 loging_in = "正在使用此用户登录: %s"

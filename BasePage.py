@@ -162,12 +162,12 @@ class BasePage(object):
     #         raise e
 
     # 截图
-    def create_screen_shot(self, screenshot_name):
+    def create_screen_shot(self, screenshot_name, tc_name=None):
         try:
             if need_screenshot.lower() == 'n':
                 return None
             elif need_screenshot.lower() == 'y':
-                screenshot_path = com.create_path(launch_screenshot_path)
+                screenshot_path = com.create_path(launch_screenshot_path, tc_name)
                 screenshot = os.path.join(screenshot_path, screenshot_name + '_%s.jpg') % time.strftime("%H%M%S")
                 self.driver.save_screenshot(screenshot)
                 time.sleep(2)
