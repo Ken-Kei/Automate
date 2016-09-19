@@ -50,6 +50,14 @@ class CommonUtils:
     # create a directory
     @staticmethod
     def create_path(report_path, tc_name=None):
+
+        """
+        :param report_path: the path you want to create.
+        :param tc_name: this is a default parameter, you can assign a value when you want to save screenshot
+                        with a single directory named by the name of the test case,
+                        such as: tc_name=test_LoginSucceed.
+        """
+
         if tc_name is None:
             report_path = os.path.join(os.path.curdir, report_path)
         elif tc_name is not None:

@@ -52,6 +52,13 @@ class BasePage(object):
         self.find_element(locator).send_keys(text)
 
     def type_in_iframe(self, frame_loc, loc, text):
+
+        """
+        :param frame_loc    : the locator of the frame.
+        :param loc          : the locator of which element you want to handled.
+        :param text         : the text you want to type.
+        """
+
         self.driver.switch_to_frame(frame_loc)
         self.find_element(loc).clear()
         self.wait_element_load_end(loc)
@@ -127,6 +134,15 @@ class BasePage(object):
 
     # 判断元素是否存在style属性
     def is_attribute_style_exist(self, ele, locator):
+
+        """
+        :param ele      : this is the upload locator which is the real locator to upload image,
+                          e.g: (By.ID, "fileImage").
+        :param locator  : Locator's attribute, e.g: "fileImage".
+        :return         : due to the different status of the @style(exist or not),
+                          return True or False.
+        """
+
         try:
             ga = self.find_element(ele).get_attribute(locator + "@style")
             if ga is False:
@@ -140,6 +156,14 @@ class BasePage(object):
 
     # 上传图片
     def upload_image(self, ue, locator, file_name):
+
+        """
+        :param ue           : this is the upload locator which is the real locator to upload image,
+                              e.g: (By.ID, "fileImage").
+        :param locator      : Locator's attribute, e.g: "fileImage".
+        :param file_name    : the image you want to upload.
+        """
+
         try:
             file_path = os.path.join(os.path.abspath(file_name))
             if self.is_attribute_style_exist(ue, locator) is True:
@@ -163,6 +187,14 @@ class BasePage(object):
 
     # 截图
     def create_screen_shot(self, screenshot_name, tc_name=None):
+
+        """
+        :param screenshot_name  : the name of screen shot.
+        :param tc_name          : this is a default parameter, you can assign a value when you want to save
+                                  screenshot with a single directory named by the name of the test case,
+                                  such as: tc_name=test_LoginSucceed.
+        """
+
         try:
             if need_screenshot.lower() == 'n':
                 return None
@@ -187,6 +219,15 @@ class BasePage(object):
 
     # 上传封面大图
     def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
+
+        """
+        :param button_ele   : the upload button locator.
+        :param ele          : this is the upload locator which is the real locator to upload image,
+                              e.g: (By.ID, "fileImage").
+        :param ele_locate   : Locator's attribute, e.g: "fileImage".
+        :param confrim_ele  : the confirm button locator.
+        """
+
         logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_name)
         self.click_upload_button(button_ele)
         self.upload_image(ele, ele_locate, big_image_name)
@@ -195,11 +236,11 @@ class BasePage(object):
 
     # 上传封面小图
     def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
-            logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_name)
-            self.click_upload_button(button_ele)
-            self.upload_image(ele, ele_locate, small_image_name)
-            self.click_confirm_button(confrim_ele)
-            logging.info(PublicLogInfo.UPLOADSMALLPICFIN)
+        logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_name)
+        self.click_upload_button(button_ele)
+        self.upload_image(ele, ele_locate, small_image_name)
+        self.click_confirm_button(confrim_ele)
+        logging.info(PublicLogInfo.UPLOADSMALLPICFIN)
 
     # 上传图片后点击确认
     def click_confirm_button(self, ele):
