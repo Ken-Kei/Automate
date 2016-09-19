@@ -39,6 +39,7 @@ operation_system = config.get("url_info", "operation_system")  # 测试使用的
 account_row = config.getint("account_info", "account_row")  # 读取到excel表的账号行数
 username = config.get("account_info", "username")  # 后台使用的账号
 password = config.get("account_info", "password")  # 后台使用的密码
+wrong_username = config.get("account_info", "wrong_username")  # 错误的用户名
 
 
 # [test_result]
@@ -148,8 +149,6 @@ create_mh_failed_screenshot = '创建微助力失败'
 # ====================================================================
 """log信息"""
 
-login_succeed = "登录成功"
-login_failed = "找不到登录后的关键字，登录失败"
 loging_in = "正在使用此用户登录: %s"
 # ====================================================================
 
