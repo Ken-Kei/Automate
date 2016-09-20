@@ -83,6 +83,8 @@ unit = config.get("operation_data_setting", "unit")  # 单位
 friend_valid_chance = config.getint("operation_data_setting", "friend_valid_chance")  # 好友有效助力概率
 number_config = config.getint("operation_data_setting", "number_config")  # 数量设置
 prize_number = config.getint("operation_data_setting", "prize_number")  # 奖品数量
+qrcode_type = config.getint("operation_data_setting", "qrcode_type")  # 渠道二维码的类型设置
+qrcode_name = config.get("operation_data_setting", "qrcode_name")  # 二维码名称
 # ====================================================================
 
 

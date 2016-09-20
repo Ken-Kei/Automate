@@ -136,3 +136,23 @@ class PMLogInfo:
     PICCLASSCREATEFAILED            = '没有找到套图分类，用例执行失败'
     PICCREATESUCCEED                = '套图创建成功，用例通过'
     PICCREATEFAILED                 = '没有找到套图，用例执行失败'
+
+
+class CQLogInfo:
+
+    """
+    Name         :  运营 - 渠道二维码 - 打印信息
+    Author       :  Ken-Kei
+    Create Date  :  2016/09/20
+    """
+
+    CREATINGQRCODE                  = '正在创建二维码'
+    CREATEBUTTONNOTFOUND            = '找不到创建二维码的按钮'
+    SELECTINGCODETYPE               = '正在选择二维码的类型'
+    CODEDROPNOTFOUND                = '找不到下拉框的位置'
+    SELECTCODETYPE                  = '选择创建的二维码的类型为：%s'
+    TEMPCODENOTFOUND                = '找不到二维码的选项'
+    TYPEQRCODENAME                  = '输入二维码的名称：%s'
+    QRCODENAMENOTFOUND              = '找不到二维码名字输入框'
+    QRCODETYPENOTLEGAL              = '配置的二维码类型不合法，请检查qrcode_type字段'
+

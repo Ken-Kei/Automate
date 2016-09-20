@@ -413,3 +413,74 @@ class MicroHelpPageAction(BasePage):
         self.select_prize()
         self.click_save_button(MHPageLocators.SAVE)
         self.handle_alert()
+
+
+class ChannalQRCodePageAction(BasePage):
+    """
+    Name        :  运营 -> 渠道二维码
+    Author      :  Ken-Kei
+    Create Date :  2016/09/20
+    """
+
+    # 渠道二维码 - 点击新建二维码按钮
+    def click_create_code_button(self):
+        try:
+            logging.info(CQLogInfo.CREATINGQRCODE)
+            self.click(CQPageLocators.CREATEQRCODE)
+        except NoSuchElementException:
+            logging.error(CQLogInfo.CREATEBUTTONNOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 渠道二维码 - 点击二维码的类型的下拉框
+    def click_code_type_drop(self):
+        try:
+            logging.info(CQLogInfo.SELECTINGCODETYPE)
+            self.click(CQPageLocators.QRCODEDROP)
+        except NoSuchElementException:
+            logging.error(CQLogInfo.CODEDROPNOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 渠道二维码 - 选择二维码的类型
+    def select_code_type(self, code_type=qrcode_type):
+        self.click_code_type_drop()
+        try:
+            # 渠道二维码的类型，1为临时二维码，2为永久二维码
+            if code_type != 1 or 2 or 3 or type(code_type) != int:
+                raise ValueError(CQLogInfo.QRCODETYPENOTLEGAL)
+            if code_type == 1:
+                logging.info(CQLogInfo.SELECTCODETYPE % self.find_element(CQPageLocators.QRCODETYPETEMP).text)
+                self.click(CQPageLocators.QRCODETYPETEMP)
+            elif code_type == 2:
+                logging.info(CQLogInfo.SELECTCODETYPE % self.find_element(CQPageLocators.QRCODETYPEFOREVER).text)
+                self.click(CQPageLocators.QRCODETYPEFOREVER)
+        except NoSuchElementException:
+            logging.error(CQLogInfo.TEMPCODENOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 渠道二维码 - 输入二维码的名称
+    def type_code_name(self):
+        try:
+            logging.info(CQLogInfo.TYPEQRCODENAME % qrcode_name)
+            self.type(CQPageLocators.QRCODENAME, qrcode_name)
+        except NoSuchElementException:
+            logging.error(CQLogInfo.QRCODENAMENOTFOUND)
+        except Exception as e:
+            raise e
+
+    def create_qrcode(self):
+        # 二维码类型为3，即创建两种类型的二维码
+        if qrcode_type == 3:
+            for i in range(1, qrcode_type):
+                self.click_create_code_button()
+                self.select_code_type(i)
+                self.type_code_name()
+                self.click_save_button(CQPageLocators.QRCODESAVE)
+                time.sleep(2)
+        else:
+            self.click_create_code_button()
+            self.select_code_type()
+            self.type_code_name()
+            self.click_save_button(CQPageLocators.QRCODESAVE)

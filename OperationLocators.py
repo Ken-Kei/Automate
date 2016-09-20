@@ -104,3 +104,19 @@ class MHPageLocators:
     EVENTNAME                   = (By.ID, "raName")
     TYPESTARTDATE               = (By.ID, "js-startDate")
     TYPEENDDATE                 = (By.ID, "js-endDate")
+
+
+class CQPageLocators:
+
+    """
+    Name         :  运营 - 渠道二维码 - 元素定位
+    Author       :  Ken-Kei
+    Create Date  :  2016/09/20
+    """
+
+    CREATEQRCODE                = (By.CLASS_NAME, 'add_qrcode')
+    QRCODEDROP                  = (By.ID, "qrCodeType1")
+    QRCODETYPETEMP              = (By.XPATH, ".//*[@id='qrCodeType1']/option[1]")
+    QRCODETYPEFOREVER           = (By.XPATH, ".//*[@id='qrCodeType1']/option[2]")
+    QRCODENAME                  = (By.ID, "qrCodeName")
+    QRCODESAVE                  = (By.ID, "saveorupdate")
