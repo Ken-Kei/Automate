@@ -31,7 +31,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         """创建套图分类"""
 
         flag = False
-        logging.info("执行用例：创建套图分类")
+        logging.info("执行用例：%s" % test_CreatePictureClassify)
         try:
             self.lpa.login(pickit_manage_url, username, password)  # 打开套图管理的url并验证登录
             logging.info(loging_in % username)
@@ -40,11 +40,11 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(LoginLogInfo.LOGINSUCCEED)
                 self.pma.create_pickit_classify()  # 判断登录成功后开始创建套图分类
                 if self.is_create_succeed(PMPageLocators.NEWPICTURECLASSIFY, picture_classify_name) is True:
-                    logging.info("套图分类创建成功，用例通过")
+                    logging.info(PMLogInfo.PICCLASSCREATESUCCEED)
                     self.create_screen_shot(create_pc_succeed_screenshot, tc_name=test_CreatePictureClassify)
                     flag = True
                 else:
-                    logging.error("没有找到套图分类，用例执行不通过")
+                    logging.error(PMLogInfo.PICCLASSCREATEFAILED)
                     self.create_screen_shot(create_pc_failed_screenshot, tc_name=test_CreatePictureClassify)
             else:
                 logging.error(LoginLogInfo.LOGINFAILED)
@@ -57,7 +57,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         """创建套图"""
 
         flag = False
-        logging.info("执行用例：创建套图")
+        logging.info("执行用例：%s" % test_CreatePictureKit)
         # 登录
         try:
             # 打开卡券中心的url并验证登录
@@ -68,11 +68,11 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(LoginLogInfo.LOGINSUCCEED)
                 self.pma.create_pickit()  # 判断登录成功后开始创建套图
                 if self.is_create_succeed(PMPageLocators.NEWPICTURE, picture_name) is True:
-                    logging.info("套图创建成功，用例通过")
+                    logging.info(PMLogInfo.PICCREATESUCCEED)
                     self.create_screen_shot(create_pk_succeed_screenshot, tc_name=test_CreatePictureKit)
                     flag = True
                 else:
-                    logging.error("没有找到套图，用例执行不通过")
+                    logging.error(PMLogInfo.PICCREATEFAILED)
                     self.create_screen_shot(create_pk_failed_screenshot, tc_name=test_CreatePictureKit)
             else:
                 logging.error(LoginLogInfo.LOGINFAILED)
@@ -85,7 +85,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         """创建卡券"""
 
         flag = False
-        logging.info("执行用例：创建卡券")
+        logging.info("执行用例：%s " % test_CreateCard)
         try:
             self.lpa.login(card_center_url, username, password)  # 打开卡券中心的url并验证登录
             logging.info(loging_in % username)
@@ -94,11 +94,11 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(LoginLogInfo.LOGINSUCCEED)
                 self.ccpa.create_rebate_card()  # 判断登录成功后开始创建卡券
                 if self.is_create_succeed(CCPageLocators.NEWCARD, card_name) is True:
-                    logging.info("卡券创建成功,用例执行通过")
+                    logging.info(CCLogInfo.CARDCREATESUCCEED)
                     self.create_screen_shot(create_card_succeed_screenshot, tc_name=test_CreateCard)
                     flag = True
                 else:
-                    logging.error("没有找到卡券，用例执行不通过")
+                    logging.error(CCLogInfo.CARDCREATEFAILED)
                     self.create_screen_shot(create_card_failed_screenshot, tc_name=test_CreateCard)
             else:
                 logging.error(LoginLogInfo.LOGINFAILED)
@@ -111,7 +111,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         """创建微助力活动"""
 
         flag = False
-        logging.info("执行用例：创建微助力活动")
+        logging.info("执行用例：%s" % test_CreateMicroHelp)
         # 登录
         try:
             self.lpa.login(micro_help_url, username, password)  # 打开微助力的url并验证登录
@@ -121,11 +121,11 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 logging.info(LoginLogInfo.LOGINSUCCEED)
                 self.mha.create_micro_help()  # 判断登录成功后开始创建微助力活动
                 if self.is_create_succeed(MHPageLocators.NEWMICROHELP, activity_name) is True:
-                    logging.info("微助力活动创建成功，用例通过")
+                    logging.info(MHLogInfo.MHCREATESUCCEED)
                     self.create_screen_shot(create_mh_succeed_screenshot, tc_name=test_CreateMicroHelp)
                     flag = True
                 else:
-                    logging.error("没有找到微助力活动，用例执行不通过")
+                    logging.error(MHLogInfo.MHCREATEFAILED)
                     self.create_screen_shot(create_mh_failed_screenshot, tc_name=test_CreateMicroHelp)
             else:
                 logging.error(LoginLogInfo.LOGINFAILED)

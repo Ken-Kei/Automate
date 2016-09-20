@@ -28,7 +28,7 @@ class PublicLogInfo:
 class MHLogInfo:
 
     """
-    Name         :  微助力 - 打印信息
+    Name         :  运营 - 微助力 - 打印信息
     Author       :  Ken-Kei
     Create Date  :  2016/08/24
     """
@@ -60,12 +60,14 @@ class MHLogInfo:
     TYPEENDTIME                     = '输入微助力活动结束时间：%s'
     SELECTPRIZE                     = '选择了奖品：%s'
     TYPEPRIZENUMBER                 = '输入奖品数量：%s'
+    MHCREATESUCCEED                 = '微助力活动创建成功，用例通过'
+    MHCREATEFAILED                  = '没有找到微助力活动，用例执行失败'
 
 
 class CCLogInfo:
 
     """
-    Name         :  卡券中心 - 打印信息
+    Name         :  运营 - 卡券中心 - 打印信息
     Author       :  Ken-Kei
     Create Date  :  2016/09/08
     """
@@ -85,6 +87,8 @@ class CCLogInfo:
     GSNOTFOUND                      = '没找到商品简介的元素位置'
     TYPECARDINVENT                  = '输入卡券库存：%s'
     CARDINVENTNOTFOUND              = '没找到优惠券库存的元素位置'
+    CARDCREATESUCCEED               = '卡券创建成功,用例执行通过'
+    CARDCREATEFAILED                = '没有找到卡券，用例执行失败'
 
 
 class LoginLogInfo:
@@ -110,7 +114,7 @@ class LoginLogInfo:
 class PMLogInfo:
 
     """
-    Name         :  登入登出 - 打印信息
+    Name         :  运营 - 套图管理 - 打印信息
     Author       :  Ken-Kei
     Create Date  :  2016/09/13
     """
@@ -128,3 +132,7 @@ class PMLogInfo:
     PICDESCFIELDNOTFOUND            = '找不到套图介绍输入框位置'
     UPLOADFIRSTPIC                  = '正在上传第一张套图：%s'
     PICUPLOADFIN                    = '上传套图完毕'
+    PICCLASSCREATESUCCEED           = '套图分类创建成功，用例通过'
+    PICCLASSCREATEFAILED            = '没有找到套图分类，用例执行失败'
+    PICCREATESUCCEED                = '套图创建成功，用例通过'
+    PICCREATEFAILED                 = '没有找到套图，用例执行失败'
