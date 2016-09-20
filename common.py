@@ -177,6 +177,12 @@ class CommonUtils:
     # 发送邮件
     @staticmethod
     def send_email(file_path, att_file):
+
+        """
+        :param file_path    : the absolute path of the file.
+        :param att_file     : the name of the attachment.
+        """
+
         try:
             msg = MIMEMultipart('related')
             msg_alter = MIMEMultipart('alternative')

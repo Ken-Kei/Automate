@@ -136,7 +136,7 @@ class CardCenterPageAction(BasePage):
 class PictureManageAction(BasePage):
     """
     Name        :  运营 -> 套图管理
-    Author      :  刘建民
+    Author      :  Ken-Kei
     Create Date :  2016/08/23
     """
 
@@ -240,7 +240,7 @@ class PictureManageAction(BasePage):
 class MicroHelpPageAction(BasePage):
     """
     Name        :  运营 -> 微助力
-    Author      :  刘建民
+    Author      :  Ken-Kei
     Create Date :  2016/08/23
     """
 

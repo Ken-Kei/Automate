@@ -262,6 +262,11 @@ class BasePage(object):
 
     # 验证是否成功创建对应内容
     def is_create_succeed(self, ele, event_name):
+
+        """
+        :param ele          : the locator of the key word which is considered to judge the creation is exist.
+        :param event_name   : the name of the creation.
+        """
         try:
             self.wait_element_load_end(ele)
             if self.is_element_exist(ele) is False:

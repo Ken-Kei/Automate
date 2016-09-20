@@ -29,11 +29,11 @@ suite.addTest(LaunchLoginCase("test_LoginFailedWithWrongUser"))
 
 # 创建存放测试报告文件的目录
 path = com.create_result_path(launch_result_path)
-file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
+
 # 创建测试报告文件
+file_path = os.path.abspath(path) + "\\" + time.strftime("%H%M%S") + "result.html"
 fp = open(file_path, 'wb')
 
-discover = unittest.defaultTestLoader.discover('./TestCase', pattern='test*.py')
 # 定义测试报告
 description = '操作系统：' + operation_system + '      ' + '浏览器：' + browser
 runner = HTMLTestRunner(stream=fp,
@@ -42,12 +42,16 @@ runner = HTMLTestRunner(stream=fp,
 
 # 找到最新的报告目录
 new_report_path = com.find_new_report_path('./Result')
-# 找到最新的报告文件路径
-# new_file_path = com.find_new_report_path(new_report_path)
 # 找到最新的报告文件的文件名
 new_file = com.find_new_report_file(new_report_path)
+
+# 运行所有测试用例
+discover = unittest.defaultTestLoader.discover('./TestCase', pattern='test*.py')
 runner.run(discover)
+
+# 保存测试报告
 fp.close()
-# 以邮件和附件形式发送用例执行结果到指定邮箱地址
+
+# 发送用例执行结果到指定邮箱
 com.send_email(file_path, new_file)
 com.hang_program()
