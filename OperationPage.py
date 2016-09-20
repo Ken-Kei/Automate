@@ -23,6 +23,7 @@ class CardCenterPageAction(BasePage):
     Create Date :  2016/08/23
     """
 
+
     # 点击运营模块标签
     def click_operation_tab(self):
         try:
