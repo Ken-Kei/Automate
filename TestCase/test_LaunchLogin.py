@@ -57,7 +57,7 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
         """错误的用户名登录"""
 
         flag = False
-        logging.info("执行用例：错误的用户名登录")
+        logging.info("执行用例：%s" % test_LoginFailedWithWrongUser)
         # 登录后台
         try:
             # 打开O2O主页的url并使用错误的用户名登录
@@ -71,6 +71,29 @@ class LaunchLoginCase(unittest.TestCase, BasePage):
             else:
                 logging.error(LoginLogInfo.WRONGUSERLOGINSUCCEED)
                 self.create_screen_shot(login_succeed_screenshot, tc_name=test_LoginFailedWithWrongUser)
+                flag = True
+        except Exception as e:
+            raise e
+        self.assertEqual(flag, False)
+
+    def test_LoginFailedWithWrongPwd(self):
+        """错误的密码登录"""
+
+        flag = False
+        logging.info("执行用例：%s" % test_LoginFailedWithWrongPwd)
+        # 登录后台
+        try:
+            # 打开O2O主页的url并使用错误的密码登录
+            self.lp.login(main_url, username, wrong_password)
+            logging.info(loging_in % username)
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is False:
+                logging.info(LoginLogInfo.WRONGPWDLOGINFAILED)
+                self.create_screen_shot(login_failed_screenshot, tc_name=test_LoginFailedWithWrongPwd)
+                self.driver.delete_all_cookies()
+            else:
+                logging.error(LoginLogInfo.WRONGPWDLOGINSUCCEED)
+                self.create_screen_shot(login_succeed_screenshot, tc_name=test_LoginFailedWithWrongPwd)
                 flag = True
         except Exception as e:
             raise e

@@ -42,6 +42,7 @@ account_row = config.getint("account_info", "account_row")  # 读取到excel表�
 username = config.get("account_info", "username")  # 后台使用的账号
 password = config.get("account_info", "password")  # 后台使用的密码
 wrong_username = config.get("account_info", "wrong_username")  # 错误的用户名
+wrong_password = config.get("account_info", "wrong_password")  # 错误的密码
 
 # [test_result]
 data_source = config.get("test_result", "data_source")  # 测试数据数据源
@@ -144,6 +145,7 @@ create_mh_failed_screenshot = '创建微助力失败'
 
 test_LoginSucceed = '登入以及登出O2O平台成功'
 test_LoginFailedWithWrongUser = '错误的用户名登录'
+test_LoginFailedWithWrongPwd = '错误的密码登录'
 test_CreatePictureClassify = '创建套图分类'
 test_CreatePictureKit = '创建套图'
 test_CreateCard = '创建卡券'
