@@ -19,8 +19,10 @@ config = configparser.ConfigParser()
 config.read("config.ini", encoding='UTF-8')
 # ====================================================================
 
+
 # ====================================================================
 """指定驱动文件位置"""
+
 chrome_driver_path = os.path.join("./Driver/chromedriver.exe")
 ie_driver_path = os.path.join("./Driver/IEDriverServer.exe")
 # ====================================================================
@@ -41,22 +43,17 @@ username = config.get("account_info", "username")  # 后台使用的账号
 password = config.get("account_info", "password")  # 后台使用的密码
 wrong_username = config.get("account_info", "wrong_username")  # 错误的用户名
 
-
 # [test_result]
 data_source = config.get("test_result", "data_source")  # 测试数据数据源
 need_screenshot = config.get("test_result", "need_screenshot")  # 是否需要截图
 
-
 # [email_info]
 smtp_server = config.get("email_info", "smtp_server")  # smtp服务器地址
 smtp_server_port = config.get("email_info", "smtp_server_port")  # smtp服务器地址端口号
-
 from_email_address = config.get("email_info", "from_email_address")  # 发件人账号
 from_email_address_pwd = config.get("email_info", "from_email_address_pwd")  # 发件人密码
-
 to_mail_address = config.get("email_info", "to_email_address").split(',')  # 收件人地址
 cc_mail_address = config.get("email_info", "cc_email_address").split(',')  # 抄送人地址
-
 
 # [cron_job_time_setting]
 time_set = config.get("cron_job_time_setting", "time_set")  # 定时任务触发的时间
@@ -69,16 +66,12 @@ goods_summary = config.get("operation_data_setting", "goods_summary")  # 商品�
 inventory_data = config.get("operation_data_setting", "inventory_data")  # 优惠券库存
 big_image_name = config.get("operation_data_setting", "big_image_name")  # 卡券封面大图
 small_image_name = config.get("operation_data_setting", "small_image_name")  # 卡券封面小图
-
-
 picture_classify_name = config.get("operation_data_setting", "pickit_classify_name")  # 套图分类名称
 pickit_manage_url = config.get("operation_data_setting", "pickit_manage_url")  # 套图管理的url
-
 pickit_url = config.get("operation_data_setting", "pickit_url")  # 新建套图的url
 picture_name = config.get("operation_data_setting", "pickit_name")  # 套图的名称
 pickit_description = config.get("operation_data_setting", "pickit_description")  # 套图介绍
 pickit1 = config.get("operation_data_setting", "pickit1")  # 上传的第一张套图的名称
-
 micro_help_url = config.get("operation_data_setting", "micro_help_url")  # 微助力的url
 activity_name = config.get("operation_data_setting", "activity_name")  # 微助力活动名称
 share_title = config.get("operation_data_setting", "share_title")  # 微助力分享标题
@@ -148,6 +141,7 @@ create_mh_failed_screenshot = '创建微助力失败'
 
 # ====================================================================
 """用例名"""
+
 test_LoginSucceed = '登入以及登出O2O平台成功'
 test_LoginFailedWithWrongUser = '错误的用户名登录'
 test_CreatePictureClassify = '创建套图分类'

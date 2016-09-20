@@ -269,6 +269,7 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 输入微助力活动结束时间
     def type_mh_end_time(self):
         now_time = datetime.datetime.now()
+        # 设定活动的结束时间为开始时间的3天后
         fur_time = now_time + datetime.timedelta(days=3)
         date = fur_time.strftime("%Y-%m-%d %H:%M:%S")
         try:
