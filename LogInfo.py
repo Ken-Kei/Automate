@@ -2,7 +2,7 @@
 
 
 """
-Author       :  刘建民
+Author       :  Ken-Kei
 Create Date  :  2016/08/24
 """
 
@@ -11,7 +11,7 @@ class PublicLogInfo:
 
     """
     Name         :  公共日志 - 打印信息
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/24
     """
 
@@ -29,7 +29,7 @@ class MHLogInfo:
 
     """
     Name         :  微助力 - 打印信息
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/24
     """
 
@@ -66,7 +66,7 @@ class CCLogInfo:
 
     """
     Name         :  卡券中心 - 打印信息
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/09/08
     """
 
@@ -91,7 +91,7 @@ class LoginLogInfo:
 
     """
     Name         :  登入登出 - 打印信息
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/09/13
     """
 
@@ -109,7 +109,7 @@ class PMLogInfo:
 
     """
     Name         :  登入登出 - 打印信息
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/09/13
     """
 

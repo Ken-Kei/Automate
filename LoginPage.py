@@ -2,7 +2,7 @@
 
 
 """
-Author       :  刘建民
+Author       :  Ken-Kei
 Create Date  :  2016/07/01
 """
 
@@ -18,7 +18,7 @@ class LoginPageAction(BasePage):
 
     """
     Name        :  登入登出
-    Author      :  刘建民
+    Author      :  Ken-Kei
     Create Date :  2016/08/23
     """
 

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Author       :  刘建民
+Author       :  Ken-Kei
 Create Date  :  2016/07/01
 """
 
@@ -24,7 +24,7 @@ class BasePage(object):
 
     """
     Name         :  公共方法 - 基础页面对象操作
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/24
     """
     

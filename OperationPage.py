@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Author       :  刘建民
+Author       :  Ken-Kei
 Create Date  :  2016/7/1
 """
 
@@ -19,7 +19,7 @@ from selenium.webdriver.common.keys import Keys
 class CardCenterPageAction(BasePage):
     """
     Name        :  运营 -> 卡券中心
-    Author      :  刘建民
+    Author      :  Ken-Kei
     Create Date :  2016/08/23
     """
 

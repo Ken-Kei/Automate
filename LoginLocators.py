@@ -14,7 +14,7 @@ class LoginPageLocators:
 
     """
     Name         :  登入登出 - 元素定位
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/23
     """
 

@@ -2,7 +2,7 @@
 
 
 """
-Author       :  刘建民
+Author       :  Ken-Kei
 Create Date  :  2016/07/01
 """
 
@@ -23,7 +23,7 @@ class CommonUtils:
 
     """
     Name         :  公共方法 - 工具类
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/24
     """
 

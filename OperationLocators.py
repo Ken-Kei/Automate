@@ -2,7 +2,7 @@
 
 
 """
-Author       :  刘建民
+Author       :  Ken-Kei
 Create Date  :  2016/08/23
 """
 
@@ -14,7 +14,7 @@ class CCPageLocators:
 
     """
     Name         :  运营 - 卡券中心 - 元素定位
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/23
     """
 
@@ -42,7 +42,7 @@ class PMPageLocators:
 
     """
     Name         :  运营 - 套图管理 - 元素定位
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/23
     """
 
@@ -73,7 +73,7 @@ class MHPageLocators:
 
     """
     Name         :  运营 - 微助力 - 元素定位
-    Author       :  刘建民
+    Author       :  Ken-Kei
     Create Date  :  2016/08/23
     """
 
