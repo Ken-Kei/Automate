@@ -47,7 +47,7 @@ new_file = com.find_new_report_file(new_report_path)
 
 # 运行所有测试用例
 discover = unittest.defaultTestLoader.discover('./TestCase', pattern='test*.py')
-runner.run(discover)
+runner.run(suite)
 
 # 保存测试报告
 fp.close()

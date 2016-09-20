@@ -184,21 +184,17 @@ class CommonUtils:
         """
 
         try:
-            msg = MIMEMultipart('related')
-            msg_alter = MIMEMultipart('alternative')
-            msg.attach(msg_alter)
-
-            # 正文添加HTML格式的测试报告
+            msg = MIMEMultipart()
             new_report_path = CommonUtils.find_new_report_path('./Result')
             # 找到最新的报告文件路径
             new_file_path = CommonUtils.find_new_report_path(new_report_path)
             html = open(os.path.abspath(new_file_path), 'rb').read()
             html = MIMEText(html, 'html', 'utf-8')
-            msg_alter.attach(html)
+            msg.attach(html)
 
-            # 附上正文
-            part = MIMEText(main_body, 'plain', 'utf-8')
-            msg_alter.attach(part)
+            # # 附上正文
+            # part = MIMEText(main_body, _subtype='plain', _charset='utf-8')
+            # msg.attach(part)
 
             # 邮件标题、收发、抄送地址
             msg['Subject'] = Header(subject, 'utf-8')
