@@ -2,7 +2,7 @@
 
 """
 Author       :  Ken-Kei
-Create Date  :  2016/7/1
+Create Date  :  2016/07/01
 """
 
 from selenium.common.exceptions import NoSuchElementException
