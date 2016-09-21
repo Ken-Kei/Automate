@@ -463,10 +463,19 @@ class ChannalQRCodePageAction(BasePage):
     # 渠道二维码 - 输入二维码的名称
     def type_code_name(self):
         try:
-            logging.info(CQLogInfo.TYPEQRCODENAME % qrcode_name)
-            self.type(CQPageLocators.QRCODENAME, qrcode_name)
+            logging.info(CQLogInfo.TYPEQRCODENAME % qrcode_temp_name)
+            self.type(CQPageLocators.QRCODENAME, qrcode_temp_name)
         except NoSuchElementException:
             logging.error(CQLogInfo.QRCODENAMENOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 点击渠道二维码列表
+    def click_qrcode_list(self):
+        try:
+            self.click(CQPageLocators.QRCODELIST)
+        except NoSuchElementException:
+            logging.error(CQLogInfo.QRCODELISTNOTFOUND)
         except Exception as e:
             raise e
 

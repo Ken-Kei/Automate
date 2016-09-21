@@ -120,3 +120,6 @@ class CQPageLocators:
     QRCODETYPEFOREVER           = (By.XPATH, ".//*[@id='qrCodeType1']/option[2]")
     QRCODENAME                  = (By.ID, "qrCodeName")
     QRCODESAVE                  = (By.ID, "saveorupdate")
+    QRCODELIST                  = (By.CLASS_NAME, 'focus')
+    NEWQRCODE                   = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
+    SECNEWQRCODE                = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[2]/td[1]")

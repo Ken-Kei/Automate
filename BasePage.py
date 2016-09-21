@@ -261,18 +261,30 @@ class BasePage(object):
             raise e
 
     # 验证是否成功创建对应内容
-    def is_create_succeed(self, ele, event_name):
+    def is_create_succeed(self, ele, event_name, sec_ele=None, sec_event_name=None):
 
         """
-        :param ele          : the locator of the key word which is considered to judge the creation is exist.
-        :param event_name   : the name of the creation.
+        :param ele              : the locator of the key word which is considered to judge the creation is exist.
+        :param event_name       : the name of the creation.
+        :param sec_ele          : the second locator of the key word which is considered to judge the creation
+                                  is exist, the default value is None.
+        :param sec_event_name   : the name of the second creation, the default value is None.
         """
         try:
             self.wait_element_load_end(ele)
             if self.is_element_exist(ele) is False:
                 return False
             elif self.find_element(ele).text == event_name:
-                return True
+                # 当第一个创建的内容判断通过后，再判断第二个是否也判断通过
+                if sec_ele is not None:
+                    if self.is_element_exist(sec_ele) is False:
+                        return False
+                    # 当第二个内容也判断通过后，才返回True
+                    elif self.find_element(sec_ele).text == sec_event_name:
+                        return True
+                # 如果没有传入第二个元素，则直接返回True
+                else:
+                    return True
             else:
                 return False
         except:

@@ -155,4 +155,6 @@ class CQLogInfo:
     TYPEQRCODENAME                  = '输入二维码的名称：%s'
     QRCODENAMENOTFOUND              = '找不到二维码名字输入框'
     QRCODETYPENOTLEGAL              = '配置的二维码类型不合法，请检查qrcode_type字段'
-
+    QRCODELISTNOTFOUND              = '找不到二维码列表位置'
+    CODECREATESUCCEED               = '二维码创建成功，用例执行通过'
+    CODECREATEFAILED                = '二维码创建失败，用例执行失败'

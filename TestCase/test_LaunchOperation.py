@@ -17,7 +17,7 @@ import logging
 
 
 class LaunchOperationCase(unittest.TestCase, BasePage):
-    """家居精灵-> 运营 - 套图管理"""
+    """家居精灵-> 运营模块 - 自动化测试用例"""
     
     def setUp(self):
         self.verificationErrors = []
@@ -26,6 +26,7 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
         self.pma = PictureManageAction(self.driver)
         self.ccpa = CardCenterPageAction(self.driver)
         self.mha = MicroHelpPageAction(self.driver)
+        self.qrpa = ChannalQRCodePageAction(self.driver)
 
     def test_CreatePictureClassify(self):
         """创建套图分类"""
@@ -127,6 +128,45 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
                 else:
                     logging.error(MHLogInfo.MHCREATEFAILED)
                     self.create_screen_shot(create_mh_failed_screenshot, tc_name=test_CreateMicroHelp)
+            else:
+                logging.error(LoginLogInfo.LOGINFAILED)
+                self.driver.delete_all_cookies()
+        except Exception as e:
+            raise e
+        self.assertEqual(flag, True)
+
+    def test_CreateQRCode(self):
+        """创建渠道二维码"""
+
+        flag = False
+        judge = ''
+        logging.info("执行用例：%s" % test_CreateQRCode)
+        # 登录
+        try:
+            self.lpa.login(qrcode_url, username, password)  # 打开渠道二维码的url并验证登录
+            logging.info(loging_in % username)
+            self.wait_element_load_end(LoginPageLocators.LOGOUTBUTTON)
+            if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
+                logging.info(LoginLogInfo.LOGINSUCCEED)
+                self.qrpa.create_qrcode()  # 判断登录成功后开始创建二维码
+                self.qrpa.click_qrcode_list()  # 点击二维码列表验证二维码是否创建成功
+                # 当配置的类型为3时创建两种二维码
+                if qrcode_type == 3:
+                    judge = self.is_create_succeed(CQPageLocators.NEWQRCODE, qrcode_forever_name,
+                                                   CQPageLocators.SECNEWQRCODE, qrcode_temp_name)
+                # 当配置的类型为1时创建临时二维码
+                elif qrcode_type == 1:
+                    judge = self.is_create_succeed(CQPageLocators.SECNEWQRCODE, qrcode_temp_name)
+                # 当配置的类型为2时创建永久二维码
+                elif qrcode_type == 2:
+                    judge = self.is_create_succeed(CQPageLocators.NEWQRCODE, qrcode_forever_name)
+                if judge is True:
+                    logging.info(CQLogInfo.CODECREATESUCCEED)
+                    self.create_screen_shot(create_code_succeed_screenshot, tc_name=test_CreateQRCode)
+                    flag = True
+                else:
+                    logging.error(CQLogInfo.CODECREATEFAILED)
+                    self.create_screen_shot(create_code_failed_screenshot, tc_name=test_CreateQRCode)
             else:
                 logging.error(LoginLogInfo.LOGINFAILED)
                 self.driver.delete_all_cookies()
