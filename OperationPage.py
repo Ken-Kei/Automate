@@ -461,6 +461,7 @@ class ChannalQRCodePageAction(BasePage):
         except Exception as e:
             raise e
 
+
     # 渠道二维码 - 输入二维码的名称
     def type_code_name(self, code_type=None):
         try:
