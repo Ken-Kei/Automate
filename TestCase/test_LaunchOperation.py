@@ -149,15 +149,15 @@ class LaunchOperationCase(unittest.TestCase, BasePage):
             if self.is_element_exist(LoginPageLocators.LOGOUTBUTTON) is True:
                 logging.info(LoginLogInfo.LOGINSUCCEED)
                 self.qrpa.create_qrcode()  # 判断登录成功后开始创建二维码
-                self.qrpa.click_qrcode_list()  # 点击二维码列表验证二维码是否创建成功
-                # 当配置的类型为3时创建两种二维码
+                self.qrpa.click_qrcode_list()  # 点击跳转到二维码列表验证二维码是否创建成功
+                # 当配置的类型为3时验证两种二维码是否创建成功
                 if qrcode_type == 3:
                     judge = self.is_create_succeed(CQPageLocators.NEWQRCODE, qrcode_forever_name,
                                                    CQPageLocators.SECNEWQRCODE, qrcode_temp_name)
-                # 当配置的类型为1时创建临时二维码
+                # 当配置的类型为1时验证临时二维码是否创建成功
                 elif qrcode_type == 1:
                     judge = self.is_create_succeed(CQPageLocators.SECNEWQRCODE, qrcode_temp_name)
-                # 当配置的类型为2时创建永久二维码
+                # 当配置的类型为2时验证永久二维码是否创建成功
                 elif qrcode_type == 2:
                     judge = self.is_create_succeed(CQPageLocators.NEWQRCODE, qrcode_forever_name)
                 if judge is True:
