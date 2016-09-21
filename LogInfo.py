@@ -158,3 +158,14 @@ class CQLogInfo:
     QRCODELISTNOTFOUND              = '找不到二维码列表位置'
     CODECREATESUCCEED               = '二维码创建成功，用例执行通过'
     CODECREATEFAILED                = '二维码创建失败，用例执行失败'
+
+
+class SLLogInfo:
+
+    """
+    Name         :  门店 - 门店列表 - 打印信息
+    Author       :  Ken-Kei
+    Create Date  :  2016/09/21
+    """
+
+    CREATEBUTTONNOTFOUND            = '找不到新增按钮'
