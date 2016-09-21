@@ -12,7 +12,7 @@ import unittest
 import logging
 from Lib.HTMLTestRunner import HTMLTestRunner
 from TestCase.test_LaunchOperation import LaunchOperationCase
-from TestCase.test_LaunchLogin import LaunchLoginCase
+# from TestCase.test_LaunchLogin import LaunchLoginCase
 
 
 com = CommonUtils()
