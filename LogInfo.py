@@ -170,3 +170,7 @@ class SLLogInfo:
 
     CREATEBUTTONNOTFOUND            = '找不到新增按钮'
     TYPESTORENAME                   = '输入门店名称：%s'
+    STORETYPEDROPNOTFOUND           = '找不到门店类型的下拉框'
+    SELECTSTORETYPE                 = '选择门店类型：%s'
+    STORETYPENOTFOUND               = '找不到相应的门店类型：%s'
+    WRONGSTORETYPE                  = '配置的门店类型不合法，请检查store_type字段'

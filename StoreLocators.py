@@ -20,3 +20,5 @@ class SLPageLocators:
 
     CREATESTOREBUTTON           = (By.XPATH, ".//*[@id='form']/div[6]/input[2]")
     STORENAME                   = (By.ID, "storeName")
+    STORETYPEDROP               = (By.XPATH, ".//*[@id='storeEdit']/table/tbody/tr[1]/td[2]/div/select")
+    STORETYPE                   = ".//*[@id='storeEdit']/table/tbody/tr[1]/td[2]/div/select/option[%d]"

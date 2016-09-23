@@ -87,7 +87,8 @@ qrcode_url = config.get("operation_data_setting", "qrcode_url")  # 二维码名�
 qrcode_type = config.getint("operation_data_setting", "qrcode_type")  # 渠道二维码的类型设置
 qrcode_temp_name = config.get("operation_data_setting", "qrcode_temp_name")  # 临时二维码名称
 qrcode_forever_name = config.get("operation_data_setting", "qrcode_forever_name")  # 永久二维码名称
-store_name = config.get("operation_data_setting", "qrcode_forever_name")  # 永久二维码名称
+store_name = config.get("store_data_setting", "qrcode_forever_name")  # 门店名称
+store_type = config.get("store_data_setting", "store_type")  # 门店类型
 # ====================================================================
 
 

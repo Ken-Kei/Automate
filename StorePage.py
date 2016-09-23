@@ -11,9 +11,6 @@ from StoreLocators import *
 from LogInfo import *
 from BasePage import BasePage
 import logging
-import datetime
-import time
-from selenium.webdriver.common.keys import Keys
 
 
 class CardCenterPageAction(BasePage):
@@ -39,5 +36,31 @@ class CardCenterPageAction(BasePage):
             self.type(SLPageLocators.STORENAME, store_name)
         except NoSuchElementException:
             logging.error(MHLogInfo.SHARETITLENOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 门店列表 - 点击门店类型下拉框
+    def click_store_type_drop(self):
+        try:
+            self.click(SLPageLocators.STORETYPEDROP)
+        except NoSuchElementException:
+            logging.error(SLLogInfo.STORETYPEDROPNOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 门店列表 - 选择门店类型
+    def select_store_type(self):
+        try:
+            self.click_store_type_drop()
+            # 1为直营店，2为加盟店，3为虚拟门店
+            if store_type in [1, 2, 3]:
+                st = (By.XPATH, SLPageLocators.STORETYPE % store_type + 1)
+                logging.info(SLLogInfo.SELECTSTORETYPE % self.find_element(st).text)
+                self.click(st)
+            else:
+                logging.error(SLLogInfo.WRONGSTORETYPE)
+                raise ValueError(SLLogInfo.WRONGSTORETYPE)
+        except NoSuchElementException:
+            logging.error(SLLogInfo.STORETYPENOTFOUND % store_type)
         except Exception as e:
             raise e
