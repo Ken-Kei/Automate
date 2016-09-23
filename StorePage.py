@@ -31,3 +31,13 @@ class CardCenterPageAction(BasePage):
             logging.error(SLLogInfo.CREATEBUTTONNOTFOUND)
         except Exception as e:
             raise e
+
+    # 门店列表 - 输入门店名称
+    def type_store_name(self):
+        try:
+            logging.info(SLLogInfo.TYPESTORENAME % store_name)
+            self.type(SLPageLocators.STORENAME, store_name)
+        except NoSuchElementException:
+            logging.error(MHLogInfo.SHARETITLENOTFOUND)
+        except Exception as e:
+            raise e

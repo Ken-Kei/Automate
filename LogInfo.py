@@ -169,3 +169,4 @@ class SLLogInfo:
     """
 
     CREATEBUTTONNOTFOUND            = '找不到新增按钮'
+    TYPESTORENAME                   = '输入门店名称：%s'

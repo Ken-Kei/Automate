@@ -19,3 +19,4 @@ class SLPageLocators:
     """
 
     CREATESTOREBUTTON           = (By.XPATH, ".//*[@id='form']/div[6]/input[2]")
+    STORENAME                   = (By.ID, "storeName")
