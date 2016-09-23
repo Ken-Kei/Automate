@@ -22,3 +22,5 @@ class SLPageLocators:
     STORENAME                   = (By.ID, "storeName")
     STORETYPEDROP               = (By.XPATH, ".//*[@id='storeEdit']/table/tbody/tr[1]/td[2]/div/select")
     STORETYPE                   = ".//*[@id='storeEdit']/table/tbody/tr[1]/td[2]/div/select/option[%d]"
+    STORESTATUSDROP             = (By.ID, "storeStatus")
+    STORESTATUS                 = ".//*[@id='storeStatus']/option[%d]"

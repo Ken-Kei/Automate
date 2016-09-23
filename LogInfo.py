@@ -23,6 +23,7 @@ class PublicLogInfo:
     ALERTNOTFOUND                   = '找不到alert窗口'
     SAVEBUTTONNOTFOUND              = '找不到保存按钮'
     CONFIRMNOTFOUND                 = '找不到确定按钮'
+    DROPDOWNLISTNOTFOUND            = '找不到下拉框'
 
 
 class MHLogInfo:
@@ -174,3 +175,6 @@ class SLLogInfo:
     SELECTSTORETYPE                 = '选择门店类型：%s'
     STORETYPENOTFOUND               = '找不到相应的门店类型：%s'
     WRONGSTORETYPE                  = '配置的门店类型不合法，请检查store_type字段'
+    SELECTSTORESTATUS               = '选择门店状态：%s'
+    WRONGSTORESTATUS                = '配置的门店状态不合法，请检查store_status字段'
+    STORESTATUSNOTFOUND             = '找不到相应的门店状态：%s'

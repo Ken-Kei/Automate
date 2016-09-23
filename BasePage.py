@@ -289,3 +289,12 @@ class BasePage(object):
                 return False
         except:
             return False
+
+    # 点击下拉框
+    def click_drop_down_list(self, ele):
+        try:
+            self.click(ele)
+        except NoSuchElementException:
+            logging.error(PublicLogInfo.DROPDOWNLISTNOTFOUND)
+        except Exception as e:
+            raise e

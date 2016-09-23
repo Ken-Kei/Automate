@@ -89,6 +89,7 @@ qrcode_temp_name = config.get("operation_data_setting", "qrcode_temp_name")  # �
 qrcode_forever_name = config.get("operation_data_setting", "qrcode_forever_name")  # 永久二维码名称
 store_name = config.get("store_data_setting", "qrcode_forever_name")  # 门店名称
 store_type = config.get("store_data_setting", "store_type")  # 门店类型
+store_status = config.get("store_data_setting", "store_status")  # 门店状态
 # ====================================================================
 
 
