@@ -178,3 +178,7 @@ class SLLogInfo:
     SELECTSTORESTATUS               = '选择门店状态：%s'
     WRONGSTORESTATUS                = '配置的门店状态不合法，请检查store_status字段'
     STORESTATUSNOTFOUND             = '找不到相应的门店状态：%s'
+    TYPESTOREPHONE                  = '输入门店电话：%s'
+    STORENAMENOTFOUND               = '找不到门店名称输入框'
+    STOREPHONENOTFOUND              = '找不到门店电话输入框'
+    TYPECONTACT                     = '输入联系人：%s'

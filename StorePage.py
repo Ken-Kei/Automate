@@ -35,7 +35,7 @@ class CardCenterPageAction(BasePage):
             logging.info(SLLogInfo.TYPESTORENAME % store_name)
             self.type(SLPageLocators.STORENAME, store_name)
         except NoSuchElementException:
-            logging.error(MHLogInfo.SHARETITLENOTFOUND)
+            logging.error(SLLogInfo.STORENAMENOTFOUND)
         except Exception as e:
             raise e
 
@@ -82,5 +82,25 @@ class CardCenterPageAction(BasePage):
                 raise ValueError(SLLogInfo.WRONGSTORESTATUS)
         except NoSuchElementException:
             logging.error(SLLogInfo.STORESTATUSNOTFOUND % self.find_element(st).text)
+        except Exception as e:
+            raise e
+
+    # 输入门店电话
+    def type_store_phone(self):
+        try:
+            logging.info(SLLogInfo.TYPESTOREPHONE % store_phone)
+            self.type(SLPageLocators.STOREPHONE, store_phone)
+        except NoSuchElementException:
+            logging.error(SLLogInfo.STOREPHONENOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 输入联系人
+    def type_contact(self):
+        try:
+            logging.info(SLLogInfo.TYPESTOREPHONE % store_phone)
+            self.type(SLPageLocators.STOREPHONE, store_phone)
+        except NoSuchElementException:
+            logging.error(SLLogInfo.STOREPHONENOTFOUND)
         except Exception as e:
             raise e
