@@ -98,9 +98,41 @@ class CardCenterPageAction(BasePage):
     # 输入联系人
     def type_contact(self):
         try:
-            logging.info(SLLogInfo.TYPESTOREPHONE % store_phone)
-            self.type(SLPageLocators.STOREPHONE, store_phone)
+            logging.info(SLLogInfo.TYPECONTACT % store_contact)
+            self.type(SLPageLocators.CONTACT, store_contact)
         except NoSuchElementException:
-            logging.error(SLLogInfo.STOREPHONENOTFOUND)
+            logging.error(SLLogInfo.CONTACTNOTFOUND)
+        except Exception as e:
+            raise e
+
+    # 选择经营范围
+    def select_manage_scope(self):
+        fms = (By.XPATH, SLPageLocators.FATHERMANAGESCOPE % father_manage_scope + 1)
+        ms = (By.XPATH, SLPageLocators.MANAGESCOPE % manage_scope + 1)
+        try:
+            # 点击父级经营范围下拉框
+            self.click_drop_down_list(SLPageLocators.FATHERMANAGESCOPEDROP)
+            # 如果配置的father_manage_scope字段大于或者小于有效范围则抛出异常，目前有效范围为1
+            valid_scope = 2
+            if father_manage_scope in range(1, valid_scope) is False:
+                logging.error(SLLogInfo.WRONGFATHERMANGESCOPE)
+                raise ValueError(SLLogInfo.WRONGFATHERMANGESCOPE)
+            elif father_manage_scope in range(1, 2):
+                logging.info(SLLogInfo.SELECTMANAGESCOPE % self.find_element(fms).text)
+                self.click(fms)
+            else:
+                logging.error(SLLogInfo.WRONGFATHERMANGESCOPE)
+                raise ValueError(SLLogInfo.WRONGFATHERMANGESCOPE)
+            # 点击子级经营范围下拉框
+            self.click_drop_down_list(SLPageLocators.MANAGESCOPEDROP)
+            # 1为汽车/用品/配件/改装
+            if manage_scope in range(1, 2):
+                logging.info(SLLogInfo.SELECTMANAGESCOPE % self.find_element(ms).text)
+                self.click(ms)
+            else:
+                logging.error(SLLogInfo.WRONGMANGESCOPE)
+                raise ValueError(SLLogInfo.WRONGMANGESCOPE)
+        except NoSuchElementException:
+            logging.error(SLLogInfo.MANAGESCOPENOTFOUND)
         except Exception as e:
             raise e

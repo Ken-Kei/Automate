@@ -90,7 +90,10 @@ qrcode_forever_name = config.get("operation_data_setting", "qrcode_forever_name"
 store_name = config.get("store_data_setting", "qrcode_forever_name")  # 门店名称
 store_type = config.get("store_data_setting", "store_type")  # 门店类型
 store_status = config.get("store_data_setting", "store_status")  # 门店状态
-store_phone = config.get("store_data_setting", "store_phone")  # 门店状态
+store_phone = config.get("store_data_setting", "store_phone")  # 门店电话
+store_contact = config.get("store_data_setting", "store_contact")  # 联系人
+father_manage_scope = config.get("store_data_setting", "father_manage_scope")  # 父级经营范围
+manage_scope = config.get("store_data_setting", "manage_scope")  # 子级经营范围
 # ====================================================================
 
 

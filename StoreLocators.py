@@ -25,3 +25,8 @@ class SLPageLocators:
     STORESTATUSDROP             = (By.ID, "storeStatus")
     STORESTATUS                 = ".//*[@id='storeStatus']/option[%d]"
     STOREPHONE                  = (By.NAME, 'storePhone')
+    CONTACT                     = (By.NAME, 'contactStaff')
+    FATHERMANAGESCOPEDROP       = (By.ID, "editfatherId")
+    MANAGESCOPEDROP             = (By.ID, "editscopeId")
+    FATHERMANAGESCOPE           = ".//*[@id='editfatherId']/option[%d]"
+    MANAGESCOPE                 = ".// *[ @ id = 'editscopeId']/option[%d]"

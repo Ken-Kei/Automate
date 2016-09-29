@@ -182,3 +182,8 @@ class SLLogInfo:
     STORENAMENOTFOUND               = '找不到门店名称输入框'
     STOREPHONENOTFOUND              = '找不到门店电话输入框'
     TYPECONTACT                     = '输入联系人：%s'
+    CONTACTNOTFOUND                 = '找不到联系人的输入框'
+    SELECTMANAGESCOPE               = '选择经营范围：%s'
+    WRONGFATHERMANGESCOPE           = '配置的父级经营范围不合法，请检查father_manage_scope字段'
+    MANAGESCOPENOTFOUND             = '找不到相应的经营范围：%s'
+    WRONGMANGESCOPE                 = '配置的子级经营范围不合法，请检查manage_scope字段'
