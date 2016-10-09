@@ -54,9 +54,9 @@ class BasePage(object):
     def type_in_iframe(self, frame_loc, loc, text):
 
         """
-        :param frame_loc    : the locator of the frame.
-        :param loc          : the locator of which element you want to handled.
-        :param text         : the text you want to type.
+        :param frame_loc    : The locator of the frame.
+        :param loc          : The locator of which element you want to handled.
+        :param text         : The text you want to type.
         """
 
         self.driver.switch_to_frame(frame_loc)
@@ -136,10 +136,10 @@ class BasePage(object):
     def is_attribute_style_exist(self, ele, locator):
 
         """
-        :param ele      : this is the upload locator which is the real locator to upload image,
+        :param ele      : This is the upload locator which is the real locator to upload image,
                           e.g: (By.ID, "fileImage").
         :param locator  : Locator's attribute, e.g: "fileImage".
-        :return         : due to the different status of the @style(exist or not),
+        :return         : Due to the different status of the @style(exist or not),
                           return True or False.
         """
 
@@ -158,10 +158,10 @@ class BasePage(object):
     def upload_image(self, ue, locator, file_name):
 
         """
-        :param ue           : this is the upload locator which is the real locator to upload image,
+        :param ue           : This is the upload locator which is the real locator to upload image,
                               e.g: (By.ID, "fileImage").
         :param locator      : Locator's attribute, e.g: "fileImage".
-        :param file_name    : the image you want to upload.
+        :param file_name    : The image you want to upload.
         """
 
         try:
@@ -189,8 +189,8 @@ class BasePage(object):
     def create_screen_shot(self, screenshot_name, tc_name=None):
 
         """
-        :param screenshot_name  : the name of screen shot.
-        :param tc_name          : this is a default parameter, you can assign a value when you want to save
+        :param screenshot_name  : The name of screen shot.
+        :param tc_name          : This is a default parameter, you can assign a value when you want to save
                                   screenshot with a single directory named by the name of the test case,
                                   such as: tc_name=test_LoginSucceed.
         """
@@ -218,24 +218,25 @@ class BasePage(object):
             raise e
 
     # 上传封面大图
-    def upload_big_pic(self, button_ele, ele, ele_locate, confrim_ele):
+    def upload_pic(self, button_ele, ele, ele_locate, confrim_ele, log_content):
 
         """
-        :param button_ele   : the upload button locator.
-        :param ele          : this is the upload locator which is the real locator to upload image,
+        :param button_ele   : The upload button locator.
+        :param ele          : This is the upload locator which is the whole locator to upload image,
                               e.g: (By.ID, "fileImage").
         :param ele_locate   : Locator's attribute, e.g: "fileImage".
-        :param confrim_ele  : the confirm button locator.
+        :param confrim_ele  : The confirm button locator.
+        :param log_content  : The log content will print when finish uploading image.
         """
 
         logging.info(PublicLogInfo.UPLOADINGBIGPIC % big_image_name)
         self.click_upload_button(button_ele)
         self.upload_image(ele, ele_locate, big_image_name)
         self.click_confirm_button(confrim_ele)
-        logging.info(PublicLogInfo.UPLOADBIGPICFIN)
+        logging.info(log_content)
 
     # 上传封面小图
-    def upload_small_pic(self, button_ele, ele, ele_locate, confrim_ele):
+    def upload_pic(self, button_ele, ele, ele_locate, confrim_ele):
         logging.info(PublicLogInfo.UPLOADINGSMALLPIC % small_image_name)
         self.click_upload_button(button_ele)
         self.upload_image(ele, ele_locate, small_image_name)
@@ -264,11 +265,11 @@ class BasePage(object):
     def is_create_succeed(self, ele, event_name, sec_ele=None, sec_event_name=None):
 
         """
-        :param ele              : the locator of the key word which is considered to judge the creation is exist.
-        :param event_name       : the name of the creation.
-        :param sec_ele          : the second locator of the key word which is considered to judge the creation
+        :param ele              : The locator of the key word which is considered to judge the creation is exist.
+        :param event_name       : The name of the creation.
+        :param sec_ele          : The second locator of the key word which is considered to judge the creation
                                   is exist, the default value is None.
-        :param sec_event_name   : the name of the second creation, the default value is None.
+        :param sec_event_name   : The name of the second creation, the default value is None.
         """
         try:
             self.wait_element_load_end(ele)

@@ -123,3 +123,4 @@ class CQPageLocators:
     QRCODELIST                  = (By.ID, 'coupon_list')
     NEWQRCODE                   = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[1]/td[1]")
     SECNEWQRCODE                = (By.XPATH, ".//*[@id='setting']/table/tbody/tr[2]/td[1]")
+    UPLOADIMAGEBUTTON           = (By.ID, ".//*[@id='ImgUrl']")

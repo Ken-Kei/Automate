@@ -16,7 +16,7 @@ class PublicLogInfo:
     """
 
     UPLOADINGBIGPIC                 = '正在上传大图：%s'
-    UPLOADBIGPICFIN                 = '上传大图完毕'
+    UPLOADPICFIN                    = '上传图片完毕'
     UPLOADINGSMALLPIC               = '正在上传封面小图：%s'
     UPLOADSMALLPICFIN               = '上传封面小图完毕'
     UPLOADNOTFOUND                  = '找不到上传图片的按钮位置'

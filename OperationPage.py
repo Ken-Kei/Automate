@@ -119,13 +119,18 @@ class CardCenterPageAction(BasePage):
 
     # 卡券中心 - 创建折扣券
     def create_rebate_card(self):
-        self.upload_big_pic(CCPageLocators.BIGPIC, CCPageLocators.FILEIMAGE,
-                            CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM)
-        self.upload_small_pic(CCPageLocators.SMALLPIC, CCPageLocators.FILEIMAGE,
-                              CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM)
+        # 上传封面大图
+        self.upload_pic(CCPageLocators.BIGPIC, CCPageLocators.FILEIMAGE,
+                        CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADPICFIN)
+        # 上传封面小图
+        self.upload_pic(CCPageLocators.SMALLPIC, CCPageLocators.FILEIMAGE,
+                        CCPageLocators.FILEIMAGELOCATE, CCPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADSMALLPICFIN)
         self.type_card_name()
         self.type_card_rebate()
         self.select_validity_to_immediately()
+        self.upload_pic()
         self.upload_suite_goods_pic()
         self.type_goods_summary()
         self.type_card_inventory()
@@ -173,10 +178,14 @@ class PictureManageAction(BasePage):
     def create_pickit_classify(self):
         self.click_create_picture_classify_button()
         self.type_classify_name()
-        self.upload_big_pic(PMPageLocators.BIGPIC, PMPageLocators.FILEIMAGE,
-                            PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
-        self.upload_small_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
-                              PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
+        # 上传封面大图
+        self.upload_pic(PMPageLocators.BIGPIC, PMPageLocators.FILEIMAGE,
+                        PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADPICFIN)
+        # 上传封面小图
+        self.upload_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
+                        PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADSMALLPICFIN)
         self.select_classify_color_type()
         self.click_save_button(PMPageLocators.SAVEPICTURECLASSIFY)
         self.handle_alert()
@@ -227,10 +236,14 @@ class PictureManageAction(BasePage):
     def create_pickit(self):
         self.type_pickit_name()
         self.select_picture_classify()
-        self.upload_big_pic(PMPageLocators.BIGPIC, PMPageLocators.FILEIMAGE,
-                            PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
-        self.upload_small_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
-                              PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM)
+        # 上传封面大图
+        self.upload_pic(PMPageLocators.BIGPIC, PMPageLocators.FILEIMAGE,
+                        PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADPICFIN)
+        # 上传封面小图
+        self.upload_pic(PMPageLocators.SMALLPIC, PMPageLocators.FILEIMAGE,
+                        PMPageLocators.FILEIMAGELOCATE, PMPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADSMALLPICFIN)
         self.type_pickit_description()
         self.upload_pickit_pic()
         self.click_save_button(PMPageLocators.PICTURESAVE)
@@ -395,11 +408,15 @@ class MicroHelpPageAction(BasePage):
     # 微助力 - 创建一个微助力活动 - 模板一
     def create_micro_help(self):
         self.type_activity_name()
-        self.upload_big_pic(MHPageLocators.BIGPIC, MHPageLocators.DOC,
-                            MHPageLocators.DOCLOCATE, MHPageLocators.CONFIRM)
+        # 上传封面大图
+        self.upload_pic(MHPageLocators.BIGPIC, MHPageLocators.DOC,
+                        MHPageLocators.DOCLOCATE, MHPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADPICFIN)
         time.sleep(1)
-        self.upload_small_pic(MHPageLocators.SMALLPIC, MHPageLocators.DOC,
-                              MHPageLocators.DOCLOCATE, MHPageLocators.CONFIRM)
+        # 上传封面小图
+        self.upload_pic(MHPageLocators.SMALLPIC, MHPageLocators.DOC,
+                        MHPageLocators.DOCLOCATE, MHPageLocators.CONFIRM,
+                        PublicLogInfo.UPLOADSMALLPICFIN)
         self.type_mh_start_time()
         self.type_mh_end_time()
         self.upload_mh_background_pic()
